@@ -50,15 +50,10 @@ h1{
 .card-transparent,
 .card-transparent .card-body {
   background-color: transparent !important;
-  color: white !important;
 }
 
 .card .prix{
     background: #b0000046;
-}
-
-.card .btn{
-    color: white !important;
 }
 
 /* RESPONSIVE */
