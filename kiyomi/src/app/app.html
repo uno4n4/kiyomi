@@ -1,3 +1,44 @@
-<app-navbar></app-navbar>
-<app-accueil></app-accueil>
-<router-outlet></router-outlet>
+<router-outlet>
+  <nav class="navbar navbar-expand-lg thin-navbar mt-5">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand ms-3" href="#">
+        <img
+          src="assets/images/KiyomiLogoBlanc.svg"
+          id="logoKiyomi"
+          alt="Kiyomi Logo"
+          class="logo-float"
+        />
+        <!-- à la place du logo on a une icone Kiyomi responsive sur téléphone -->
+      </a>
+
+      <button
+        class="navbar-toggler border-white bg-black text-white"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link text-light" aria-current="page" routerLink="app-accueil">
+            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> MENUS
+          </a>
+
+          <a class="nav-link text-light" routerLink="app-accueil">
+            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> PANIER
+          </a>
+
+          <a class="nav-link text-light" routerLink="app-navbar">
+            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> ME
+            CONNECTER
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</router-outlet>
