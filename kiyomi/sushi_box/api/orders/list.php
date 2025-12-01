@@ -1,12 +1,13 @@
 <?php
 // api/orders/index.php
-require_once __DIR__ . '/../../config/config.php';
-require_once __DIR__ . '/Manager/userManager.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../users/Manager/userManager.php';
 
 header('Content-Type: application/json');
 
 // Récupérer l'en-tête Authorization
 $headers = getallheaders();
+
 if (!isset($headers['Authorization']) && !isset($headers['authorization'])) {
     http_response_code(401);
     echo json_encode(['message' => 'Autorisation manquante.']);
