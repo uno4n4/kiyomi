@@ -1,1 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: linear-gradient(to right, #280000 21%, #000000);
+  font-family: Playfair Display, serif;
+}
+
+
+/* POLICES */
+h1{
+    font-size: 62px;
+}
+
+
+/* NAVBAR */
+.navbar{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar ultra-fine */
+.thin-navbar {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  position: relative;
+  z-index: 10;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+/* pour avoir l'icone blanche du toggler */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Logo qui dépasse de la navbar */
+.logo-float {
+  height: 80px; 
+  width: auto;
+  margin-top: -20px;
+}
+
+
+/* INTITULE DE SECTION */
+#menuAccueil{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* CARTES MENUS INDIVIDUELS */
+.card-transparent,
+.card-transparent .card-body {
+  background-color: transparent !important;
+}
+
+.card .prix{
+    background: #b0000046;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 42px;
+    }
+    .logo-float {
+    height: 60px; 
+    margin-top: -40px;
+  }
+}
