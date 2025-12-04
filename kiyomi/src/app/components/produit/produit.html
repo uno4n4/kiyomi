@@ -1,12 +1,29 @@
 <div class="fiche">
-  <img 
-  class="img-produit" 
-  src="assets/images/Plat1.png" 
-  alt="Plat 1" 
-/>
-<h1 class="titre">Plat 1</h1>
+    <img class="img-produit" src="assets/images/Plat1.png" alt="Plat 1"/>
+
+<div class="texte">
+    <h1 class="titre">Plat 1</h1>
 
   <h3>Ingrédients :</h3>
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+
+
+
+<div class="info-click" (click)="showInfos = !showInfos">
+  <p><strong>Allergènes</strong></p>
+  <img src="assets/images/fleche_bas.png" alt="Voir plus"class="fleche"
+       [class.rotate]="showInfos" />
+</div>
+
+<div *ngIf="showInfos" class="infos-detail">
+  <p>Allergènes : gluten, soja, sésame</p>
+</div>
+
+
+
+
+  <p><strong>Kalories</strong></p>
+</div>
 
   <button class="btn-panier">+ Ajouter au panier</button>
 </div>

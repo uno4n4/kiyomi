@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class Produit {
 
+  showInfos = false; // masqué au début
+
+  toggleInfos() {
+    this.showInfos = !this.showInfos;
+  }
+
 }
