@@ -1,0 +1,25 @@
+.fiche {
+  width: 80%;
+  margin: auto;
+  color: white;
+  text-align: center;
+}
+
+.img-produit {
+  width: 300px;
+  border-radius: 15px;
+}
+
+.btn-panier {
+  padding: 10px 20px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.btn-panier:hover {
+  background: white;
+  color: black;
+}
