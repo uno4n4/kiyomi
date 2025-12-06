@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListeBoxes } from '../../services/liste-boxes'; //import du service de recuperation des boxes
+import { AjoutPanier } from '../../services/ajout-panier'; //import du service d'ajout de boxes dans le panier
 import { OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +11,10 @@ import { OnInit } from '@angular/core';
   styleUrl: './accueil.css',
 })
 export class Accueil implements OnInit {
-  apiData: any[] = []; //variable pour stocker les données de l'API
+  apiListe: any[] = []; //variable pour stocker les données de l'API
+  apiPanier: any;
 
-  constructor(private listeBoxes: ListeBoxes) {} //injection du service
+  constructor(private listeBoxes: ListeBoxes, private AjoutPanier: AjoutPanier) {} //injection du service
 
   ngOnInit(): void {
     this.getDataFromAPI(); //appel de la methode au chargement du composant
@@ -20,7 +22,19 @@ export class Accueil implements OnInit {
 
   getDataFromAPI() {
     return this.listeBoxes.getBoxes().subscribe((menus) => {
-      this.apiData = menus; //stockage des données reçues dans la variable
+      this.apiListe = menus; //stockage des données reçues dans la variable
     });
-    }
+  }
+
+  addPanier(idPanier: number) {
+    const quantity = 1; // par défaut
+    //const user_id = this.user_id; // à récuperer
+
+    const items = [{ idPanier, quantity }]; //comme on ajoute dans le panier 1par1 au clic du bouton commander
+    return this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe(
+      (panier) => {
+        this.apiPanier = panier; //stockage des données reçues dans la variable
+      }
+    );
+  }
 }

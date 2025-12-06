@@ -36,7 +36,7 @@
 
   <!-- boxes affichées dynamiquement via l'API -->
   <div class="row g-3 mb-5 z-3">
-    @for(box of apiData; track box.id){
+    @for(box of apiListe; track box.id){
     <div class="col-6 col-md-4 d-flex">
       <div class="card border border-white card-transparent h-100 w-100 shadow-sm p-3">
         
@@ -60,7 +60,7 @@
           <p class="card-text text-left text-white small opacity-75 mb-4">Nb pieces: {{ box.pieces }}</p>
 
           <!-- bouton commander (pour ajouter au panier)-->
-          <button type="button" class="btn btn-outline-light w-100" (click)="AjoutPanier()">Commander</button>
+          <button type="button" class="btn btn-outline-light w-100" (click)="addPanier(box.id)">Commander</button> <!-- juste box.id parce que le reste c'est le component.ts qui s'en occope -->
         </div>
       </div>
     </div>
