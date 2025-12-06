@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 24 nov. 2025 à 11:57
+-- Généré le : sam. 06 déc. 2025 à 02:04
 -- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Version de PHP : 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -261,7 +261,7 @@ INSERT INTO `foods` (`id`, `name`) VALUES
 (12, 'Sando Chicken Katsu'),
 (13, 'Sando Salmon Aburi'),
 (18, 'Signature Dragon Roll'),
-(22, 'Signature Rock\'n Roll'),
+(22, "Signature Rock\'n Roll"),
 (3, 'Spring Avocat Cheese'),
 (7, 'Spring Saumon Avocat'),
 (17, 'Spring Tataki Saumon'),
@@ -272,6 +272,59 @@ INSERT INTO `foods` (`id`, `name`) VALUES
 
 -- --------------------------------------------------------
 
+--
+-- Structure de la table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `status` varchar(50) NOT NULL DEFAULT 'paid',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `total_price`, `status`, `created_at`) VALUES
+(1, 1, 37.50, 'pending', '2025-11-30 21:20:42'),
+(2, 1, 63.60, 'pending', '2025-12-04 23:53:53'),
+(3, 1, 174.90, 'pending', '2025-12-05 23:04:15'),
+(4, 1, 174.90, 'pending', '2025-12-05 23:04:26');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `box_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `unit_price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `box_id`, `quantity`, `unit_price`) VALUES
+(7, 1, 3, 2, 12.50),
+(8, 1, 1, 1, 12.50),
+(9, 2, 2, 3, 15.90),
+(10, 2, 5, 1, 15.90),
+(11, 3, 2, 3, 15.90),
+(12, 3, 5, 8, 15.90),
+(13, 4, 2, 3, 15.90),
+(14, 4, 5, 8, 15.90);
+
+-- --------------------------------------------------------
 --
 -- Structure de la table `users`
 --
@@ -333,6 +386,21 @@ ALTER TABLE `foods`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Index pour la table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Index pour la table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `box_id` (`box_id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
@@ -362,6 +430,18 @@ ALTER TABLE `foods`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT pour la table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
@@ -384,6 +464,20 @@ ALTER TABLE `box_flavors`
 ALTER TABLE `box_foods`
   ADD CONSTRAINT `box_foods_ibfk_1` FOREIGN KEY (`box_id`) REFERENCES `boxes` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `box_foods_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+--
+-- Contraintes pour la table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Contraintes pour la table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`box_id`) REFERENCES `boxes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
