@@ -24,6 +24,7 @@ export class FormulaireCo {
         localStorage.setItem('user', JSON.stringify(res.user));
 
         console.log("Connecté :", res.user.prenom, res.user.nom);
+        window.location.reload();
       } else {
         this.error = "Identifiants incorrects";
       }

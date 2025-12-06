@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class Auth {
-  private apiUrl = "http://localhost/SAE301/kiyomi/sushi_box/api/users/login.php";
+  apiUrl = "http://localhost/SAE301/kiyomi/sushi_box/api/users/login.php";
 
   constructor(private http: HttpClient) {}
 
@@ -17,10 +17,8 @@ export class Auth {
     }).pipe(
       tap((response: any) => {
         if (response.success) {
-          // 👉 On stocke l'utilisateur
           localStorage.setItem('user', JSON.stringify(response.user));
 
-          // 👉 Et le token si tu veux l'utiliser plus tard
           localStorage.setItem('token', response.token);
         }
       })
