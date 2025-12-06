@@ -29,6 +29,7 @@ export class Accueil implements OnInit {
   addPanier(idPanier: number) {
     const quantity = 1; // par défaut
     //const user_id = this.user_id; // à récuperer
+    const user_id = 1;
 
     const items = [{ idPanier, quantity }]; //comme on ajoute dans le panier 1par1 au clic du bouton commander
     return this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe(
