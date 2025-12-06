@@ -261,7 +261,7 @@ INSERT INTO `foods` (`id`, `name`) VALUES
 (12, 'Sando Chicken Katsu'),
 (13, 'Sando Salmon Aburi'),
 (18, 'Signature Dragon Roll'),
-(22, 'Signature Rock\'n Roll'),
+(22, "Signature Rock\'n Roll"),
 (3, 'Spring Avocat Cheese'),
 (7, 'Spring Saumon Avocat'),
 (17, 'Spring Tataki Saumon'),

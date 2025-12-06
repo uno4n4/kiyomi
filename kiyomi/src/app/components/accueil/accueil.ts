@@ -4,13 +4,12 @@ import { CommonModule } from '@angular/common';
 import { ListeBoxes } from '../../services/liste-boxes'; //import du service de recuperation des boxes
 import { AjoutPanier } from '../../services/ajout-panier'; //import du service d'ajout de boxes dans le panier
 import { OnInit } from '@angular/core';
-import { Footer } from '../footer/footer';
 import { isEmpty } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
-  imports: [CommonModule, Footer],
+  imports: [CommonModule],
   templateUrl: './accueil.html',
   styleUrl: './accueil.css',
 })
@@ -36,18 +35,39 @@ export class Accueil implements OnInit {
     }
   }
 
+
+  //AFFICHAGE PAR 6 DES DIFFERENTES BOXES
+  visibleBoxes = 6;
+  totalBoxes = 0;
+
+  get boxesToShow() {
+    return this.apiListe.slice(0, this.visibleBoxes);
+  }
+
+  get totalBoxPositive() {
+    return this.visibleBoxes < this.totalBoxes;
+  }
+
+  // charger l'API pour éviter que totalBoxPositive reste à 0 au reload
   getDataFromAPI() {
-    return this.listeBoxes.getBoxes().subscribe((menus) => {
-      this.apiListe = menus; //stockage des données reçues dans la variable
+    this.listeBoxes.getBoxes().subscribe((menus) => {
+      this.apiListe = menus;
+      this.totalBoxes = menus.length; // correction
     });
   }
 
-  addPanier(idPanier: number):any {
+  voirPlus() {
+    this.visibleBoxes += 6;
+  }
+
+
+  // AJOUT PANIER EN FONCTION DE LA CONNECTION USER
+  addPanier(idPanier: number): any {
     if (!this.user) {
-      this.router.navigate(['/app-formulaire-co']);//renvoie au component app-formulaire-co
+      this.router.navigate(['/app-formulaire-co']); //renvoie au component app-formulaire-co
     } else {
       //sinon on ajoute la boxe au panier de l'user
-      let user_id: number = this.user["id"];
+      let user_id: number = this.user['id'];
       const quantity = 1; // par défaut
 
       const items = [{ idPanier, quantity }]; //comme on ajoute dans le panier 1par1 au clic du bouton commander
