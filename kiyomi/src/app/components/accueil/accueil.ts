@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ListeBoxes } from '../../services/liste-boxes'; //import du service de recuperation des boxes
 import { AjoutPanier } from '../../services/ajout-panier'; //import du service d'ajout de boxes dans le panier
 import { OnInit } from '@angular/core';
+import { Footer } from "../footer/footer";
 
 @Component({
   selector: 'app-accueil',
-  imports: [CommonModule],
+  imports: [CommonModule, Footer],
   templateUrl: './accueil.html',
   styleUrl: './accueil.css',
 })
