@@ -1,14 +1,14 @@
 <?php 
-
 class BoxManager {
     private $pdo;
+    //pour l'utiliser il faudra ecrire this->pdo car cette variable est privée
 
     public function __construct(){
         $this->pdo = new PDO('mysql:host=localhost;dbname=sushi_box', 'root', '');
     }
 
     public function findAll(){
-    $boxes = $this->$pdo->query("SELECT * FROM boxes")->fetchAll(PDO::FETCH_ASSOC);
+    $boxes = $this->pdo->query("SELECT * FROM boxes")->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($boxes as &$box) {
             // Conversion du prix en float "24.50" en 24.50
@@ -16,7 +16,7 @@ class BoxManager {
 
 
             // Étape 2 : foods
-            $stmt = $pdo->prepare("
+            $stmt = $this->pdo->prepare("
                 SELECT f.name, CAST(bf.quantity AS UNSIGNED) AS quantity
                 FROM box_foods bf
                 JOIN foods f ON bf.food_id = f.id
@@ -27,7 +27,7 @@ class BoxManager {
 
 
             // Étape 3 : flavors
-            $stmt = $pdo->prepare("
+            $stmt = $this->pdo->prepare("
                 SELECT fl.name
                 FROM box_flavors bf
                 JOIN flavors fl ON bf.flavor_id = fl.id

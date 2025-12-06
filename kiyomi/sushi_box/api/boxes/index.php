@@ -2,7 +2,7 @@
 
 $pdo = new PDO('mysql:host=localhost;dbname=sushi_box', 'root', '');
 $boxes = $pdo->query('SELECT * FROM boxes')->fetchAll(PDO::FETCH_ASSOC);
-require "../../Manager/BoxManager.php";
+require "../users/Manager/boxManager.php";
 
 if (isset($_GET['id'])){
     $boxManager = new BoxManager();
