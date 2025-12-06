@@ -1,12 +1,11 @@
 <div class="container">
-  <div
-    class="position-relative align-content-center flex-column vh-100 overflow-hidden"
-  >
+  <!-- INTRODUCTION AU RESTAURANT KIYOMI -->
+  <div class="position-relative align-content-center flex-column vh-100 overflow-hidden">
     <!-- image de fond -->
     <img
       src="../../assets/images/headerImage.png"
       alt="Image de fond Kiyomi"
-      class="position-absolute top-0 end-0 w-50 h-100 object-fit-cover z-1"
+      class="position-absolute top-0 end-0 h-100 object-fit-cover z-1"
     />
     <!-- trouver un moyen de faire en sorte que l'image soit en w-100 sur mobile -->
 
@@ -19,67 +18,57 @@
       Découvrez des créations uniques, alliant tradition et raffinement moderne.
     </p>
 
-    <button
-      class="btn border border-white text-white fs-5 col-md-2 z-3 mt-5 position-relative"
-    >
+    <button class="btn border border-white text-white fs-5 col-md-2 z-3 mt-5 position-relative">
       Explorer le menu
     </button>
   </div>
+
+  <!-- SECTION LISTE DES MENUS -->
   <div
     id="menuAccueil"
     class="ms-5 mt-5 d-flex align-items-center position-relative z-3 text-white"
   >
     <p class="fs-5">
-      <img
-        src="../../assets/images/iconeMenusRouge.svg"
-        alt="Icone menus"
-        height="50px"
-      />
+      <img src="../../assets/images/iconeMenusRouge.svg" alt="Icone menus" height="50px" />
       MENUS
     </p>
   </div>
-  <div class="d-flex align-items-center position-relative z-3 gap-3">
-    <div class="card border border-white col-4 card-transparent"> 
-  <img src="../../assets/images/Plat1.png" class="card-img-top" alt="..." />
-  <div class="card-body">
-    <p class="prix rounded card-text col-3 border-2 text-center text-white">10€</p>
-    <p class="card-text text-white">
-      Some quick example text to build on the card title and make up the
-      bulk of the card’s content.
-    </p>
-    <button type="button" class="btn btn-outline-light">Commander</button>
-  </div>
-</div>
 
-    <div class="card border border-white col-4 card-transparent"> 
-  <img src="../../assets/images/Plat1.png" class="card-img-top" alt="..." />
-  <div class="card-body">
-    <p class="prix rounded card-text col-3 border-2 text-center text-white">10€</p>
-    <p class="card-text text-white">
-      Some quick example text to build on the card title and make up the
-      bulk of the card’s content.
-    </p>
-    <button type="button" class="btn btn-outline-light">Commander</button>
-  </div>
-</div>
+  <!-- boxes affichées dynamiquement via l'API -->
+  <div class="row g-3 mb-5 z-3">
+    @for(box of apiListe; track box.id){
+    <div class="col-6 col-md-4 d-flex">
+      <div class="card border border-white card-transparent h-100 w-100 shadow-sm p-3">
+        
+        <!-- image box -->
+        <div class="align-self-center h-75 w-75">
+          <img src="../../../assets/images/{{box.image}}.png" class="card-img-top object-fit-cover" [alt]="box.image" />
+        </div>
 
-    <div class="card border border-white col-4 card-transparent"> 
-  <img src="../../assets/images/Plat1.png" class="card-img-top" alt="..." />
-  <div class="card-body">
-    <p class="prix rounded card-text col-3 border-2 text-center text-white">10€</p>
-    <p class="card-text text-white">
-      Some quick example text to build on the card title and make up the
-      bulk of the card’s content.
-    </p>
-    <button type="button" class="btn btn-outline-light">Commander</button>
-  </div>
-</div>
+        <!-- texte card boxe -->
+        <div class="card-body d-flex flex-column">
+          <p class="prix rounded card-text d-inline-block px-3 py-1 text-center text-white mb-3">
+            {{ box.price }}€
+          </p>
 
+          <p class="card-text text-white fw-semibold mb-2">
+            {{ box.name }}
+          </p>
+
+          <p class="card-text text-white small opacity-75 mb-2">Saveurs principales: {{ box.flavors }}</p>
+
+          <p class="card-text text-left text-white small opacity-75 mb-4">Nb pieces: {{ box.pieces }}</p>
+
+          <!-- bouton commander (pour ajouter au panier)-->
+          <button type="button" class="btn btn-outline-light w-100" (click)="addPanier(box.id)">Commander</button> <!-- juste box.id parce que le reste c'est le component.ts qui s'en occope -->
+        </div>
+      </div>
+    </div>
+    }
   </div>
 
   <div class="d-flex justify-content-center my-5">
-  <div class="btn btn-danger text-white">En savoir plus</div>
+    <div class="btn btn-danger text-white">Voir plus</div>
+  </div>
 </div>
-
-</div>
-
+<app-footer></app-footer>

@@ -1,0 +1,48 @@
+.fiche {
+  width: 80%;
+  margin: auto;
+  color: white;
+  text-align: center;
+}
+
+.img-produit {
+  width: 300px;
+  border-radius: 15px;
+}
+
+.btn-panier {
+  padding: 10px 20px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.btn-panier:hover {
+  background: white;
+  color: black;
+}
+
+.texte h1 {
+    text-align: center;
+}
+
+.texte {
+    text-align: left;
+}
+
+.fleche {
+  transition: transform 0.3s ease;
+  width: 2%;
+
+}
+
+.fleche.rotate {
+  transform: rotate(180deg);
+}
+
+.infos-detail {
+  display: block !important;
+  color: white;
+}
