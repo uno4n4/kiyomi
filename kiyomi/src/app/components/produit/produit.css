@@ -32,14 +32,17 @@
     text-align: left;
 }
 
-.info-click img {
-    width: 2%;
-}
-
 .fleche {
   transition: transform 0.3s ease;
+  width: 2%;
+
 }
 
 .fleche.rotate {
   transform: rotate(180deg);
+}
+
+.infos-detail {
+  display: block !important;
+  color: white;
 }
