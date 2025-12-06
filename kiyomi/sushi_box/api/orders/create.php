@@ -1,6 +1,7 @@
 <?php
 $input = json_decode(file_get_contents("php://input"), true); //php://input est un flux en lecture seule qui permet de lire les données brutes d'une requête HTTP POST
-$pdo = new PDO('mysql:host=localhost;dbname=sushi_box', 'root', '');
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../users/Manager/userManager.php';
 
 try {
     if (isset($input['box_id']) && isset($input['quantity']) && isset($input['user_id']) && isset($input['items'])) {
