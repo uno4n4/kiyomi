@@ -63,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 'id' => $user['id'],
                 'prenom' => $user['firstname'],
                 'nom' => $user['lastname'],
-                'email' => $user['email']
+                'email' => $user['email'],
+                'status' => $user['status']
             ]
         ]);
         exit;

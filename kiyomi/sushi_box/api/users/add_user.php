@@ -22,7 +22,7 @@ $raw = file_get_contents('php://input');
 $data = json_decode($raw, true);
 
 // Validation
-if (!isset($data['firstname'], $data['lastname'], $data['email'], $data['password'])) {
+if (!isset($data['firstname'], $data['lastname'], $data['email'], $data['password'], $data['status'])) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Champs manquants']);
     exit;
@@ -32,6 +32,7 @@ $firstname = trim($data['firstname']);
 $lastname  = trim($data['lastname']);
 $email     = trim($data['email']);
 $password  = $data['password'];
+$status = trim($data['status']);
 
 // Vérifier si l'email existe déjà
 if ($um->findUserByEmail($email)) {
@@ -48,7 +49,8 @@ $newUserId = $um->createUser([
     'firstname' => $firstname,
     'lastname'  => $lastname,
     'email'     => $email,
-    'password_hash' => $password_hash
+    'password_hash' => $password_hash,
+    'status' => $status
 ]);
 
 // Récupérer l'utilisateur créé via findUserByEmail
@@ -67,7 +69,8 @@ echo json_encode([
         'id' => $newUser['id'],
         'prenom' => $newUser['firstname'],
         'nom' => $newUser['lastname'],
-        'email' => $newUser['email']
+        'email' => $newUser['email'],
+        'status' => $newUser['status']
     ],
     'token' => $token
 ]);

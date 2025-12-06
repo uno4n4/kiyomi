@@ -34,18 +34,24 @@
                style="background: none;">
     </div>
 
-    <!-- <div class="form-check">
-  <input class="form-check-input" type="radio" name="etudiant" id="etudiant" value="option1" checked>
-  <label class="form-check-label" for="etudiant">
-    Etudiant
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="particulier" id="particulier" value="option2">
-  <label class="form-check-label" for="particulier">
-    Particulier
-  </label>
-</div> -->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" id="etudiant" value="Etudiant" checked>
+        <label class="form-check-label" for="etudiant">
+            Etudiant
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" id="pro" value="Professionnel">
+        <label class="form-check-label" for="pro">
+            Professionnel
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" id="retired" value="Retired">
+        <label class="form-check-label" for="retired">
+            Retired
+        </label>
+    </div>
 
     <div class="form-group mt-3 mb-3">
         <label for="password">MOT DE PASSE :</label>

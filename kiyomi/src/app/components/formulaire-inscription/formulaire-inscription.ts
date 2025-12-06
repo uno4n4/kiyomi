@@ -15,12 +15,13 @@ export class FormulaireInscription {
   lastname = '';
   email = '';
   password = '';
+  status = '';
   error = '';
 
   constructor (private inscription: Inscription){}
 
   onSubmit() {
-  this.inscription.add_user(this.firstname, this.lastname, this.email, this.password)
+  this.inscription.add_user(this.firstname, this.lastname, this.email, this.password, this.status)
     .subscribe({
       next: (res) => {
         if (res.success) {

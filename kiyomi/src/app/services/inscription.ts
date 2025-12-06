@@ -10,12 +10,13 @@ export class Inscription {
 
   constructor(private http: HttpClient){}
 
-  add_user(firstname: string, lastname: string, email: string, password: string): Observable<any> {
+  add_user(firstname: string, lastname: string, email: string, password: string, status: string): Observable<any> {
   return this.http.post(this.apiUrl, {
     firstname: firstname,
     lastname: lastname,
     email: email,
-    password: password
+    password: password,
+    status: status
   }).pipe(
     tap((response: any) => {
       if (response.success) {

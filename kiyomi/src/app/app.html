@@ -31,8 +31,8 @@
           <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> PANIER
         </a>
 
-        <a class="nav-link text-light" routerLink="app-formulaire-co">
-          <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> ME CONNECTER
+        <a class="nav-link text-light" routerLink="app-formulaire-co" *ngIf="!user">
+          <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px"  /> ME CONNECTER
         </a>
 
         <a class="nav-link text-light" routerLink="app-formulaire-inscription">
@@ -40,7 +40,8 @@
         </a>
 
         <div class="user-info text-light ms-3" *ngIf="user">
-          👤 {{ user.prenom }} {{ user.nom }}
+          {{ user.prenom }} {{ user.nom }}
+          <button (click)="logout()">Se déconnecter</button>
         </div>
 
       </div>

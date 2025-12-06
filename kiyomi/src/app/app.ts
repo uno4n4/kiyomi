@@ -19,6 +19,14 @@ export class App {
     if(savedUser){
       this.user = JSON.parse(savedUser);
     }
-  }
+  }  
 }
+logout() {
+  localStorage.removeItem('user');   
+  localStorage.removeItem('token');  
+  this.user = null;                  
+}
+
+
+
 }

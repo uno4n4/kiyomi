@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 06 déc. 2025 à 02:04
+-- Généré le : sam. 06 déc. 2025 à 20:55
 -- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.1.25
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -261,7 +261,7 @@ INSERT INTO `foods` (`id`, `name`) VALUES
 (12, 'Sando Chicken Katsu'),
 (13, 'Sando Salmon Aburi'),
 (18, 'Signature Dragon Roll'),
-(22, "Signature Rock\'n Roll"),
+(22, 'Signature Rock\'n Roll'),
 (3, 'Spring Avocat Cheese'),
 (7, 'Spring Saumon Avocat'),
 (17, 'Spring Tataki Saumon'),
@@ -325,6 +325,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `box_id`, `quantity`, `unit_price`)
 (14, 4, 5, 8, 15.90);
 
 -- --------------------------------------------------------
+
 --
 -- Structure de la table `users`
 --
@@ -336,6 +337,7 @@ CREATE TABLE `users` (
   `lastname` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `status` varchar(100) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `api_token` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -344,8 +346,8 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `created_at`, `api_token`) VALUES
-(1, 'Prenom', 'NOM', 'exemple@gmail.com', '$2y$10$/ezGVKtksSwH..aLO0KiKOxC0pniYn0A4t4HqahDdVutYHNy2eZRS', '2025-11-18 09:14:42', '');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `status`, `created_at`, `api_token`) VALUES
+(1, 'Prenom', 'NOM', 'exemple@gmail.com', '$2y$10$/ezGVKtksSwH..aLO0KiKOxC0pniYn0A4t4HqahDdVutYHNy2eZRS', '', '2025-11-18 09:14:42', '');
 
 --
 -- Index pour les tables déchargées
@@ -464,20 +466,12 @@ ALTER TABLE `box_flavors`
 ALTER TABLE `box_foods`
   ADD CONSTRAINT `box_foods_ibfk_1` FOREIGN KEY (`box_id`) REFERENCES `boxes` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `box_foods_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE CASCADE;
-COMMIT;
 
 --
 -- Contraintes pour la table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Contraintes pour la table `order_items`
---
-ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`box_id`) REFERENCES `boxes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
