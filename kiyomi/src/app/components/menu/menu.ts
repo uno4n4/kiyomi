@@ -6,14 +6,15 @@ import { AjoutPanier } from '../../services/ajout-panier'; //import du service d
 import { OnInit } from '@angular/core';
 import { isEmpty } from 'rxjs';
 import { Router } from '@angular/router';
+import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
 @Component({
-  selector: 'app-accueil',
-  imports: [CommonModule],
-  templateUrl: './accueil.html',
-  styleUrl: './accueil.css',
+  selector: 'app-menu',
+  imports: [CommonModule, SearchBarFilters],
+  templateUrl: './menu.html',
+  styleUrl: './menu.css',
 })
-export class Accueil implements OnInit {
+export class Menu implements OnInit {
   apiListe: any[] = []; //variable pour stocker les données de l'API
   apiPanier: any;
   user: any = null;
@@ -35,24 +36,33 @@ export class Accueil implements OnInit {
     }
   }
 
-  renvoiMenu(){
+  renvoiMenu() {
     this.router.navigate(['/app-menu']); //renvoie au component menu
   }
 
   //AFFICHAGE PAR 6 DES DIFFERENTES BOXES
   visibleBoxes = 6;
+  totalBoxes = 0;
 
   get boxesToShow() {
     return this.apiListe.slice(0, this.visibleBoxes);
+  }
+
+  get totalBoxPositive() {
+    return this.visibleBoxes < this.totalBoxes;
   }
 
   // charger l'API pour éviter que totalBoxPositive reste à 0 au reload
   getDataFromAPI() {
     this.listeBoxes.getBoxes().subscribe((menus) => {
       this.apiListe = menus;
+      this.totalBoxes = menus.length; // correction
     });
   }
 
+  voirPlus() {
+    this.visibleBoxes += 6;
+  }
 
   // AJOUT PANIER EN FONCTION DE LA CONNECTION USER
   addPanier(idPanier: number): any {

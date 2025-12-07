@@ -18,7 +18,7 @@
       Découvrez des créations uniques, alliant tradition et raffinement moderne.
     </p>
 
-    <button class="btn border border-white text-white fs-5 col-md-2 z-3 mt-5 position-relative">
+    <button class="btn border border-white text-white fs-5 col-md-2 z-3 mt-5 position-relative" (click)="renvoiMenu()">
       Explorer le menu
     </button>
   </div>
@@ -33,11 +33,9 @@
       MENUS
     </p>
   </div>
-
-  <app-search-bar-filters></app-search-bar-filters>
   
   <!-- boxes affichées dynamiquement via l'API -->
-  <div class="row g-3 mb-5 z-3">
+  <div class="row g-3 mb-5 z-3 mx-5">
     @for (box of boxesToShow; track box.id) {
     <div class="col-6 col-md-4 d-flex">
       <div class="card border border-white card-transparent h-100 w-100 shadow-sm p-3">
@@ -69,9 +67,7 @@
     }
   </div>
 
-  @if (totalBoxPositive){
   <div class="d-flex justify-content-center my-5">
-    <div class="btn btn-danger text-white" (click)="voirPlus()">Voir plus</div>
+    <div class="btn btn-danger text-white" (click)="renvoiMenu()">Voir plus</div>
   </div>
-  }
 </div>
