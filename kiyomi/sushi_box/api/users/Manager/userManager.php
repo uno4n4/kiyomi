@@ -8,13 +8,14 @@ class UserManager {
     }
 
     public function createUser(array $data): int {
-        $sql = "INSERT INTO users (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
+        $sql = "INSERT INTO users (firstname, lastname, email, password, status) VALUES (:firstname, :lastname, :email, :password, :status)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':firstname' => $data['firstname'],
             ':lastname'  => $data['lastname'],
             ':email'     => $data['email'],
             ':password'  => $data['password_hash'],
+            ':status' => $data['status']
         ]);
         return (int)$this->pdo->lastInsertId();
     }

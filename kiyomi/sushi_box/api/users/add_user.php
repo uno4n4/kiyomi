@@ -1,65 +1,76 @@
 <?php
 // users/add_user.php
+header("Access-Control-Allow-Origin: http://localhost:4200");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Content-Type: application/json; charset=utf-8");
+
+// Réponse au preflight OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/Manager/userManager.php';
 
 $pdo = getPDO();
-$um = new userManager($pdo);
-header('Content-Type: application/json');
+$um = new UserManager($pdo);
 
-// Get raw JSON body
 $raw = file_get_contents('php://input');
 $data = json_decode($raw, true);
 
-// Basic validation
-if (!isset($data['firstname'], $data['lastname'], $data['email'], $data['password'])) {
+// Validation
+if (!isset($data['firstname'], $data['lastname'], $data['email'], $data['password'], $data['status'])) {
     http_response_code(400);
-    echo json_encode(['message' => 'Champs manquants : firstname, lastname, email, password']);
+    echo json_encode(['success' => false, 'message' => 'Champs manquants']);
     exit;
 }
+
 $firstname = trim($data['firstname']);
 $lastname  = trim($data['lastname']);
 $email     = trim($data['email']);
 $password  = $data['password'];
+$status = trim($data['status']);
 
-if ($firstname === '' || $lastname === '' || $email === '' || $password === '') {
-    http_response_code(400);
-    echo json_encode(['message' => 'Les champs ne doivent pas être vides.']);
-    exit;
-}
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400);
-    echo json_encode(['message' => 'Adresse email invalide.']);
+// Vérifier si l'email existe déjà
+if ($um->findUserByEmail($email)) {
+    http_response_code(409);
+    echo json_encode(['success' => false, 'message' => 'Email déjà utilisé']);
     exit;
 }
 
-try {
-    $pdo = getPDO();
-    $um = new UserManager($pdo);
+// Hachage du mot de passe
+$password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // Vérifier si email existe déjà
-    if ($um->findUserByEmail($email)) {
-        http_response_code(409); // Conflict
-        echo json_encode(['message' => 'Un utilisateur avec cet email existe déjà.']);
-        exit;
-    }
+// Création de l'utilisateur
+$newUserId = $um->createUser([
+    'firstname' => $firstname,
+    'lastname'  => $lastname,
+    'email'     => $email,
+    'password_hash' => $password_hash,
+    'status' => $status
+]);
 
-    // Hachage du mot de passe
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+// Récupérer l'utilisateur créé via findUserByEmail
+$newUser = $um->findUserByEmail($email);
 
-    $newUserId = $um->createUser([
-        'firstname' => $firstname,
-        'lastname'  => $lastname,
-        'email'     => $email,
-        'password_hash' => $password_hash
-    ]);
+// Générer un token (comme login)
+$token = bin2hex(random_bytes(32));
+$um->updateToken((int)$newUser['id'], $token);
 
-    http_response_code(201); // Created
-    echo json_encode(['message' => 'Utilisateur créé.', 'id' => $newUserId]);
-
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['message' => 'Erreur serveur.', 'error' => $e->getMessage()]);
-}
-
-?>
+// Réponse JSON compatible Angular
+http_response_code(200);
+echo json_encode([
+    'success' => true,
+    'message' => 'Utilisateur créé et connecté',
+    'user' => [
+        'id' => $newUser['id'],
+        'prenom' => $newUser['firstname'],
+        'nom' => $newUser['lastname'],
+        'email' => $newUser['email'],
+        'status' => $newUser['status']
+    ],
+    'token' => $token
+]);

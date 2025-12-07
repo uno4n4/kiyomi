@@ -1,15 +1,29 @@
-<form action="../../../../sushi_box/api/users/add_user.php" method="post">
-  <div class="form-group">
-    <label for="Nom">Nom :</label>
-    <input type="Nom" class="form-control" id="Nom" placeholder="Domingues" type="text" required>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+<form (ngSubmit)="onSubmit()" style="border: 5px solid black; border-radius: 10px; max-width: 500px; margin: auto; margin-top: 10px; padding: 10px;" class="text-white">
+    <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" class="mx-auto d-block">
+
+    <div class="form-group">
+        <label for="email">EMAIL :</label>
+        <input type="email"
+               class="form-control border-white"
+               id="email"
+               [(ngModel)]="email"
+               name="email"
+               required
+               style="background: none;">
+    </div>
+
+    <div class="form-group mt-3 mb-3">
+        <label for="password">MOT DE PASSE :</label>
+        <input type="password"
+               class="form-control"
+               id="password"
+               [(ngModel)]="password"
+               name="password"
+               required
+               style="background: none;">
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn border-white text-white" id="co">ME CONNECTER</button>
+    </div>
 </form>
