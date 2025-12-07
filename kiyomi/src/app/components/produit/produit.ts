@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ListeBoxes } from '../../services/liste-boxes';
 
 @Component({
   selector: 'app-produit',
@@ -8,11 +9,17 @@ import { CommonModule } from '@angular/common';
   templateUrl: './produit.html',
   styleUrl: './produit.css',
 })
-export class Produit {
-  showInfos = false; // masqué au début
+export class Produit implements OnInit {
 
-  toggleInfos() {
-    this.showInfos = !this.showInfos;
+  box: any; // on stocke la box récupérée
+
+  constructor(private listeBoxes: ListeBoxes) {}
+
+  ngOnInit(): void {
+    this.listeBoxes.getBoxes().subscribe((data: any[]) => {
+      if (data && data.length > 0) {
+        this.box = data[0];
+      }
+    });
   }
-
 }
