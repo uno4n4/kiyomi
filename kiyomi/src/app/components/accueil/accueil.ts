@@ -6,10 +6,11 @@ import { AjoutPanier } from '../../services/ajout-panier'; //import du service d
 import { OnInit } from '@angular/core';
 import { isEmpty } from 'rxjs';
 import { Router } from '@angular/router';
+import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
 @Component({
   selector: 'app-accueil',
-  imports: [CommonModule],
+  imports: [CommonModule, SearchBarFilters],
   templateUrl: './accueil.html',
   styleUrl: './accueil.css',
 })

@@ -1,0 +1,105 @@
+<div class="d-flex flex-wrap justify-content-end align-items-center gap-3 mb-5 w-100">
+  @if(phone){
+  <!-- FILTRE GENERAUX + BARRE DE RECHERCHE sur mobile -->
+  <div class="col-12 d-flex gap-2">
+    <!-- FILTRES -->
+    <div class="flex-grow-1">
+      <div class="input-group">
+        <span class="input-group-text bg-black text-white border border-white">
+          <i class="bi bi-filter"></i>
+        </span>
+        <!-- faire un popup pour les filtres -->
+        <select
+          class="form-select text-white bg-black border border-white"
+          aria-label="Filter select"
+        >
+        <option selected>Filtres</option>
+            <option value="1">Moins de 15€</option>
+            <option value="2">15-20€</option>
+            <option value="3">Plus de 20€</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- BARRE DE RECHERCHE -->
+    <form class="d-flex flex-grow-1" role="search">
+      <input
+        class="form-control form-control-sm me-2 bg-transparent text-white border border-white"
+        type="search"
+        placeholder="Rechercher"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-light" type="submit">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+  </div>
+  } @else{
+  <!-- FILTRES PRIX -->
+  <div class="col-md-2">
+    <div class="input-group">
+      <span class="input-group-text bg-black text-white border border-white">
+        <i class="bi bi-currency-euro"></i>
+      </span>
+      <select
+        class="form-select text-white bg-black border border-white"
+        aria-label="Filter select"
+      >
+        <option selected>Prix</option>
+        <option value="1">Moins de 15€</option>
+        <option value="2">15-20€</option>
+        <option value="3">Plus de 20€</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- FILTRES FORMAT -->
+  <div class="col-md-2">
+    <div class="input-group">
+      <span class="input-group-text bg-black text-white border border-white">
+        <i class="bi bi-fork-knife"></i>
+      </span>
+      <select
+        class="form-select text-white bg-black border border-white"
+        aria-label="Filter select"
+      >
+        <option selected>Portion</option>
+        <option value="1">Petite</option>
+        <option value="2">Moyenne</option>
+        <option value="3">Familiale / à partager</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- FILTRES SAVEURS -->
+  <div class="col-md-2">
+    <div class="input-group">
+      <span class="input-group-text bg-black text-white border border-white">
+        <i class="bi bi-funnel-fill"></i>
+      </span>
+      <select
+        class="form-select text-white bg-black border border-white"
+        aria-label="Filter select"
+      >
+        <option selected>Saveurs</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- BARRE DE RECHERCHE -->
+  <form class="d-flex col-md-4 mt-2 mt-md-0" role="search">
+    <input
+      class="form-control form-control-sm me-2 bg-transparent text-white border border-white"
+      type="search"
+      placeholder="Rechercher"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-light" type="submit">
+      <i class="bi bi-search"></i>
+    </button>
+  </form>
+  }
+</div>
