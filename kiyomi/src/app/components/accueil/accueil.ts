@@ -37,9 +37,7 @@ export class Accueil implements OnInit {
 
   //REDIRECTION VERS LA "PAGE MENU"
   renvoiMenu() {
-    this.router.navigate(['/app-menu']).then(() => {
-        window.location.reload();
-      }); //renvoie au component menu
+    this.router.navigate(['/app-menu']); //renvoie au component menu
   }
 
   //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
@@ -47,9 +45,6 @@ export class Accueil implements OnInit {
     this.router
       .navigate(['/app-produit'], {
         queryParams: { id: boxe_id },
-      })
-      .then(() => {
-        window.location.reload();
       });
   }
 
