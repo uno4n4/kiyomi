@@ -39,8 +39,8 @@ export class Menu implements OnInit {
   //REDIRECTION VERS LA "PAGE MENU"
   renvoiMenu() {
     this.router.navigate(['/app-menu']).then(() => {
-        window.location.reload();
-      }); //renvoie au component menu
+      window.location.reload();
+    }); //renvoie au component menu
   }
 
   //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
