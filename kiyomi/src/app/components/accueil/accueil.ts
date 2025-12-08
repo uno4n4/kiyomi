@@ -17,7 +17,6 @@ export class Accueil implements OnInit {
   apiListe: any[] = []; //variable pour stocker les données de l'API
   apiPanier: any;
   user: any = null;
-  link = '/app-produit';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -37,14 +36,15 @@ export class Accueil implements OnInit {
   }
 
   //REDIRECTION VERS LA "PAGE MENU"
-  renvoiMenu(){
+  renvoiMenu() {
     this.router.navigate(['/app-menu']); //renvoie au component menu
   }
 
   //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
-  pageProduit(boxe_id: number){
-    this.link += '?id ='+ boxe_id;
-    this.router.navigate(['/app-produit'])
+  pageProduit(boxe_id: number) {
+    this.router.navigate(['/app-produit'], {
+      queryParams: { id: boxe_id },
+    });
   }
 
   //AFFICHAGE PAR 6 DES DIFFERENTES BOXES
@@ -53,14 +53,13 @@ export class Accueil implements OnInit {
   get boxesToShow() {
     return this.apiListe.slice(0, this.visibleBoxes);
   }
-
+  //window.location.reload();
   // charger l'API pour éviter que totalBoxPositive reste à 0 au reload
   getDataFromAPI() {
     this.listeBoxes.getBoxes().subscribe((menus) => {
       this.apiListe = menus;
     });
   }
-
 
   // AJOUT PANIER EN FONCTION DE LA CONNECTION USER
   addPanier(idPanier: number): any {
