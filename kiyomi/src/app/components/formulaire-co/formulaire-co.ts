@@ -13,25 +13,36 @@ import { FormsModule } from '@angular/forms';
 export class FormulaireCo {
   email = '';
   password = '';
-  error = '';
+  errorMessage = '';
+  showErrorPopup = false;
 
   constructor(private auth: Auth) {}
 
-  onSubmit(){
-    this.auth.login(this.email, this.password).subscribe(res => {
-      if(res.success){
+  onSubmit() {
+    if(!this.email.includes('@')){
+      this.errorMessage = "Votre email est invalide.";
+      this.showErrorPopup = true;
+      return;
+    } 
+
+  this.auth.login(this.email, this.password).subscribe(
+    (res: any) => {
+      if (res.success) {
         localStorage.setItem('token', res.token);
         localStorage.setItem('user', JSON.stringify(res.user));
 
-        console.log("Connecté :", res.user.prenom, res.user.nom);
+        this.showErrorPopup = false;
         window.location.reload();
       } else {
-        this.error = "Identifiants incorrects";
+        this.errorMessage = res.message || 'Erreur inconnu';
+        this.showErrorPopup = true;
       }
     },
-    err => {
-      this.error = "Erreur de connexion";
+    (err) => {
+      this.errorMessage = "Erreur de connexion.";
+      this.showErrorPopup = true;
     }
-  )
-  }
+  );
+}
+
 }

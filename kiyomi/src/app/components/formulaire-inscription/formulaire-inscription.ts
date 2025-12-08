@@ -16,11 +16,18 @@ export class FormulaireInscription {
   email = '';
   password = '';
   status = '';
-  error = '';
+  errorMessage = '';
+  showErrorPopup = false;
 
   constructor (private inscription: Inscription){}
 
   onSubmit() {
+    const strongPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
+    if(!strongPassword.test(this.password)){
+      this.errorMessage = "Le mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre";
+      this.showErrorPopup = true;
+      return
+    }
   this.inscription.add_user(this.firstname, this.lastname, this.email, this.password, this.status)
     .subscribe({
       next: (res) => {
@@ -31,18 +38,15 @@ export class FormulaireInscription {
 
           console.log("Connecté :", res.user.prenom, res.user.nom);
           window.location.reload();
+        } else {
+          this.errorMessage = res.message;
+          this.showErrorPopup = true;
         }
       },
       error: (err) => {
-        if (err.status === 409) {
-          this.error = "Un utilisateur avec cet email existe déjà.";
-        } else {
-          this.error = "Erreur serveur ou connexion impossible.";
+          this.errorMessage = "Erreur serveur ou connexion impossible.";
+          this.showErrorPopup = true;
         }
-        console.error('Erreur API :', err);
-      }
-    });
-}
-
-
+      });
+    }
 }

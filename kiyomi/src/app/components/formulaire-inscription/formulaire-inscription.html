@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()"
+<form (ngSubmit)="onSubmit()" novalidate
       class="text-white mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto"
       style="
         border-radius: 14px;
@@ -130,3 +130,16 @@
     </div>
 
 </form>
+
+
+<div *ngIf="showErrorPopup"
+     class="position-fixed top-50 start-50 translate-middle p-4 rounded shadow-lg text-dark"
+     style="background: white; z-index: 9999; width: 90%; max-width: 400px;">
+
+    <h5 class="text-center mb-3">⚠ Erreur</h5>
+    <p class="text-center">{{ errorMessage }}</p>
+
+    <div class="text-center mt-3">
+        <button class="btn btn-danger px-4" (click)="showErrorPopup = false">Fermer</button>
+    </div>
+</div>

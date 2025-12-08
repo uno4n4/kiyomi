@@ -37,7 +37,10 @@ $status = trim($data['status']);
 // Vérifier si l'email existe déjà
 if ($um->findUserByEmail($email)) {
     http_response_code(409);
-    echo json_encode(['success' => false, 'message' => 'Email déjà utilisé']);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Un utilisateur avec cet email existe déjà'
+    ]);
     exit;
 }
 

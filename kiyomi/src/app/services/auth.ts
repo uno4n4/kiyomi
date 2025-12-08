@@ -6,12 +6,12 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class Auth {
-  apiUrl = "http://localhost/SAE301/kiyomi/sushi_box/api/users/login.php";
+  apiUrl = "http://localhost/SAE301/kiyomi/sushi_box/api/users";
 
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(this.apiUrl, {
+    return this.http.post(this.apiUrl + "/login.php", {
       email: email,
       password: password
     }).pipe(
@@ -24,4 +24,9 @@ export class Auth {
       })
     );
   }
+
+  forgotPassword(email: string){
+    return this.http.post<any>(this.apiUrl + "/forgot-password.php", { email });
+  }
+
 }
