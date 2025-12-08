@@ -17,6 +17,7 @@ export class Accueil implements OnInit {
   apiListe: any[] = []; //variable pour stocker les données de l'API
   apiPanier: any;
   user: any = null;
+  link = '/app-produit';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -35,8 +36,15 @@ export class Accueil implements OnInit {
     }
   }
 
+  //REDIRECTION VERS LA "PAGE MENU"
   renvoiMenu(){
     this.router.navigate(['/app-menu']); //renvoie au component menu
+  }
+
+  //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
+  pageProduit(boxe_id: number){
+    this.link += '?id ='+ boxe_id;
+    this.router.navigate(['/app-produit'])
   }
 
   //AFFICHAGE PAR 6 DES DIFFERENTES BOXES
