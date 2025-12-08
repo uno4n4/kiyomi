@@ -66,3 +66,7 @@ h1{
     margin-top: -40px;
   }
 }
+
+::placeholder{
+    color: white;
+}

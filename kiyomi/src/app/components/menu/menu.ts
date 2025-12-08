@@ -1,3 +1,4 @@
+//à ajouter : window.location.reload(); pour régler le pb d'affichage
 import { Component, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
@@ -43,9 +44,10 @@ export class Menu implements OnInit {
 
   //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
   pageProduit(boxe_id: number) {
-    this.router.navigate(['/app-produit'], {
-      queryParams: { id: boxe_id },
-    });
+    this.router
+      .navigate(['/app-produit'], {
+        queryParams: { id: boxe_id },
+      });
   }
 
   //AFFICHAGE PAR 6 DES DIFFERENTES BOXES

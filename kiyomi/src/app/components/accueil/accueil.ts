@@ -42,9 +42,10 @@ export class Accueil implements OnInit {
 
   //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
   pageProduit(boxe_id: number) {
-    this.router.navigate(['/app-produit'], {
-      queryParams: { id: boxe_id },
-    });
+    this.router
+      .navigate(['/app-produit'], {
+        queryParams: { id: boxe_id },
+      });
   }
 
   //AFFICHAGE PAR 6 DES DIFFERENTES BOXES
@@ -79,7 +80,7 @@ export class Accueil implements OnInit {
     }
   }
   //meth pour afficher page produit
-     goToProduit(id: number) {
+  goToProduit(id: number) {
     this.router.navigate(['/app-produit', id]);
-}
+  }
 }
