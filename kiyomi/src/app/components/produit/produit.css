@@ -1,48 +1,50 @@
-.fiche {
-  width: 80%;
-  margin: auto;
-  color: white;
-  text-align: center;
-}
-
-.img-produit {
-  width: 300px;
-  border-radius: 15px;
-}
-
-.btn-panier {
-  padding: 10px 20px;
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.btn-panier:hover {
-  background: white;
-  color: black;
-}
-
-.texte h1 {
-    text-align: center;
+.produit img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .texte {
-    text-align: left;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  padding: 20px;
 }
 
-.fleche {
-  transition: transform 0.3s ease;
-  width: 2%;
-
+.titre {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
-.fleche.rotate {
-  transform: rotate(180deg);
+h3 {
+  margin: 30px 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
 }
 
-.infos-detail {
-  display: block !important;
-  color: white;
+p {
+  line-height: 1.4;
+  margin: 0 0 10px 0;
+}
+
+.btn-panier {
+  display: block;
+  margin: 20px auto 0 auto; /* centre le bouton */
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: black;
+  border-radius: 30px;
+  color: #ffffff;
+  border: none; /* supprime le contour gris */
+  transition: 0.2s;
+}
+
+.btn-panier:hover {
+  background-color: rgb(42, 5, 5);
+  color: #ffffff;
 }

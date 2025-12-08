@@ -12,4 +12,8 @@ export class ListeBoxes {
   getBoxes() {
     return this.http.get<any[]>(this.API_URL); //observable - recuperation de toutes les boxes via l'API
   }
+getBoxById(id: number) {
+  return this.http.get<any>(`${this.API_URL}/${id}`);
+}
+
 }
