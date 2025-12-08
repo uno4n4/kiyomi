@@ -33,6 +33,7 @@ export class Produit implements OnInit {
     });
   }
 
+  //btn ajout panier
     addPanier(idPanier: number): any {
     if (!this.user) {
       this.router.navigate(['/app-formulaire-co']); //renvoie au component app-formulaire-co
