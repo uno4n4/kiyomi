@@ -1,5 +1,5 @@
   <div class="produit"> 
-<img src="../../../assets/images/{{box.image}}.png" class="card-img-top object-fit-cover" style="cursor: pointer;"/>
+    <img src="../../../assets/images/{{box.image}}.png" class="card-img-top object-fit-cover"/>
   
   </div> <div class="texte"> 
     <h1 class="titre">{{ box.nom }}</h1> 
@@ -7,4 +7,4 @@
     <p>{{ box.ingredients }}</p> 
   </div> 
   
-  <button class="btn-panier">+ Ajouter au panier</button> 
+<button type="button" class="btn btn-outline-light w-50" (click)="addPanier(box.id)">Commander</button> <!-- juste box.id parce que le reste c'est le component.ts qui s'en occope -->
