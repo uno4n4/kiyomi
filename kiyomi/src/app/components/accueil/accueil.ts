@@ -79,4 +79,8 @@ export class Accueil implements OnInit {
       );
     }
   }
+  //meth pour afficher page produit
+     goToProduit(id: number) {
+    this.router.navigate(['/app-produit', id]);
+}
 }

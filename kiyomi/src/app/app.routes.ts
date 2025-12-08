@@ -8,8 +8,8 @@ export const routes: Routes = [
     {path:'', component: Accueil},
     {path:'app-accueil', component: Accueil},
     {path:'app-formulaire-co', component: FormulaireCo},
-    {path:'app-produit', component: Produit},
-    {path: 'app-formulaire-inscription', component: FormulaireInscription}
+{ path:'app-produit/:id', component: Produit },
+    {path:'app-formulaire-inscription', component: FormulaireInscription}
 ];
 //le premier path est la route par defaut: ''. Affichage de base
 //le deuxieme path est la route wildcard: '**'. Utile si la route n'existe pas

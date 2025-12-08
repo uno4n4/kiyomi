@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { ListeBoxes } from '../../services/liste-boxes';
 
 @Component({
@@ -11,15 +12,19 @@ import { ListeBoxes } from '../../services/liste-boxes';
 })
 export class Produit implements OnInit {
 
-  box: any; // on stocke la box récupérée
+  box: any;
 
-  constructor(private listeBoxes: ListeBoxes) {}
+  constructor(
+    private listeBoxes: ListeBoxes,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.listeBoxes.getBoxes().subscribe((data: any[]) => {
-      if (data && data.length > 0) {
-        this.box = data[0];
-      }
+    const id = Number(this.route.snapshot.paramMap.get('id')); // ← id dans l’URL
+
+    this.listeBoxes.getBoxById(id).subscribe((data: any) => {
+      this.box = data;
+      console.log(this.box);
     });
   }
 }

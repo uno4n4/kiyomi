@@ -1,4 +1,4 @@
-.img-produit {
+.produit img {
   width: 100%;
   max-width: 320px;
   border-radius: 10px;
@@ -9,8 +9,9 @@
 
 .texte {
   width: 100%;
-  text-align: center; 
+  text-align: center;
   color: #ffffff;
+  padding: 20px;
 }
 
 .titre {
@@ -20,7 +21,7 @@
 }
 
 h3 {
-  margin: 30px;
+  margin: 30px 0;
   font-size: 18px;
   font-weight: 600;
   text-align: left;
@@ -28,7 +29,7 @@ h3 {
 
 p {
   line-height: 1.4;
-  margin: 0 0 10px;
+  margin: 0 0 10px 0;
 }
 
 .btn-panier {
