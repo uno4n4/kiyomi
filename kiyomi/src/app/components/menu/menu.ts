@@ -28,7 +28,11 @@ export class Menu implements OnInit {
   ) {} //injection du parametre pour la connexion - des services - du router pour les redirections
 
   ngOnInit(): void {
-    this.getDataFromAPI(); //appel de la methode au chargement du composant
+    // charger l'API pour éviter que totalBoxPositive reste à 0 au reload
+    this.listeBoxes.getBoxes().subscribe((menus) => {
+      console.log('Données reçues:', menus);
+      this.apiListe = menus;
+    });
     if (isPlatformBrowser(this.platformId)) {
       const savedUser = localStorage.getItem('user');
       if (savedUser) {
@@ -43,31 +47,21 @@ export class Menu implements OnInit {
   }
 
   //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
-  pageProduit(boxe_id: number) {
-    this.router
-      .navigate(['/app-produit'], {
-        queryParams: { id: boxe_id },
-      });
+  pageProduit(boxe_id:number) {
+    this.router.navigate(['/app-produit'], {
+      queryParams: { id: boxe_id },
+    });
   }
 
   //AFFICHAGE PAR 6 DES DIFFERENTES BOXES
   visibleBoxes = 6;
-  totalBoxes = 0;
 
   get boxesToShow() {
     return this.apiListe.slice(0, this.visibleBoxes);
   }
 
   get totalBoxPositive() {
-    return this.visibleBoxes < this.totalBoxes;
-  }
-
-  // charger l'API pour éviter que totalBoxPositive reste à 0 au reload
-  getDataFromAPI() {
-    this.listeBoxes.getBoxes().subscribe((menus) => {
-      this.apiListe = menus;
-      this.totalBoxes = menus.length; // correction
-    });
+    return this.visibleBoxes < this.apiListe.length;
   }
 
   voirPlus() {
