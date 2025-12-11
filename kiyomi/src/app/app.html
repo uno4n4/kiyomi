@@ -1,63 +1,58 @@
 <div class="page-container d-flex flex-column min-vh-100">
-  <nav class="navbar navbar-expand-lg bg-nav">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
-      <div class="collapse navbar-collapse justify-content-start ms-5" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL
-          </a>
+  <div class="hero-header">
+    <nav class="navbar navbar-expand-lg bg-nav">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <div class="collapse navbar-collapse justify-content-start ms-5" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL </a>
 
-          <a class="nav-link text-light" routerLink="app-menu"> MENUS
-          </a>
-          <a class="nav-link text-light" routerLink="app-forgot-password"> LE RESTAURANT
-          </a>
-        </div>
-      </div>
-
-    <a class="navbar-brand ms-3" routerLink="app-accueil">
-        <img
-          src="assets/images/KiyomiLogoBlanc.svg"
-          id="logoKiyomi"
-          alt="Kiyomi Logo"
-          class="logo-float"
-        />
-      </a>
-
-      <button
-        class="navbar-toggler border-white bg-black text-white"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link text-light" routerLink="app-accueil"> PANIER
-          </a>
-
-          @if(!user){
-            <a class="nav-link text-light" routerLink="app-formulaire-co"> ME
-            CONNECTER
-          </a>
-          }
-          @else{
-            <div class="user-info text-light ms-3" *ngIf="user">
-            <a routerLink="app-compte-user">{{ user.prenom }} {{ user.nom }}</a>
-            <button (click)="logout()">Se déconnecter</button>
+            <a class="nav-link text-light" routerLink="app-menu"> MENUS </a>
+            <a class="nav-link text-light" routerLink="app-forgot-password"> LE RESTAURANT </a>
           </div>
-          }
+        </div>
 
-          <a class="nav-link text-light" routerLink="app-formulaire-inscription">
-            (INSCRIPTION)
-          </a>
+        <a class="navbar-brand ms-3" routerLink="app-accueil">
+          <img
+            src="assets/images/KiyomiLogoBlanc.svg"
+            id="logoKiyomi"
+            alt="Kiyomi Logo"
+            class="logo-float"
+          />
+        </a>
+
+        <button
+          class="navbar-toggler border-white bg-black text-white"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link text-light" routerLink="app-accueil"> PANIER </a>
+
+            @if(!user){
+            <a class="nav-link text-light" routerLink="app-formulaire-co"> ME CONNECTER </a>
+            } @else{
+            <div class="user-info text-light ms-3" *ngIf="user">
+              <a routerLink="app-compte-user">{{ user.prenom }} {{ user.nom }}</a>
+              <button (click)="logout()">Se déconnecter</button>
+            </div>
+            }
+
+            <a class="nav-link text-light" routerLink="app-formulaire-inscription">
+              (INSCRIPTION)
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
   <!-- Le contenu des pages va ici -->
   <main class="flex-grow-1">
