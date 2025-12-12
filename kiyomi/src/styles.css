@@ -1,25 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background: linear-gradient(to right, #000000);
   font-family: Playfair Display, serif;
 }
 
-
 /* POLICES */
-h1{
+h1 {
   font-size: 62px;
 }
 
-
 /* NAVBAR */
-.navbar{
+.navbar {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: transparent !important;
+  position: fixed !important;
+  top: 0;
+  z-index: 3000;
+  background: transparent;
+  height: 80px;
 }
 
 /* pour avoir l'icone blanche du toggler */
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 .hero-header {
@@ -32,27 +34,15 @@ h1{
   position: relative;
 }
 
-.hero-content {
-  position: absolute;
-  bottom: 40px;
-  left: 50px;
-  color: white;
-}
-
-
-
-/* Logo qui dépasse de la navbar */
 .logo-float {
-  height: 80px; 
+  height: 80px;
   width: auto;
 }
 
-
 /* INTITULE DE SECTION */
-#menuAccueil{
+#menuAccueil {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 
 /* CARTES MENUS INDIVIDUELS */
 .card-transparent,
@@ -60,20 +50,20 @@ h1{
   background-color: transparent !important;
 }
 
-.card .prix{
-    background: #b0000046;
+.card .prix {
+  background: #b0000046;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 42px;
-    }
-    .logo-float {
-    height: 60px; 
+  h1 {
+    font-size: 42px;
+  }
+  .logo-float {
+    height: 60px;
   }
 }
 
-::placeholder{
-    color: white;
+::placeholder {
+  color: white;
 }
