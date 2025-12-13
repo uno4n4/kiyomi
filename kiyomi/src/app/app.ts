@@ -54,7 +54,11 @@ export class App implements OnInit, AfterViewInit {
       }
 
       // Image chef accueil
-      if (current.includes('/app-accueil')) {
+      if (
+        current.includes('/app-accueil') ||
+        window.location.href === 'http://localhost:4200' ||
+        window.location.href === 'http://localhost:4200/'
+      ) {
         this.accueil = true;
       } else {
         this.accueil = false;
@@ -70,6 +74,11 @@ export class App implements OnInit, AfterViewInit {
         updateStyles();
       }
     });
+  }
+
+  //REDIRECTION VERS LA "PAGE MENU"
+  renvoiMenu() {
+    this.router.navigate(['/app-menu']); //renvoie au component menu
   }
 
   logout() {

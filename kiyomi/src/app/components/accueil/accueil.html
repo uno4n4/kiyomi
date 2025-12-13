@@ -1,26 +1,29 @@
 <div class="container">
   <!-- INTRODUCTION AU RESTAURANT KIYOMI -->
-  <div class="position-relative align-content-center flex-column vh-100 overflow-hidden">
-    <!-- image de fond -->
-    <img
-      src="../../assets/images/headerImage.png"
-      alt="Image de fond Kiyomi"
-      class="position-absolute top-0 end-0 h-100 object-fit-cover z-1"
-    />
-    <!-- trouver un moyen de faire en sorte que l'image soit en w-100 sur mobile -->
+  <div class="position-relative align-content-center row col-10 gap-2">
+    <!-- image restaurant -->
+    <img src="../../assets/images/headerImage.png" alt="Image de fond Kiyomi" class="col-5 h-100" />
 
-    <!-- texte au dessus de l’image -->
-    <h1 class="col-12 col-md-4 mt-5 position-relative z-3 text-white">
-      L'Art Culinaire Japonais Contemporain
-    </h1>
+    <div class="col-6">
+      <!-- texte au dessus de l’image -->
+      <h1 class="mt-5 position-relative z-3 text-white">L'Art Culinaire Japonais Contemporain</h1>
 
-    <p class="text-white ms-5 my-3 col-10 col-md-4 fs-4 position-relative z-3">
-      Découvrez des créations uniques, alliant tradition et raffinement moderne.
-    </p>
+      <div class="text-white ms-5 my-3 position-relative z-3">
+        <h3>RESTAURANT étoilé</h3>
+        <h3>PRIX NANANA</h3>
+        <p>
+          “lorem ipsum dolor sit amet consectetur adipiscing elit dolor sit amet consectetur
+          adipiscing elit. lorem ipsum dolor sit amet consectetur adipiscing elit.”
+        </p>
+      </div>
 
-    <button class="btn border border-white text-white fs-5 col-md-2 z-3 mt-5 position-relative" (click)="renvoiMenu()">
-      Explorer le menu
-    </button>
+      <button
+        class="btn border border-white text-white fs-5 col-md-2 z-3 mt-5 position-relative"
+        (click)="renvoiMenu()"
+      >
+        Explorer le menu
+      </button>
+    </div>
   </div>
 
   <!-- SECTION LISTE DES MENUS -->
@@ -33,17 +36,21 @@
       MENUS
     </p>
   </div>
-  
+
   <!-- boxes affichées dynamiquement via l'API -->
   <div class="row g-3 mb-5 z-3 mx-5">
     @for (box of boxesToShow; track box.id) {
     <div class="col-6 col-md-4 d-flex">
-      <div class="card border border-white card-transparent h-100 w-100 shadow-sm p-3" (click)="pageProduit(box.id)">
-        
-    <!-- image box cliquable pour aller sur la page produit -->
+      <div
+        class="card border border-white card-transparent h-100 w-100 shadow-sm p-3"
+        (click)="pageProduit(box.id)"
+      >
+        <!-- image box cliquable pour aller sur la page produit -->
         <div class="align-self-center h-75 w-75">
           <img
-            src="../../../assets/images/{{box.image}}.png" class="card-img-top object-fit-cover"/>
+            src="../../../assets/images/{{ box.image }}.png"
+            class="card-img-top object-fit-cover"
+          />
         </div>
 
         <!-- texte card boxe -->
@@ -56,12 +63,19 @@
             {{ box.name }}
           </p>
 
-          <p class="card-text text-white small opacity-75 mb-2">Saveurs principales: {{ box.flavors }}</p>
+          <p class="card-text text-white small opacity-75 mb-2">
+            Saveurs principales: {{ box.flavors }}
+          </p>
 
-          <p class="card-text text-left text-white small opacity-75 mb-4">Nb pieces: {{ box.pieces }}</p>
+          <p class="card-text text-left text-white small opacity-75 mb-4">
+            Nb pieces: {{ box.pieces }}
+          </p>
 
           <!-- bouton commander (pour ajouter au panier)-->
-          <button type="button" class="btn btn-outline-light w-100" (click)="addPanier(box.id)">Commander</button> <!-- juste box.id parce que le reste c'est le component.ts qui s'en occope -->
+          <button type="button" class="btn btn-outline-light w-100" (click)="addPanier(box.id)">
+            Commander
+          </button>
+          <!-- juste box.id parce que le reste c'est le component.ts qui s'en occope -->
         </div>
       </div>
     </div>
