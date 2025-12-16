@@ -1,7 +1,89 @@
 <div class="page-container d-flex flex-column min-vh-100">
-  <nav class="navbar navbar-expand-lg thin-navbar mt-5">
+  @if(this.accueil){
+  <div class="hero-header" id="ischefImg">
+    <nav class="navbar navbar-expand-lg bg-nav col-12">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <div class="collapse navbar-collapse justify-content-start ms-5" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL </a>
+
+            <a class="nav-link text-light" routerLink="app-menu"> MENUS </a>
+            <a class="nav-link text-light" routerLink="app-restau"> LE RESTAURANT </a>
+          </div>
+        </div>
+
+        <a class="navbar-brand ms-3" routerLink="app-accueil">
+          <img
+            src="assets/images/KiyomiLogoBlanc.svg"
+            id="logoKiyomi"
+            alt="Kiyomi Logo"
+            class="logo-float"
+          />
+        </a>
+
+        <button
+          class="navbar-toggler border-white bg-black text-white"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link text-light" routerLink="app-panier"> PANIER </a>
+
+            @if(!user){
+            <a class="nav-link text-light" routerLink="app-formulaire-co"> ME CONNECTER </a>
+            } @else{
+            <div class="user-info text-light ms-3" *ngIf="user">
+              <a routerLink="app-compte-user">{{ user.prenom }} {{ user.nom }}</a>
+              <button (click)="logout()">Se déconnecter</button>
+            </div>
+            }
+
+            <a class="nav-link text-light" routerLink="app-formulaire-inscription">
+              (INSCRIPTION)
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="ms-1 ms-md-5">
+      <!-- INTRODUCTION AU RESTAURANT KIYOMI -->
+      <div class="position-relative align-content-center flex-column vh-100 overflow-hidden ms-1 ms-md-5">
+
+        <!-- texte au dessus de l’image -->
+        <h1 class="col-12 col-md-4 mt-5 position-relative z-3 text-white">
+          L'Art Culinaire Japonais Contemporain
+        </h1>
+
+        <p class="text-white ms-5 my-3 col-10 fs-4 position-relative z-3">
+          Découvrez nos boxes uniques, alliant tradition et raffinement moderne. 
+        </p>
+      </div>
+    </div>
+
+  </div>
+  } @else {
+  <!-- SI LA PAGE N'EST PAS L'ACCUEIL (PAS D'IMAGE) -->
+  <nav class="navbar navbar-expand-lg bg-nav col-12" [ngClass]="nav ? 'p-2 bg-black' : 'p-2'">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-      <a class="navbar-brand ms-3" routerLink="app-accueil">
+      <div class="collapse navbar-collapse justify-content-start ms-5" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL </a>
+
+          <a class="nav-link text-light" routerLink="app-menu"> MENUS </a>
+          <a class="nav-link text-light" routerLink="app-restau"> LE RESTAURANT </a>
+        </div>
+      </div>
+
+      <a class="navbar-brand ms-" routerLink="app-accueil">
         <img
           src="assets/images/KiyomiLogoBlanc.svg"
           id="logoKiyomi"
@@ -22,37 +104,27 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link text-light" routerLink="app-menu">
-            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> MENUS
-          </a>
+          <a class="nav-link text-light" routerLink="app-panier"> PANIER </a>
 
-          <a class="nav-link text-light" routerLink="app-accueil">
-            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> PANIER
-          </a>
-          <a class="nav-link text-light" routerLink="app-forgot-password">
-            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> PANIER
-          </a>
-
-          <a class="nav-link text-light" routerLink="app-formulaire-co" *ngIf="!user">
-            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" /> ME
-            CONNECTER
-          </a>
-
-          <a class="nav-link text-light" routerLink="app-formulaire-inscription">
-            <img src="assets/images/iconeMenusNav.svg" alt="Icone menus" height="50px" />
-            (INSCRIPTION)
-          </a>
-
+          @if(!user){
+          <a class="nav-link text-light" routerLink="app-formulaire-co"> ME CONNECTER </a>
+          } @else{
           <div class="user-info text-light ms-3" *ngIf="user">
             <a routerLink="app-compte-user">{{ user.prenom }} {{ user.nom }}</a>
             <button (click)="logout()">Se déconnecter</button>
           </div>
+          }
+
+          <a class="nav-link text-light" routerLink="app-formulaire-inscription"> (INSCRIPTION) </a>
         </div>
       </div>
     </div>
   </nav>
+  }
+
+  <div class="my-5"></div>
 
   <!-- Le contenu des pages va ici -->
   <main class="flex-grow-1">
