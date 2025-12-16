@@ -1,3 +1,15 @@
+.forms label {
+    position: absolute; 
+    color: black; 
+    pointer-events: none; 
+    transition: .5s;
+}
+
+.forms input:focus ~ label, .forms input:valid ~ label {
+   left: 0;
+   color: black; 
+}
+
 ::placeholder{
-    color: rgba(255, 255, 255, 0.292);
+    color: white;
 }
