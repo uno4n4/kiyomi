@@ -1,3 +1,6 @@
+.produit {
+  background-color: #000000;
+}
 .produit img {
   width: 100%;
   max-width: 320px;

@@ -39,11 +39,38 @@ class BoxManager {
         return $boxes;
     }
     public function findAllById($id){
-        $query =$this->pdo->prepare("SELECT * FROM boxes WHERE id = ?");
-        $query->execute([$id]);
-        $boxes = $query->fetchAll();
+        // $query =$this->pdo->prepare("SELECT * FROM boxes WHERE id = ?");
+        // $query->execute([$id]);
+        // $boxe = $query->fetchAll();
+        // return $boxe;
 
-        return $boxes;
+        // récupèration de la box
+        $stmt = $this->pdo->prepare("SELECT * FROM boxes WHERE id = :id");
+        $stmt->execute(['id' => $_GET['id']]);
+        // fetch retourne un seul résultat (une box)
+        $box = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // ses ingrédients
+        $stmt = $this->pdo->prepare("
+                SELECT f.name, CAST(bf.quantity AS UNSIGNED) AS quantity
+                FROM box_foods bf
+                JOIN foods f ON bf.food_id = f.id
+                WHERE bf.box_id = :id
+            ");
+        $stmt->execute(['id' => $box['id']]);
+        $box['foods'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // ses goûts/arômes
+        $stmt = $this->pdo->prepare("
+            SELECT fl.name
+            FROM box_flavors bf
+            JOIN flavors fl ON bf.flavor_id = fl.id
+            WHERE bf.box_id = :id
+        ");
+        $stmt->execute(['id' => $box['id']]);
+        $box['flavors'] = array_column($stmt->fetchAll(), 'name');
+
+        return $box;
     }
 }
 
