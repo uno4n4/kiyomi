@@ -62,6 +62,21 @@ export class Produit {
       }
     );
   }
+
+  // 1. Déclare la variable qui va stocker le nombre
+quantite: number = 1;
+
+// 2. Crée la fonction pour augmenter
+ajouter() {
+  this.quantite++;
+}
+
+// 3. Crée la fonction pour diminuer (avec sécurité pour pas descendre sous 1)
+retirer() {
+  if (this.quantite > 1) {
+    this.quantite--;
+  }
+}
   
 
   //btn ajout panier
@@ -82,3 +97,4 @@ export class Produit {
     }
   }
 }
+

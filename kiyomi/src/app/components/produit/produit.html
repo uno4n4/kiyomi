@@ -1,11 +1,102 @@
-@if (box) { <div class="produit"> 
-    <img src="../../../assets/images/{{box.image}}.jpg" class="card-img-top object-fit-cover"/>
-  
-    <div class="texte"> 
-      <h1 class="titre">{{ box.name }}</h1> nombre de pieces : {{box.pieces}} <h3>Ingrédients : {{ box.flavors }}</h3> 
-      <p>{{ box.food }}</p>
-      <p> prix : {{ box.price }}</p>
-    
-    <!-- <button type="button" class="btn btn-outline-light w-50" (click)="addPanier(box.id)">Commander</button>  -->*
+@if (box) {
+<div class="produit-container">
+  <div class="produit-wrapper">
+    <div class="produit-image">
+      <img src="../../../assets/images/{{box.image}}.jpg" alt="{{box.name}}" />
+    </div>
 
+    <div class="produit-details">
+      <div class="header-flex">
+        <h1 class="titre">{{ box.name }}</h1>
+        <span class="prix">{{ box.price }} €</span>
+      </div>
+      
+      <p class="nb-pieces">{{ box.pieces }} PIÈCES</p>
+
+      <div class="info-sections">
+        <div class="section">
+          <h3>Les pièces</h3>
+          <p>{{ box.food }}</p> 
+        </div>
+        <div class="section">
+          <h3>Les ingrédients</h3>
+          <p>{{ box.flavors }}</p>
+        </div>
+      </div>
+
+      <div class="action-bar">
+  <div class="quantite-selector">
+    <button type="button" class="btn-qty" (click)="retirer()">-</button>
     
+    <span class="qty-valeur">{{ quantite }}</span>
+    
+    <button type="button" class="btn-qty" (click)="ajouter()">+</button>
+  </div>
+
+      <button class="btn-panier" (click)="addPanier(box.id)">
+        Ajouter au panier
+      </button>
+    </div>
+    </div>
+  </div>
+
+ <section class="suggestions-container">
+  <h2 class="suggestions-titre">NOS SUGGESTIONS</h2>
+  <div class="divider"></div>
+
+  <div class="suggestions-grid">
+
+    <div class="card-sushi">
+      <div class="card-image">
+        <img src="../../../assets/images/{{box.image}}.jpg" alt="{{box.name}}">
+      </div>
+      <div class="card-content">
+        <h3 class="card-nom">{{box.name}}</h3>
+        <p class="card-pieces">{{box.pieces}} pièces</p>
+        <div class="card-footer">
+          <span class="card-prix">{{box.price}} €</span>
+          <button class="btn-icon-panier">
+            <i class="bi bi-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-sushi">
+      <div class="card-image">
+        <img src="../../../assets/images/{{box.image}}.jpg" alt="{{box.name}}">
+      </div>
+      <div class="card-content">
+        <h3 class="card-nom">{{box.name}}</h3>
+        <p class="card-pieces">{{box.pieces}} pièces</p>
+        <div class="card-footer">
+          <span class="card-prix">{{box.price}} €</span>
+          <button class="btn-icon-panier">
+            <i class="bi bi-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-sushi">
+      <div class="card-image">
+        <img src="../../../assets/images/{{box.image}}.jpg" alt="{{box.name}}">
+      </div>
+      <div class="card-content">
+        <h3 class="card-nom">{{box.name}}</h3>
+        <p class="card-pieces">{{box.pieces}} pièces</p>
+        <div class="card-footer">
+          <span class="card-prix">{{box.price}} €</span>
+          <button class="btn-icon-panier">
+            <i class="bi bi-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+</div>
+}
