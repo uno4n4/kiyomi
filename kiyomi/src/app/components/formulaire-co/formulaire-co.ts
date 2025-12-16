@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Auth } from '../../services/auth';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-formulaire-co',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, FormsModule],
   templateUrl: './formulaire-co.html',
   styleUrl: './formulaire-co.css',
 })
