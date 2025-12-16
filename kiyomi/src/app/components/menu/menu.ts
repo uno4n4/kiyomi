@@ -6,6 +6,7 @@ import { ListeBoxes } from '../../services/liste-boxes'; //import du service de 
 import { AjoutPanier } from '../../services/ajout-panier'; //import du service d'ajout de boxes dans le panier
 import { OnInit } from '@angular/core';
 import { isEmpty } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
