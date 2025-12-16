@@ -63,7 +63,3 @@ h1 {
     height: 60px;
   }
 }
-
-::placeholder {
-  color: white;
-}

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Auth } from '../../services/auth';
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-formulaire-co',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink],
   templateUrl: './formulaire-co.html',
   styleUrl: './formulaire-co.css',
 })
@@ -16,7 +17,7 @@ export class FormulaireCo {
   errorMessage = '';
   showErrorPopup = false;
 
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth, private router: Router) {}
 
   onSubmit() {
     if(!this.email.includes('@')){
@@ -44,5 +45,10 @@ export class FormulaireCo {
     }
   );
 }
+
+//REDIRECTION VERS LA "PAGE MDP OUBLIE"
+  MdpOublie() {
+    this.router.navigate(['/app-forgot-password']); //renvoie au component menu
+  }
 
 }

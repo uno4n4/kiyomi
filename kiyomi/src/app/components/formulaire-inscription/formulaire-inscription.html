@@ -1,131 +1,131 @@
+<h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold">Inscription</h4>
 <form (ngSubmit)="onSubmit()" novalidate
-      class="text-white mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto"
+      class="text-black mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto"
       style="
-        border-radius: 14px;
         max-width: 600px;
         margin: auto;
         backdrop-filter: blur(8px);
-        background: rgba(255, 255, 255, 0.10);
-        border: 1px solid rgba(255,255,255,0.25);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       ">
 
     <div class="text-center mb-4">
         <img src="assets/images/iconeMenusNav.svg"
              alt="Icone menus"
              height="55px"
-             class="mb-2"
-             style="filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));">
-        <h4 style="font-weight: 300; letter-spacing: 1px;">Inscription</h4>
-        <div style="height: 2px; width: 50px; background: rgba(255,255,255,0.3); margin: 8px auto;"></div>
+             class="mb-2">
     </div>
 
-    <!-- RESPONSIVE -->
-    <div class="row g-3">
-        <div class="col-12 col-md-6">
-            <label for="firstname" class="form-label">Prénom :</label>
-            <input type="text"
-                   class="form-control text-white mt-2"
+        <!-- RESPONSIVE -->
+        <div class="row g-3">
+            <div class="col-12 col-md-6">
+                <label for="firstname" class="form-label forms">Prénom</label>
+                <input type="text"
+                   class="form-control text-black mt-2"
                    id="firstname"
                    [(ngModel)]="firstname"
                    name="firstname"
                    required
-                   placeholder="Carlos"
                    style="
-                       background: rgba(255,255,255,0.06);
-                       border: 1px solid rgba(255,255,255,0.25);
-                       border-radius: 10px;
+                       background: transparent;
+                       border: none;
+                       position: relative;
+                       border-bottom: 1px solid black;
+                       outline: none;
                     ">
-        </div>
+            </div>
 
-        <div class="col-12 col-md-6">
-            <label for="lastname" class="form-label">Nom :</label>
-            <input type="text"
-                   class="form-control text-white mt-2"
+            <div class="col-12 col-md-6">
+                <label for="lastname" class="form-label forms">Nom</label>
+                <input type="text"
+                   class="form-control text-black mt-2"
                    id="lastname"
                    [(ngModel)]="lastname"
                    name="lastname"
                    required
-                   placeholder="San Diego"
                    style="
-                       background: rgba(255,255,255,0.06);
-                       border: 1px solid rgba(255,255,255,0.25);
-                       border-radius: 10px;
+                       background: transparent;
+                       border: none;
+                       position: relative;
+                       border-bottom: 1px solid black;
+                       outline: none;
                     ">
+            </div>
         </div>
-    </div>
 
-    <div class="mt-3">
-        <label for="email" class="form-label">Email :</label>
-        <input type="email"
-               class="form-control text-white mt-2"
+        <div class="mt-3">
+            <label for="email" class="form-label forms">Email</label>
+            <input type="email"
+               class="form-control text-black mt-2"
                id="email"
                [(ngModel)]="email"
                name="email"
                required
-               placeholder="carlos@gmail.com"
                style="
-                   background: rgba(255,255,255,0.06);
-                   border: 1px solid rgba(255,255,255,0.25);
-                   border-radius: 10px;
+                   background: transparent;
+                    border: none;
+                    position: relative;
+                    border-bottom: 1px solid black;
+                    outline: none;
                 ">
-    </div>
+        </div>
 
-    <!-- RADIO RESPONSIVE -->
-    <div class="mt-4">
-        <label class="form-label mb-1">Statut :</label>
+        <!-- RADIO RESPONSIVE -->
+        <div class="mt-4">
 
-        <div class="p-3 rounded"
+            <div class="p-3 rounded"
              style="
-                background: rgba(255,255,255,0.05);
-                border: 1px solid rgba(255,255,255,0.18);
+                background: none;
+                border: 1px solid black;
                 border-radius: 10px;
              ">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" id="etudiant" value="Etudiant" checked>
-                <label class="form-check-label" for="etudiant">Étudiant</label>
-            </div>
 
-            <div class="form-check mt-2">
-                <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" id="pro" value="Professionnel">
-                <label class="form-check-label" for="pro">Professionnel</label>
-            </div>
+                <label class="form-label mb-2">Statut </label>
+                <div class="form-check">
+                    <input class="form-check-input" style="border: 1px solid black;" type="radio" name="status" [(ngModel)]="status" id="etudiant" value="Etudiant" checked>
+                    <label class="form-check-label" for="etudiant">Étudiant</label>
+                </div>
 
-            <div class="form-check mt-2">
-                <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" id="retired" value="Retired">
-                <label class="form-check-label" for="retired">Retraité</label>
+                <div class="form-check mt-2">
+                    <input class="form-check-input" style="border: 1px solid black;" type="radio" name="status" [(ngModel)]="status" id="pro" value="Professionnel">
+                    <label class="form-check-label" for="pro">Professionnel</label>
+                </div>
+
+                <div class="form-check mt-2">
+                    <input class="form-check-input" style="border: 1px solid black;" type="radio" name="status" [(ngModel)]="status" id="retired" value="Retired">
+                    <label class="form-check-label" for="retired">Retraité</label>
+                </div>
             </div>
         </div>
-    </div>
 
     <div class="mt-4 mb-3">
-        <label for="password" class="form-label">Mot de passe :</label>
+        <label for="password" class="form-label forms">Mot de passe</label>
         <input type="password"
-               class="form-control text-white mt-2"
+               class="form-control text-black mt-2"
                id="password"
                [(ngModel)]="password"
                name="password"
                required
                style="
-                   background: rgba(255,255,255,0.06);
-                   border: 1px solid rgba(255,255,255,0.25);
-                   border-radius: 10px;
+                   background: transparent;
+                    border: none;
+                    position: relative;
+                    border-bottom: 1px solid black;
+                    outline: none;
                 ">
     </div>
 
     <div class="d-flex justify-content-center">
         <button type="submit"
-                class="btn px-4 py-2 mt-3 w-100 w-md-auto"
+                class="btn px-4 py-2 mt-3 w-50 w-md-auto"
                 style="
                     color: white;
-                    border-radius: 10px;
-                    border: 1px solid rgba(255,255,255,0.4);
-                    background: rgba(255,255,255,0.12);
+                    border-radius: 2px;
+                    border: 1px solid black;
+                    background: black;
                     transition: 0.25s ease;
                 "
-                onmouseover="this.style.background='rgba(255,255,255,0.25)'"
-                onmouseout="this.style.background='rgba(255,255,255,0.12)'">
-            M'INSCRIRE
+                onmouseover="this.style.background='black'"
+                onmouseout="this.style.background='black'">
+            S'inscrire
         </button>
     </div>
 
