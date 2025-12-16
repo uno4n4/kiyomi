@@ -21,7 +21,7 @@ import { Footer } from './components/footer/footer';
 export class App implements OnInit, AfterViewInit {
   protected readonly title = signal('kiyomi');
   user: any = null;
-  pageFondNoir: string[] = ['/app-accueil', '/app-menu'];
+  pageFondBlanc: string[] = ['/app-formulaire', '/app-panier', '/app-formulaire-inscription', '/app-compte-user','/app-forgot-password', '/app-formulaire-co' ];
   accueil = false;
   nav = false;
 
@@ -45,11 +45,11 @@ export class App implements OnInit, AfterViewInit {
       const current = this.router.url;
 
       // Body background
-      if (this.pageFondNoir.includes(current)) {
-        this.renderer.setStyle(document.body, 'background-color', 'black');
+      if (this.pageFondBlanc.includes(current)) {
+        this.renderer.setStyle(document.body, 'background-color', 'white');
         this.nav = false;
       } else {
-        this.renderer.setStyle(document.body, 'background-color', 'white');
+        this.renderer.setStyle(document.body, 'background-color', 'black');
         this.nav = true;
       }
 
