@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ListeBoxes } from '../../services/liste-boxes';
+// import { ListeBoxes } from '../../services/liste-boxes';
 import { AjoutPanier } from '../../services/ajout-panier';
 import { Router } from '@angular/router'; 
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-produit',
@@ -12,26 +15,55 @@ import { Router } from '@angular/router';
   templateUrl: './produit.html',
   styleUrl: './produit.css',
 })
-export class Produit implements OnInit {
+export class Produit {
   apiPanier: any;
   user: any = null;
   box: any;
 
   constructor(
-    private listeBoxes: ListeBoxes,
     private route: ActivatedRoute,
     private router: Router,
-    private AjoutPanier: AjoutPanier
+    private AjoutPanier: AjoutPanier,
+    private http: HttpClient
   ) {}
 
-  ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id')); // ← id dans l’URL
 
-    this.listeBoxes.getBoxById(id).subscribe((data: any) => {
-      this.box = data;
-      console.log(this.box);
-    });
+
+//ngOnInit(): void {
+  // Utilisez queryParamMap si l'ID est dans l'URL après un '?' (ex: ?id=1)
+  //const idString = this.route.snapshot.queryParamMap.get('id');
+  //const id = Number(idString);
+
+  //console.log('ID récupéré:', id); // Vérifiez que c'est bien 1
+
+  //if (id && id > 0) { // On vérifie que l'ID est supérieur à 0
+  //  this.listeBoxes.getBoxById(id).subscribe((data: any) => {
+  //    this.box = data;
+  //    console.log(this.box);
+  //  });
+  //} else {
+  //  console.error("ID de produit invalide ou manquant. Vérifiez la route Angular.");
+ // }
+//}
+
+  ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        const idBox = params['id'];
+        this.http.get<any[]>('http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/index.php?id=' + idBox)
+          .subscribe({
+              next: (response) => {
+                  this.box = response; // On stocke les données reçues
+              },
+              error: (err) => {
+                  console.error('Erreur :', err); // Affiche l'erreur dans la console
+              }
+          });
+      }
+    );
+    
   }
+  
 
   //btn ajout panier
     addPanier(idPanier: number): any {
