@@ -63,21 +63,18 @@ export class Produit {
     );
   }
 
-  // 1. Déclare la variable qui va stocker le nombre
+  //gestion quantite
 quantite: number = 1;
-
-// 2. Crée la fonction pour augmenter
 ajouter() {
-  this.quantite++;
+  if (this.quantite < 10) {
+    this.quantite++;
+  }
 }
-
-// 3. Crée la fonction pour diminuer (avec sécurité pour pas descendre sous 1)
 retirer() {
   if (this.quantite > 1) {
     this.quantite--;
   }
 }
-  
 
   //btn ajout panier
     addPanier(idPanier: number): any {
@@ -98,3 +95,14 @@ retirer() {
   }
 }
 
+
+
+//addPanier(idPanier: number): any {
+  //if (!this.user) {
+    //this.router.navigate(['/app-formulaire-co']); //renvoie au component app-formulaire-co
+  //} else {
+    //let user_id = this.user['id'];
+    // Utilisez this.quantite au lieu de 1
+    //return this.AjoutPanier.ajouterAuPanier(idPanier, this.quantite, user_id, items).subscribe(...);
+  //}
+//}

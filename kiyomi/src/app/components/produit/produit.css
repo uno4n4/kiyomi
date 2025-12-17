@@ -14,21 +14,24 @@
 }
 
 .produit-image img {
-  width: 100%;
+  width: 110%;
   max-width: 500px;
   border-radius: 4px; /* Un rayon plus faible pour un look pro */
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-left: -35px;
 }
 
 /* Contenu */
 .produit-details {
   flex: 1;
+  padding-left: 50px;
 }
 
 .header-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Aligne tout à gauche */
   align-items: baseline;
+  gap: 130px;
 }
 
 .titre {
@@ -51,21 +54,47 @@
 
 .info-sections {
   display: flex;
-  gap: 20px;
+  justify-content: flex-start; /* Aligne les deux colonnes à gauche */
+  gap: 100px; /* Espace réduit entre "Les pièces" et "Les ingrédients" */
   margin-top: 40px;
 }
 
+.pieces-col {
+  min-width: 200px; /* Assure une base stable à gauche */
+}
+
+.ingredients-col {
+  flex: 1; /* Prend l'espace restant pour s'aligner vers la droite */
+  text-align: right;
+  margin-left: 10px;
+}
+
 .section h3 {
-  font-size: 14px;
+ font-size: 14px;
+  font-weight: bold;
   text-transform: none;
   margin-bottom: 15px;
-  border-bottom: 0; /* On retire les bordures inutiles */
+  color: #ffffff;
+  border-bottom: 0;
 }
 
 .section p {
   font-size: 13px;
   color: #cccccc;
   line-height: 1.6;
+  margin: 0;
+  /* Optionnel: limite la largeur pour que les ingrédients fassent un bloc propre */
+  max-width: 250px;
+}
+
+.section ul {
+  list-style-type: disc;
+  padding-left: 18px; /* Un peu moins de retrait pour gagner de la place */
+  margin: 0;
+  white-space: nowrap; /* Garde vos sushis sur une seule ligne */
+  line-height: 1.6;
+  font-size: 13px;
+  color: #cccccc;
 }
 
 /* Barre d'action (Bouton et quantité) */
@@ -73,6 +102,8 @@
   display: flex;
   margin-top: 40px;
   border: 1px solid #ffffff;
+  height: 45px;
+  max-width: 400px;
 }
 
 .quantite {
@@ -83,11 +114,24 @@
   gap: 15px;
 }
 
+/* Style pour les boutons désactivés (limite 1 ou 10) */
+.btn-qty:disabled {
+  color: #555555;      /* Gris foncé */
+  cursor: not-allowed; /* Curseur d'interdiction */
+  opacity: 0.5;
+}
+
+/* On s'assure que le bouton + ne change pas de couleur au survol s'il est désactivé */
+.btn-qty:disabled:hover {
+  background-color: transparent;
+}
+
 .btn-panier {
   flex-grow: 1;
   background-color: #ffffff;
   color: #000000;
   border: none;
+  font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;

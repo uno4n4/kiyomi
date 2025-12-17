@@ -13,24 +13,39 @@
       
       <p class="nb-pieces">{{ box.pieces }} PIÈCES</p>
 
-      <div class="info-sections">
-        <div class="section">
-          <h3>Les pièces</h3>
-          <p>{{ box.food }}</p> 
-        </div>
-        <div class="section">
-          <h3>Les ingrédients</h3>
-          <p>{{ box.flavors }}</p>
-        </div>
+    <div class="info-sections">
+      <div class="section pieces-col">
+        <h3>Les pièces</h3>
+        <ul>
+          @for (food of box.foods; track food.name) {
+            <li>{{ food.quantity }}x {{ food.name }}</li>
+          }
+        </ul>
       </div>
 
-      <div class="action-bar">
+      <div class="section ingredients-col">
+        <h3>Les ingrédients</h3>
+        <p>{{ box.flavors.join(', ') }}</p> 
+      </div>
+    </div>
+
+  <div class="action-bar">
   <div class="quantite-selector">
-    <button type="button" class="btn-qty" (click)="retirer()">-</button>
+    <button type="button" 
+            class="btn-qty" 
+            (click)="retirer()" 
+            [disabled]="quantite === 1">
+      -
+    </button>
     
     <span class="qty-valeur">{{ quantite }}</span>
     
-    <button type="button" class="btn-qty" (click)="ajouter()">+</button>
+    <button type="button" 
+            class="btn-qty" 
+            (click)="ajouter()" 
+            [disabled]="quantite === 10">
+      +
+    </button>
   </div>
 
       <button class="btn-panier" (click)="addPanier(box.id)">
