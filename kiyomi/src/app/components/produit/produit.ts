@@ -5,11 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { AjoutPanier } from '../../services/ajout-panier';
 import { Router } from '@angular/router'; 
 import { HttpClient } from '@angular/common/http';
+import { Suggestion } from '../suggestion/suggestion';
 
 @Component({
   selector: 'app-produit',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Suggestion],
   templateUrl: './produit.html',
   styleUrl: './produit.css',
 })

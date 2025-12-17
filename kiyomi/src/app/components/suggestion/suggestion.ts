@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { AjoutPanier } from '../../services/ajout-panier';
-import { Router } from '@angular/router'; 
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-suggestion',
@@ -12,32 +10,29 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './suggestion.html',
   styleUrl: './suggestion.css',
 })
-export class Suggestion {
-  apiPanier: any;
-  user: any = null;
-  box: any;
+export class Suggestion implements OnInit {
+  // Le tableau qui contiendra les 3 boxes choisies
+  boxes: any[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private AjoutPanier: AjoutPanier,
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.route.queryParams
-      .subscribe(params => {
-        const idBox = params['id'];
-        this.http.get<any[]>('http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/index.php?id=' + idBox)
-          .subscribe({
-              next: (response) => {
-                  this.box = response; // On stocke les données reçues
-              },
-              error: (err) => {
-                  console.error('Erreur :', err); // Affiche l'erreur dans la console
-              }
-          });
-      }
-    );
+    // Le composant va chercher les données tout seul au chargement
+    this.http.get<any[]>('http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/index.php')
+      .subscribe({
+        next: (allBoxes) => {
+          const idsVoulus = [1, 12, 13];
+          // On filtre pour ne garder que les 3 boxes spécifiques
+          this.boxes = allBoxes.filter(item => 
+            idsVoulus.includes(Number(item.id)) || idsVoulus.includes(Number(item.id_box))
+          );
+        },
+        error: (err) => console.error('Erreur suggestions autonomes:', err)
+      });
+  }
+
+  // Permet de changer de page si on clique sur une suggestion
+  voirProduit(id: number): void {
+    this.router.navigate(['/produit'], { queryParams: { id: id } });
   }
 }
