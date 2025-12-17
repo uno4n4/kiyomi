@@ -7,6 +7,7 @@ import { FormulaireInscription } from './components/formulaire-inscription/formu
 import { Menu } from './components/menu/menu';
 import { ForgotPassword } from './components/forgot-password/forgot-password';
 import { CompteUser } from './components/compte-user/compte-user';
+import { Suggestion } from './components/suggestion/suggestion';
 
 // ✅ IMPORTANT : composant Angular CLI
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
