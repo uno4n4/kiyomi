@@ -5,12 +5,75 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import cors from 'cors';
 import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+app.use(cors({ origin: true }));
+app.use(express.json());
+
+/**
+ * API REST - KIYOMI
+ * (BACKEND TS dans server.ts pour ne pas toucher à l'arborescence)
+ */
+
+// GET /api/boxes/featured
+app.get('/api/boxes/featured', (_req, res) => {
+  res.json([
+    {
+      id: 'amateur-mix',
+      name: 'Amateur Mix',
+      pieces: 18,
+      priceEUR: 10.9,
+      imageUrl: '/assets/images/boxes/amateur-mix.jpg',
+    },
+    {
+      id: 'fresh-mix',
+      name: 'Fresh Mix',
+      pieces: 22,
+      priceEUR: 24.5,
+      imageUrl: '/assets/images/boxes/fresh-mix.jpg',
+    },
+    {
+      id: 'gourmet-mix',
+      name: 'Gourmet Mix',
+      pieces: 22,
+      priceEUR: 24.5,
+      imageUrl: '/assets/images/boxes/gourmet-mix.jpg',
+    },
+  ]);
+});
+
+// GET /api/stats/restaurant
+app.get('/api/stats/restaurant', (_req, res) => {
+  res.json({
+    percentages: {
+      takeaway: 28,
+      delivery: 57,
+      onSite: 15,
+    },
+    charts: {
+      weeklyOrders: [
+        { label: 'Lun', value: 12 },
+        { label: 'Mar', value: 28 },
+        { label: 'Mer', value: 22 },
+        { label: 'Jeu', value: 31 },
+        { label: 'Ven', value: 26 },
+        { label: 'Sam', value: 38 },
+        { label: 'Dim', value: 20 },
+      ],
+      satisfaction: [
+        { label: 'Service', value: 78 },
+        { label: 'Qualité', value: 85 },
+        { label: 'Rapport Q/P', value: 72 },
+        { label: 'Livraison', value: 66 },
+      ],
+    },
+  });
+});
 
 /**
  * Example Express Rest API endpoints can be defined here.
