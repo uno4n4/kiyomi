@@ -1,0 +1,62 @@
+/* Cards (anti Bootstrap conflict) */
+.boxCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.boxCard {
+  background: #111 !important;
+  color: #eaeaea;
+  border: 1px solid #222;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.boxCard__imgWrap {
+  height: 160px;
+  background: #151515;
+}
+
+.boxCard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.boxCard__body {
+  padding: 14px;
+}
+
+.boxCard__title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.boxCard__meta {
+  margin: 0 0 10px;
+  color: #bdbdbd;
+  font-size: 13px;
+}
+
+.boxCard__price {
+  margin: 0;
+  font-weight: 700;
+}
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+}
+.restaurant-page,
+.restaurant-page * {
+  color: #eaeaea !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 900px) {
+  .boxCards {
+    grid-template-columns: 1fr;
+  }
+}
