@@ -8,6 +8,11 @@ h1 {
   font-size: 62px;
 }
 
+/* HR */
+hr {
+  border: 1px solid white;
+}
+
 /* NAVBAR */
 .navbar {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
