@@ -1,54 +1,293 @@
-.produit {
+.produit-container {
   background-color: #000000;
-}
-.produit img {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto;
-  padding: 20px;
+  color: #ffffff;
+  padding: 40px;
+  font-family: 'Arial', sans-serif;
 }
 
-.texte {
-  width: 100%;
-  text-align: center;
-  color: #ffffff;
-  padding: 20px;
+.produit-wrapper {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.produit-image img {
+  width: 110%;
+  max-width: 500px;
+  border-radius: 4px; /* Un rayon plus faible pour un look pro */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-left: -35px;
+}
+
+/* Contenu */
+.produit-details {
+  flex: 1;
+  padding-left: 50px;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: flex-start; /* Aligne tout à gauche */
+  align-items: baseline;
+  gap: 130px;
 }
 
 .titre {
-  font-size: 24px;
-  margin-bottom: 10px;
-  font-weight: 700;
+  font-size: 32px;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 1px;
 }
 
-h3 {
-  margin: 30px 0;
-  font-size: 18px;
-  font-weight: 600;
-  text-align: left;
+.prix {
+  font-size: 28px;
+  font-weight: bold;
 }
 
-p {
-  line-height: 1.4;
-  margin: 0 0 10px 0;
+.nb-pieces {
+  color: #d1a054; /* Couleur dorée/orange de la maquette */
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.info-sections {
+  display: flex;
+  justify-content: flex-start; /* Aligne les deux colonnes à gauche */
+  gap: 100px; /* Espace réduit entre "Les pièces" et "Les ingrédients" */
+  margin-top: 40px;
+}
+
+.pieces-col {
+  min-width: 200px; /* Assure une base stable à gauche */
+}
+
+.ingredients-col {
+  flex: 1; /* Prend l'espace restant pour s'aligner vers la droite */
+  text-align: right;
+  margin-left: 10px;
+}
+
+.section h3 {
+ font-size: 14px;
+  font-weight: bold;
+  text-transform: none;
+  margin-bottom: 15px;
+  color: #ffffff;
+  border-bottom: 0;
+}
+
+.section p {
+  font-size: 13px;
+  color: #cccccc;
+  line-height: 1.6;
+  margin: 0;
+  /* Optionnel: limite la largeur pour que les ingrédients fassent un bloc propre */
+  max-width: 250px;
+}
+
+.section ul {
+  list-style-type: disc;
+  padding-left: 18px; /* Un peu moins de retrait pour gagner de la place */
+  margin: 0;
+  white-space: nowrap; /* Garde vos sushis sur une seule ligne */
+  line-height: 1.6;
+  font-size: 13px;
+  color: #cccccc;
+}
+
+/* Barre d'action (Bouton et quantité) */
+.action-bar {
+  display: flex;
+  margin-top: 40px;
+  border: 1px solid #ffffff;
+  height: 45px;
+  max-width: 400px;
+}
+
+.quantite {
+  padding: 10px 20px;
+  border-right: 1px solid #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Style pour les boutons désactivés (limite 1 ou 10) */
+.btn-qty:disabled {
+  color: #555555;      /* Gris foncé */
+  cursor: not-allowed; /* Curseur d'interdiction */
+  opacity: 0.5;
+}
+
+/* On s'assure que le bouton + ne change pas de couleur au survol s'il est désactivé */
+.btn-qty:disabled:hover {
+  background-color: transparent;
 }
 
 .btn-panier {
-  display: block;
-  margin: 20px auto 0 auto; /* centre le bouton */
-  padding: 12px 25px;
-  font-size: 16px;
-  background-color: black;
-  border-radius: 30px;
-  color: #ffffff;
-  border: none; /* supprime le contour gris */
+  flex-grow: 1;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-panier:hover {
+  background-color: #eeeeee;
+}
+
+/* Container de la barre d'action */
+.action-bar {
+  display: flex;
+  margin-top: 40px;
+  border: 1px solid #ffffff; /* Cadre blanc */
+  height: 50px;
+}
+
+/* Partie sélecteur de quantité */
+.quantite-selector {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #ffffff; /* Ligne de séparation */
+  background-color: transparent;
+}
+
+.btn-qty {
+  background: none;
+  border: none;
+  color: white;
+  padding: 0 15px;
+  cursor: pointer;
+  font-size: 20px;
+  height: 100%;
+}
+
+.btn-qty:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.qty-valeur {
+  min-width: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Bouton panier à droite */
+.btn-panier {
+  flex-grow: 1;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  height: 100%;
   transition: 0.2s;
 }
 
 .btn-panier:hover {
-  background-color: rgb(42, 5, 5);
-  color: #ffffff;
+  background-color: #e0e0e0;
 }
 
+
+/* Suggestions de produits similaires */
+.suggestions-container {
+  background-color: #000; /* Fond noir */
+  padding: 50px 10%;
+  color: white;
+}
+
+.suggestions-titre {
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 400px; /* Longueur de la ligne sous le titre */
+  height: 1px;
+  background-color: #fff;
+  margin-bottom: 40px;
+}
+
+.suggestions-grid {
+  display: flex;
+  flex-direction: row;      /* horizontal */
+  gap: 30px;                /* espace entre les cartes */
+  flex-wrap: nowrap;        /* empêche le retour à la ligne */
+}
+
+/* Style de la Carte */
+.card-sushi {
+  background-color: #fff; /* Fond de la carte blanc */
+  width: 280px;
+  color: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.card-sushi:hover {
+  transform: translateY(-5px);
+}
+
+.card-image img {
+  width: 100%;
+  display: block;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-nom {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-pieces {
+  font-size: 12px;
+  color: #666;
+  margin: 5px 0 15px 0;
+}
+
+/* Pied de carte avec prix et panier */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-prix {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-icon-panier {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-icon-panier:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .produit-wrapper {
+    flex-direction: column;
+  }
+  .info-sections {
+    flex-direction: column;
+  }
+}

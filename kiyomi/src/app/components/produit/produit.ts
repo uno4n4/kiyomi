@@ -61,9 +61,20 @@ export class Produit {
           });
       }
     );
-    
   }
-  
+
+  //gestion quantite
+quantite: number = 1;
+ajouter() {
+  if (this.quantite < 10) {
+    this.quantite++;
+  }
+}
+retirer() {
+  if (this.quantite > 1) {
+    this.quantite--;
+  }
+}
 
   //btn ajout panier
     addPanier(idPanier: number): any {
@@ -83,3 +94,15 @@ export class Produit {
     }
   }
 }
+
+
+
+//addPanier(idPanier: number): any {
+  //if (!this.user) {
+    //this.router.navigate(['/app-formulaire-co']); //renvoie au component app-formulaire-co
+  //} else {
+    //let user_id = this.user['id'];
+    // Utilisez this.quantite au lieu de 1
+    //return this.AjoutPanier.ajouterAuPanier(idPanier, this.quantite, user_id, items).subscribe(...);
+  //}
+//}
