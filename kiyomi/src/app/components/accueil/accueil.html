@@ -44,38 +44,35 @@
       @for (box of boxesToShow; track box.id) {
       <div class="col-6 col-md-4 d-flex">
         <div
-          class="card h-100 w-100"
+          class="card h-100 w-100 bg-card border-0 rounded-0"
           (click)="pageProduit(box.id)"
         >
           <!-- image box cliquable pour aller sur la page produit -->
           <div class="align-self-center">
             <img
               src="../../../assets/images/{{ box.image }}.png"
-              class="card-img-top object-fit-cover"
+              class="card-img-top object-fit-cover border-0 rounded-0"
             />
           </div>
 
           <!-- texte card boxe -->
           <div class="card-body d-flex flex-column">
-            <p class="prix rounded card-text d-inline-block px-3 py-1 text-center text-white mb-3">
+
+            <h3 class="card-text text-black fw-semibold mb-4">
+              {{ box.name | uppercase}}
+            </h3>
+
+            <p class="card-text text-left text-purple mb-0">
+              {{ box.pieces }} PIECES
+            </p>
+
+            <h4 class="card-text text-left mb-3">
               {{ box.price }}€
-            </p>
-
-            <p class="card-text text-white fw-semibold mb-2">
-              {{ box.name }}
-            </p>
-
-            <p class="card-text text-white small opacity-75 mb-2">
-              Saveurs principales: {{ box.flavors }}
-            </p>
-
-            <p class="card-text text-left text-white small opacity-75 mb-4">
-              Nb pieces: {{ box.pieces }}
-            </p>
+            </h4>
 
             <!-- bouton commander (pour ajouter au panier)-->
-            <button type="button" class="btn btn-outline-light w-100" (click)="addPanier(box.id)">
-              Commander
+            <button type="button" class="col-2 btn btn-outline-dark rounded" (click)="addPanier(box.id)">
+              <i class="bi bi-cart3"></i>
             </button>
             <!-- juste box.id parce que le reste c'est le component.ts qui s'en occope -->
           </div>
