@@ -45,13 +45,12 @@ h1 {
 }
 
 /* CARTES MENUS INDIVIDUELS */
-.card-transparent,
-.card-transparent .card-body {
-  background-color: transparent !important;
+ .card-body-grey {
+  background-color: #2C252A !important;
 }
 
-.card .prix {
-  background: #b0000046;
+.text-purple{
+  color: #280000;
 }
 
 /* RESPONSIVE */
