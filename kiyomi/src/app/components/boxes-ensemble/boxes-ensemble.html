@@ -1,12 +1,13 @@
 <!-- SECTION LISTE DES MENUS -->
 <div class="row g-3 mb-5 position-relative z-3 mx-5 my-5">
   <div class="col-12 text-white">
+    @if(!this.accueil){
     <app-search-bar-filters></app-search-bar-filters>
-
+    }
     <h4 class="mt-5">NOS BOXES PHARES</h4>
-    <hr class="col-8" />
+    <hr class="col-8 mb-5" />
 
-    <div class="row">
+    <div class="row mt-5">
       <!-- FILTRES -->
       <div class="col-4">
         <app-filtres></app-filtres>
@@ -20,7 +21,7 @@
         <div class="row g-4">
           @for (box of boxesToShow; track box.id) {
           <div class="col-6 col-md-4 d-flex">
-            <div class="card h-100 w-100 bg-card border-0 rounded-0" (click)="goToProduit(box.id)">
+            <div class="card card-sushi w-100 bg-card border-0 rounded-0" (click)="pageProduit(box.id)">
               <div class="align-self-center">
                 <img
                   src="../../../assets/images/{{ box.image }}.png"

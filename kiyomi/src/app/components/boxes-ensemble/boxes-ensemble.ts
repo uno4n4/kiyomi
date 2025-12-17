@@ -54,7 +54,7 @@ export class BoxesEnsemble implements OnInit {
     this.router.navigate(['/app-menu']); //renvoie au component menu
   }
 
-  //REDIRECTION VERS LA "PAGE" PRODUIT - LAURA A MODIFIER
+  //REDIRECTION VERS LA "PAGE" PRODUIT
   pageProduit(boxe_id: number) {
     this.router
       .navigate(['/app-produit'], {
@@ -101,9 +101,5 @@ export class BoxesEnsemble implements OnInit {
         }
       );
     }
-  }
-  //meth pour afficher page produit
-  goToProduit(id: number) {
-    this.router.navigate(['/app-produit', id]);
   }
 }

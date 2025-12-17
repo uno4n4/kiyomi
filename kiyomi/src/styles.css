@@ -49,11 +49,36 @@ hr {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* FIL D'ARIANE */
+.chemin {
+  cursor: pointer;
+  transition: text-decoration 0.3s;
+}
+
+.chemin:hover {
+  text-decoration: underline;
+}
+
 /* CARTES MENUS INDIVIDUELS */
+.card-sushi{
+  transition: transform 0.3s;
+}
+
+.card-sushi:hover {
+  transform: translateY(-5px);
+}
+
  .bg-grey {
   background-color: #2C252A !important;
 }
 
+/* placeholder couleur blanc */
+::placeholder {
+  color: white !important;
+  opacity: 0.7 !important;
+}
+
+/* Texte violet foncé */
 .text-purple{
   color: #280000;
 }

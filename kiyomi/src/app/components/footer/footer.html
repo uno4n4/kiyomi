@@ -1,40 +1,80 @@
 <footer class="bg-grey text-white pt-5 pb-4 mt-5">
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-around">
       <!-- SECTION LOGO / NOM -->
       <div class="col-md-4 mb-4 text-center text-md-start">
         <h3 class="fw-bold">Kiyomi</h3>
-        <p class="small fst-italic">L'Art Culinaire Japonais Contemporain</p>
+        <p class="small fst-italic">
+          Recevez nos dernières actualités en vous inscrivant à la Newsletter
+        </p>
+      </div>
+      <!-- SECTION NEWSLETTER -->
+      <form class="col-md-4 d-flex h-50">
+        <div class="input-group w-100">
+          <span class="input-group-text bg-grey text-white rounded-0 border-white">
+            <i class="bi bi-envelope"></i>
+          </span>
+          <input
+            class="form-control rounded-0 bg-grey text-white border-white"
+            type="search"
+            placeholder="Entrez votre email"
+          />
+          <button class="btn ms-2 bg-black text-white border-black rounded-0" type="submit">
+            S'INSCRIRE
+          </button>
+        </div>
+      </form>
+    </div>
+    <hr />
+    <div class="row my-5">
+      <!-- SECTION SERVICE CLIENT -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-normal mb-3">SERVICE CLIENT</h5>
+        <div class="ms-3 me-5">
+          <p class="text-warning mb-3 small">
+            Vous avez besoin d’aide ou vous souhaitez signaler un problème sur votre commande ?
+          </p>
+          <a class="small mb-1 text-decoration-underline text-white" mailto="">Contactez-nous !</a>
+        </div>
       </div>
 
-      <!-- SECTION LIENS RAPIDES -->
-      <div class="col-md-4 mb-4">
-        <h5 class="fw-semibold mb-3">Liens rapides</h5>
-        <ul class="list-unstyled">
-          <li><a routerLink="app-menu" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-white text-decoration-none">Menus</a></li>
-          <li>
-            <a routerLink="app-panier" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-white text-decoration-none">Réservation</a>
-          </li>
-          <li><a routerLink="app-contact" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-white text-decoration-none">Contact</a></li>
-        </ul>
+      <!-- SECTION INFOS -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-normal mb-3">INFORMATIONS</h5>
+        <div class="ms-3 me-5">
+          <p class="small mb-1">Mentions Légales</p>
+          <p class="small mb-1">Données Personnelles</p>
+        </div>
       </div>
 
-      <!-- SECTION CONTACT -->
-      <div class="col-md-4 mb-4">
-        <h5 class="fw-semibold mb-3">Contact</h5>
-        <p class="small mb-1"><i class="bi bi-geo-alt-fill me-2"></i>123 Rue de Tokyo, Paris</p>
-        <p class="small mb-1"><i class="bi bi-telephone-fill me-2"></i>+33 1 23 45 67 89</p>
-        <p class="small mb-1"><i class="bi bi-envelope-fill me-2"></i>contact@kiyomi.fr</p>
-        <div class="mt-2">
-          <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+      <!-- SECTION A PROPOS -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-normal mb-3">A PROPOS</h5>
+        <div class="ms-3 me-5">
+          <p class="small mb-1">Mon compte</p>
+          <p class="small mb-1">Le restaurant</p>
+        </div>
+      </div>
+
+      <!-- SECTION ADRESSES -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-normal mb-3">ADRESSES KIYOMI</h5>
+        <div class="ms-3 me-5">
+          <p class="small mb-1"><i class="bi bi-geo-alt-fill me-2"></i>123 Rue de Tokyo, Paris</p>
+          <p class="small mb-1"><i class="bi bi-telephone-fill me-2"></i>+33 1 23 45 67 89</p>
+          <p class="small mb-1"><i class="bi bi-envelope-fill me-2"></i>contact@kiyomi.fr</p>
+          <div class="mt-2">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+          </div>
         </div>
       </div>
     </div>
+    <hr />
 
     <!-- COPYRIGHT -->
-    <div class="row mt-4">
+    <div class="row my-4">
       <div class="col text-center small opacity-75">&copy; 2025 Kiyomi. Tous droits réservés.</div>
     </div>
   </div>
