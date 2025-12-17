@@ -5,13 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { AjoutPanier } from '../../services/ajout-panier';
 import { Router } from '@angular/router'; 
 import { HttpClient } from '@angular/common/http';
-
-
+import { Suggestion } from '../suggestion/suggestion';
 
 @Component({
   selector: 'app-produit',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Suggestion],
   templateUrl: './produit.html',
   styleUrl: './produit.css',
 })
@@ -76,24 +75,27 @@ retirer() {
   }
 }
 
-  //btn ajout panier
-    addPanier(idPanier: number): any {
-    if (!this.user) {
-      this.router.navigate(['/app-formulaire-co']); //renvoie au component app-formulaire-co
-    } else {
-      //sinon on ajoute la boxe au panier de l'user
-      let user_id: number = this.user['id'];
-      const quantity = 1; // par défaut
+ // btn ajout panier
+addPanier(idPanier: number): any {
+  if (!this.user) {
+    this.router.navigate(['/app-formulaire-co']);
+  } else {
+    let user_id: number = this.user['id'];
+    
+    // ON UTILISE MAINTENANT LA VARIABLE DU CURSEUR
+    const quantity = this.quantite; 
 
-      const items = [{ idPanier, quantity }]; //comme on ajoute dans le panier 1par1 au clic du bouton commander
-      return this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe(
-        (panier) => {
-          this.apiPanier = panier; //stockage des données reçues dans la variable
-        }
-      );
-    }
+    // On prépare l'objet avec la bonne quantité
+    const items = [{ idPanier, quantity }]; 
+
+    return this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe(
+      (panier) => {
+        this.apiPanier = panier;
+        console.log(`Ajout de ${quantity} box(es) au panier`); // Pour vérifier dans la console
+      }
+    );
   }
-}
+} }
 
 
 
