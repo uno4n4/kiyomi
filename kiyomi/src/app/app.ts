@@ -47,10 +47,10 @@ export class App implements OnInit, AfterViewInit {
       // Body background
       if (this.pageFondBlanc.includes(current)) {
         this.renderer.setStyle(document.body, 'background-color', 'white');
-        this.nav = false;
+        this.nav = true;
       } else {
         this.renderer.setStyle(document.body, 'background-color', 'black');
-        this.nav = true;
+        this.nav = false;
       }
 
       // Image chef accueil
