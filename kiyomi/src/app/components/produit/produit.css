@@ -54,9 +54,8 @@
 
 .info-sections {
   display: flex;
-  justify-content: flex-start; /* Aligne les deux colonnes à gauche */
-  gap: 100px; /* Espace réduit entre "Les pièces" et "Les ingrédients" */
-  margin-top: 40px;
+  justify-content: flex-start;
+  gap: 100px;
 }
 
 .pieces-col {
@@ -64,9 +63,8 @@
 }
 
 .ingredients-col {
-  flex: 1; /* Prend l'espace restant pour s'aligner vers la droite */
   text-align: right;
-  margin-left: 10px;
+  margin-left: -110px;
 }
 
 .section h3 {

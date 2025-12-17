@@ -1,0 +1,61 @@
+/* Suggestions de produits similaires */
+.suggestions-container {
+  background-color: #000; /* Fond noir */
+  padding: 50px 10%;
+  color: white;
+}
+
+.suggestions-titre {
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 400px; /* Longueur de la ligne sous le titre */
+  height: 1px;
+  background-color: #fff;
+  margin-bottom: 40px;
+}
+
+.suggestions-grid {
+  display: flex;
+  flex-direction: row;      /* horizontal */
+  gap: 30px;                /* espace entre les cartes */
+  flex-wrap: nowrap;        /* empêche le retour à la ligne */
+}
+
+/* Style de la Carte */
+.card-sushi {
+  background-color: #fff; /* Fond de la carte blanc */
+  width: 280px;
+  color: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.card-sushi:hover {
+  transform: translateY(-5px);
+}
+
+.card-image img {
+  width: 100%;
+  display: block;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-nom {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-pieces {
+  font-size: 12px;
+  color: #666;
+  margin: 5px 0 15px 0;
+}
