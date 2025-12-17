@@ -1,8 +1,6 @@
-<div class="col-12 text-white">
-  <ul class="text-white align-content-end" style="list-style: none;">
-    <li class="col-12 text-white mb-3">Accueil</li>
-    <li class="col-12 text-white mb-3">Menus</li>
-    <li class="col-12 text-white mb-3">Le restaurant</li>
-    <li class="col-12 text-white mb-3">Commande</li>
-  </ul>
+<div class="col-12 text-white align-content-end ms-2">
+    <p class="col-12 text-white mb-4" (click)="renvoi('/')">Accueil</p>
+    <p class="col-12 text-white mb-4" (click)="renvoi('/app-menu')">Menus</p>
+    <p class="col-12 text-white mb-4" (click)="renvoi('/app-resto')">Le restaurant</p>
+    <p class="col-12 text-white mb-4"  (click)="renvoi('/app-commande')">Commande</p>
 </div>

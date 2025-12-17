@@ -1,59 +1,66 @@
 <!-- SECTION LISTE DES MENUS -->
-  <div class="row g-3 mb-5 position-relative z-3 mx-5">
-    <div class="col-12 text-white">
-      <h4 class="mt-5">NOS BOXES PHARES</h4>
-      <hr class="col-8" />
+<div class="row g-3 mb-5 position-relative z-3 mx-5 my-5">
+  <div class="col-12 text-white">
+    <app-search-bar-filters></app-search-bar-filters>
 
-      <div class="row">
-        <!-- FILTRES -->
-        <div class="col-4">
-          <app-filtres></app-filtres>
+    <h4 class="mt-5">NOS BOXES PHARES</h4>
+    <hr class="col-8" />
 
-          <div class="row g-3 mb-2 mt-5">
-            <app-fild-ariane></app-fild-ariane>
-          </div>
+    <div class="row">
+      <!-- FILTRES -->
+      <div class="col-4">
+        <app-filtres></app-filtres>
+
+        <div class="row g-3 mb-2 mt-5">
+          <app-fild-ariane></app-fild-ariane>
         </div>
-        <!-- BOXES -->
-        <div class="col-8">
-          <div class="row g-4">
-            @for (box of boxesToShow; track box.id) {
-            <div class="col-6 col-md-4 d-flex">
-              <div
-                class="card h-100 w-100 bg-card border-0 rounded-0"
-                (click)="pageProduit(box.id)"
-              >
-                <div class="align-self-center">
-                  <img
-                    src="../../../assets/images/{{ box.image }}.png"
-                    class="card-img-top object-fit-cover border-0 rounded-0"
-                  />
-                </div>
+      </div>
+      <!-- boxes affichées dynamiquement via l'API -->
+      <div class="col-8">
+        <div class="row g-4">
+          @for (box of boxesToShow; track box.id) {
+          <div class="col-6 col-md-4 d-flex">
+            <div class="card h-100 w-100 bg-card border-0 rounded-0" (click)="goToProduit(box.id)">
+              <div class="align-self-center">
+                <img
+                  src="../../../assets/images/{{ box.image }}.png"
+                  class="card-img-top object-fit-cover border-0 rounded-0"
+                />
+              </div>
 
-                <div class="card-body d-flex flex-column">
-                  <h5 class="text-black fw-semibold mb-2">{{ box.name | uppercase }}</h5>
-                  <p class="text-purple mb-0">{{ box.pieces }} PIECES</p>
-                  <h4 class="mb-3">{{ box.price }}€</h4>
+              <div class="card-body d-flex flex-column">
+                <h5 class="text-black fw-semibold mb-2">{{ box.name | uppercase }}</h5>
+                <p class="text-purple mb-0">{{ box.pieces }} PIECES</p>
+                <h4 class="mb-3">{{ box.price }}€</h4>
 
-                  <button
-                    type="button"
-                    class="btn btn-outline-dark rounded align-self-end"
-                    (click)="addPanier(box.id)"
-                  >
-                    <i class="bi bi-cart3"></i>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  class="btn btn-outline-dark rounded align-self-end"
+                  (click)="addPanier(box.id)"
+                >
+                  <i class="bi bi-cart3"></i>
+                </button>
               </div>
             </div>
-            }
           </div>
+          }
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- BOUTON VOIR PLUS -->
-  <div class="row my-5">
-    <div class="col text-center">
-      <div class="btn btn-danger text-white" (click)="renvoiMenu()">Voir plus</div>
+<!-- BOUTON RENVOI MENU -->
+<div class="row my-5">
+  <div class="col text-center">
+    @if(this.accueil){
+    <div class="btn btn-dark border border-white rounded-0" (click)="renvoiMenu()">
+      Explorer le Menu
     </div>
+}
+    <!-- BOUTON VOIR PLUS -->
+    @else if (!this.accueil &&totalBoxPositive){
+    <div class="btn btn-dark border border-white rounded-0" (click)="voirPlus()">Voir plus</div>
+    }
   </div>
+</div>

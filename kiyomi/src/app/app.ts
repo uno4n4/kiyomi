@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   Inject,
   OnInit,
@@ -18,7 +17,7 @@ import { Footer } from './components/footer/footer';
   templateUrl: './app.html',
   styleUrls: ['./app.css'], // petite typo corrigée : styleUrl → styleUrls
 })
-export class App implements OnInit, AfterViewInit {
+export class App implements OnInit {
   protected readonly title = signal('kiyomi');
   user: any = null;
   pageFondBlanc: string[] = ['/app-formulaire', '/app-panier', '/app-formulaire-inscription', '/app-compte-user','/app-forgot-password', '/app-formulaire-co' ];
@@ -36,9 +35,6 @@ export class App implements OnInit, AfterViewInit {
       const savedUser = localStorage.getItem('user');
       if (savedUser) this.user = JSON.parse(savedUser);
     }
-  }
-
-  ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;
 
     const updateStyles = () => {

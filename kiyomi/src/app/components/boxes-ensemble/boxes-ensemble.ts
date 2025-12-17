@@ -9,10 +9,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { isEmpty } from 'rxjs';
 import { FildAriane } from '../fild-ariane/fild-ariane';
 import { Filtres } from '../filtres/filtres';
+import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
 @Component({
   selector: 'app-boxes-ensemble',
-  imports: [CommonModule, FildAriane, Filtres],
+  imports: [CommonModule, FildAriane, Filtres, SearchBarFilters],
   templateUrl: './boxes-ensemble.html',
   styleUrl: './boxes-ensemble.css',
 })
@@ -20,6 +21,7 @@ export class BoxesEnsemble implements OnInit {
   apiListe: any[] = []; //variable pour stocker les données de l'API
   apiPanier: any;
   user: any = null;
+  accueil: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -34,6 +36,15 @@ export class BoxesEnsemble implements OnInit {
       const savedUser = localStorage.getItem('user');
       if (savedUser) {
         this.user = JSON.parse(savedUser);
+      }
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      const currentUrl = this.router.url;
+      if (currentUrl.includes('/app-accueil') || window.location.href === 'http://localhost:4200' ||
+        window.location.href === 'http://localhost:4200/') {
+        this.accueil = true;
+      } else {
+        this.accueil = false;
       }
     }
   }
@@ -58,6 +69,15 @@ export class BoxesEnsemble implements OnInit {
     return this.apiListe.slice(0, this.visibleBoxes);
   }
   //window.location.reload();
+
+  get totalBoxPositive() {
+    return this.visibleBoxes < this.apiListe.length;
+  }
+
+  voirPlus() {
+    this.visibleBoxes += 6;
+  }
+
   // charger l'API pour éviter que totalBoxPositive reste à 0 au reload
   getDataFromAPI() {
     this.listeBoxes.getBoxes().subscribe((menus) => {
