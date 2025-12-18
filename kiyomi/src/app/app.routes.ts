@@ -22,9 +22,9 @@ export const routes: Routes = [
   { path: 'app-forgot-password', component: ForgotPassword },
   { path: 'app-compte-user', component: CompteUser },
 
-  // ✅ AJOUT
+  //AJOUT
   { path: 'app-restaurant', component: RestaurantComponent },
 
-  // ✅ wildcard
+  // ✅wildcard
   { path: '**', redirectTo: '' },
 ];
