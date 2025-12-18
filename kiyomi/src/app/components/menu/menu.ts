@@ -17,5 +17,4 @@ export class Menu {
     private router: Router
   ) {} //injection du parametre pour la connexion - des services - du router pour les redirections
 
-  
 }
