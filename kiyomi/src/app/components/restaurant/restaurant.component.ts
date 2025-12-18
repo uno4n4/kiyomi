@@ -1,21 +1,8 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  Inject,
-  PLATFORM_ID
-} from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import {
-  RestaurantApi,
-  FeaturedBox,
-  RestaurantStats
-} from '../../services/restaurant-api';
+import { RestaurantApi, FeaturedBox, RestaurantStats } from '../../services/restaurant-api';
 import { Chart, registerables } from 'chart.js';
 import { Suggestion } from '../suggestion/suggestion';
-
-
-
 
 Chart.register(...registerables);
 
@@ -26,7 +13,6 @@ Chart.register(...registerables);
   templateUrl: './restaurant.component.html',
   styleUrl: './restaurant.component.css',
 })
-
 export class RestaurantComponent implements OnInit, AfterViewInit {
   featuredBoxes: FeaturedBox[] = [];
 
@@ -43,9 +29,6 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
-  /* =========================
-     INIT
-  ========================== */
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
@@ -58,7 +41,6 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.stats = data;
         requestAnimationFrame(() => this.renderCharts());
-
       },
       error: (err) => console.error('Erreur stats restaurant', err),
     });
@@ -67,12 +49,8 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     requestAnimationFrame(() => this.renderCharts());
-
   }
 
-  /* =========================
-     CHARTS
-  ========================== */
   private renderCharts(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     if (!this.stats.charts.weeklyOrders.length || !this.stats.charts.satisfaction.length) return;
@@ -84,7 +62,6 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
     this.weeklyChart?.destroy();
     this.satisfactionChart?.destroy();
 
-    /* Weekly orders */
     this.weeklyChart = new Chart(weeklyCanvas, {
       type: 'bar',
       data: {
@@ -100,13 +77,12 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { display: false }, ticks: { color: '#bbb' } },
-          y: { grid: { color: '#222' }, ticks: { color: '#bbb' } }
+          x: { grid: { display: false }, ticks: { color: '#666' } },
+          y: { grid: { color: '#eaeaea' }, ticks: { color: '#666' } }
         }
       }
     });
 
-    /* Satisfaction */
     this.satisfactionChart = new Chart(satisfactionCanvas, {
       type: 'bar',
       data: {
@@ -122,11 +98,11 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { display: false }, ticks: { color: '#bbb' } },
+          x: { grid: { display: false }, ticks: { color: '#666' } },
           y: {
             suggestedMax: 100,
-            grid: { color: '#222' },
-            ticks: { color: '#bbb' }
+            grid: { color: '#eaeaea' },
+            ticks: { color: '#666' }
           }
         }
       }
