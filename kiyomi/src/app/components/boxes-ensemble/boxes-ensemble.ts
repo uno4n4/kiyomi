@@ -37,8 +37,6 @@ export class BoxesEnsemble implements OnInit {
       if (savedUser) {
         this.user = JSON.parse(savedUser);
       }
-    }
-    if (isPlatformBrowser(this.platformId)) {
       const currentUrl = this.router.url;
       if (currentUrl.includes('/app-accueil') || window.location.href === 'http://localhost:4200' ||
         window.location.href === 'http://localhost:4200/') {
@@ -70,6 +68,8 @@ export class BoxesEnsemble implements OnInit {
   }
   //window.location.reload();
 
+
+  //VERIFIEE SI IL RESTE DES BOXES A AFFICHER
   get totalBoxPositive() {
     return this.visibleBoxes < this.apiListe.length;
   }
