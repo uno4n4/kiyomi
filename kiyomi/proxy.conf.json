@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://localhost/kiyomi/kiyomi/sushi_box",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
