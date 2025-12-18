@@ -1,46 +1,41 @@
-<!-- FILTRE PRIX -->
-<select class="form-select"
-        [(ngModel)]="filters.price_lt"
-        (ngModelChange)="loadBoxes()">
-  <option [ngValue]="null">Prix</option>
-  <option [ngValue]="15">Moins de 15€</option>
-</select>
-
-<select class="form-select mt-2"
-        [(ngModel)]="filters.price_gt"
-        (ngModelChange)="loadBoxes()">
-  <option [ngValue]="null">Prix supérieur</option>
-  <option [ngValue]="15">Plus de 15€</option>
-</select>
-
-<!-- FILTRE SAVEURS -->
-<select class="form-select mt-2"
-        [(ngModel)]="filters.flavors"
-        (ngModelChange)="loadBoxes()">
-  <option [ngValue]="null">Saveurs</option>
-  <option [ngValue]="1">One</option>
-  <option [ngValue]="2">Two</option>
-  <option [ngValue]="3">Three</option>
-</select>
-
-<!-- FILTRE INGRÉDIENTS -->
-<select class="form-select mt-2"
-        [(ngModel)]="filters.foods"
-        (ngModelChange)="loadBoxes()">
-  <option [ngValue]="null">Ingrédients</option>
-  <option [ngValue]="1">California Saumon Avocat</option>
-  <option [ngValue]="2">Avocat</option>
-</select>
-
-<hr>
-
-<!-- AFFICHAGE DES BOX -->
-<div *ngIf="boxes.length === 0">
-  Aucun produit trouvé
+<div class="row g-3 mb-2">
+  <div class="col-6">
+    <div class="input-group d-flex">
+      <span class="input-group-text bg-black text-white border-0"><i class="bi bi-currency-euro"></i></span>
+      <select (change)="onFilterChange('prix', $event)" class="form-select text-white bg-black border-0">
+        <option value="" selected>Prix</option>
+        <option value="1">Moins de 15€</option>
+        <option value="2">15-20€</option>
+        <option value="3">Plus de 20€</option>
+      </select>
+    </div>
+  </div>
 </div>
 
-<div *ngFor="let box of boxes" class="box">
-  <h4>{{ box.name }}</h4>
-  <p>{{ box.price }} €</p>
-  <p>Saveur : {{ box.flavor }}</p>
+<div class="row g-3 mb-2">
+  <div class="col-6">
+    <div class="input-group d-flex">
+      <span class="input-group-text bg-black text-white border-0"><i class="bi bi-fork-knife"></i></span>
+      <select (change)="onFilterChange('portion', $event)" class="form-select text-white bg-black border-0">
+        <option value="" selected>Portion</option>
+        <option value="1">Petite (≤ 12 pcs)</option>
+        <option value="2">Moyenne (13-20 pcs)</option>
+        <option value="3">Familiale (> 20 pcs)</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3 mb-2">
+  <div class="col-6">
+    <div class="input-group d-flex">
+      <span class="input-group-text bg-black text-white border-0"><i class="bi bi-funnel-fill"></i></span>
+      <select (change)="onFilterChange('saveurs', $event)" class="form-select text-white bg-black border-0">
+        <option value="" selected>Saveurs</option>
+        <option value="1">1 saveur</option>
+        <option value="2">2 saveurs</option>
+        <option value="3">3 saveurs</option>
+      </select>
+    </div>
+  </div>
 </div>
