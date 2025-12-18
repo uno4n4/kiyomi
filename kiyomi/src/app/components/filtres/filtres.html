@@ -1,12 +1,9 @@
 <div class="row g-3 mb-2">
-  <!-- FILTRE PRIX -->
   <div class="col-6">
     <div class="input-group d-flex">
-      <span class="input-group-text bg-black text-white border-0">
-        <i class="bi bi-currency-euro"></i>
-      </span>
-      <select class="form-select text-white bg-black border-0">
-        <option selected>Prix</option>
+      <span class="input-group-text bg-black text-white border-0"><i class="bi bi-currency-euro"></i></span>
+      <select (change)="onFilterChange('prix', $event)" class="form-select text-white bg-black border-0">
+        <option value="" selected>Prix</option>
         <option value="1">Moins de 15€</option>
         <option value="2">15-20€</option>
         <option value="3">Plus de 20€</option>
@@ -16,33 +13,28 @@
 </div>
 
 <div class="row g-3 mb-2">
-  <!-- FILTRE FORMAT -->
   <div class="col-6">
     <div class="input-group d-flex">
-      <span class="input-group-text bg-black text-white border-0">
-        <i class="bi bi-fork-knife"></i>
-      </span>
-      <select class="form-select text-white bg-black border-0">
-        <option selected>Portion</option>
-        <option value="1">Petite</option>
-        <option value="2">Moyenne</option>
-        <option value="3">Familiale / à partager</option>
+      <span class="input-group-text bg-black text-white border-0"><i class="bi bi-fork-knife"></i></span>
+      <select (change)="onFilterChange('portion', $event)" class="form-select text-white bg-black border-0">
+        <option value="" selected>Portion</option>
+        <option value="1">Petite (≤ 12 pcs)</option>
+        <option value="2">Moyenne (13-20 pcs)</option>
+        <option value="3">Familiale (> 20 pcs)</option>
       </select>
     </div>
   </div>
 </div>
+
 <div class="row g-3 mb-2">
-  <!-- FILTRE SAVEURS -->
   <div class="col-6">
     <div class="input-group d-flex">
-      <span class="input-group-text bg-black text-white border-0">
-        <i class="bi bi-funnel-fill"></i>
-      </span>
-      <select class="form-select text-white bg-black border-0">
-        <option selected>Saveurs</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <span class="input-group-text bg-black text-white border-0"><i class="bi bi-funnel-fill"></i></span>
+      <select (change)="onFilterChange('saveurs', $event)" class="form-select text-white bg-black border-0">
+        <option value="" selected>Saveurs</option>
+        <option value="1">1 saveur</option>
+        <option value="2">2 saveurs</option>
+        <option value="3">3 saveurs</option>
       </select>
     </div>
   </div>

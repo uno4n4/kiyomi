@@ -31,26 +31,16 @@
       </div>
     </div>
 
-    <!-- SUGGESTIONS (tu peux remplacer par ton component suggestion si tu veux) -->
-    <div class="mt-5">
-      <div class="d-flex align-items-center gap-3">
-        <h5 class="mb-0 text-uppercase" style="letter-spacing: 1px;">Nos suggestions</h5>
-        <div class="flex-grow-1 border-top"></div>
-      </div>
+    <div class="border border-danger p-2 my-3">
+  <strong>TEST SUGGESTION CI-DESSOUS</strong>
+</div>
 
-      <div class="row g-4 mt-2">
-        <div class="col-md-4" *ngFor="let b of featuredBoxes">
-          <div class="card border-0 shadow-sm h-100">
-            <img class="card-img-top" [src]="b.imageUrl" [alt]="b.name" />
-            <div class="card-body">
-              <h6 class="fw-bold mb-1 text-uppercase">{{ b.name }}</h6>
-              <div class="text-muted small">{{ b.pieces }} pièces</div>
-              <div class="fw-bold mt-2">{{ b.priceEUR | number:'1.2-2' }} €</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<app-suggestion></app-suggestion>
+
+<div class="border border-danger p-2 my-3">
+  <strong>FIN TEST</strong>
+</div>
+
 
     <!-- STATS + CHARTS (le graphique était “parti” car le canvas n’était plus là) -->
     <div class="mt-5">
@@ -79,8 +69,10 @@
             <div class="fw-semibold mb-2">Chiffre d'affaire 2025</div>
 
             <!-- IMPORTANT: le canvas doit exister -->
-            <canvas id="weeklyChart" class="chart-canvas"></canvas>
-          </div>
+           <div class="chart-wrap" style="height:280px">
+  <canvas id="weeklyChart"></canvas>
+</div>
+
         </div>
 
         <div class="col-md-5">

@@ -9,11 +9,15 @@ import { isPlatformBrowser } from '@angular/common';
 import { isEmpty } from 'rxjs';
 import { FildAriane } from '../fild-ariane/fild-ariane';
 import { Filtres } from '../filtres/filtres';
+
+
 import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
 @Component({
   selector: 'app-boxes-ensemble',
-  imports: [CommonModule, FildAriane, Filtres, SearchBarFilters],
+ imports: [CommonModule, FildAriane, Filtres, SearchBarFilters],
+
+
   templateUrl: './boxes-ensemble.html',
   styleUrl: './boxes-ensemble.css',
 })
@@ -29,6 +33,14 @@ export class BoxesEnsemble implements OnInit {
     private AjoutPanier: AjoutPanier,
     private router: Router
   ) {} //injection du parametre pour la connexion - des services - du router pour les redirections
+
+// FILTRES
+  //applyFilters(filters: any) {
+   /// this.listeBoxes.getBoxes(filtres).subscribe((menus) => {
+    //  this.apiListe = menus;
+    //  this.visibleBoxes = 6; 
+  //  });
+ // }
 
   ngOnInit(): void {
     this.getDataFromAPI(); //appel de la methode au chargement du composant

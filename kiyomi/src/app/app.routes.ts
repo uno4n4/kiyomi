@@ -8,7 +8,8 @@ import { ForgotPassword } from './components/forgot-password/forgot-password';
 import { CompteUser } from './components/compte-user/compte-user';
 import { Rgpd } from './components/rgpd/rgpd';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
-import path from 'path';
+import { Filtres } from './components/filtres/filtres';
+
 
 export const routes: Routes = [
   { path: 'app-accueil', component: Accueil, data: { accueil: true }},
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'app-forgot-password', component: ForgotPassword, data: { accueil: false } },
   { path: 'app-compte-user', component: CompteUser, data: { accueil: false } },
   { path: 'app-rgpd', component: Rgpd, data: { accueil: false }},
-  { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false } }
+  { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false } },
+  { path: 'app-filtres', component: Filtres, data: { accueil: false } }
 ];
