@@ -30,6 +30,14 @@ export class BoxesEnsemble implements OnInit {
     private router: Router
   ) {} //injection du parametre pour la connexion - des services - du router pour les redirections
 
+// FILTRES
+  //applyFilters(filters: any) {
+   /// this.listeBoxes.getBoxes(filtres).subscribe((menus) => {
+    //  this.apiListe = menus;
+    //  this.visibleBoxes = 6; 
+  //  });
+ // }
+
   ngOnInit(): void {
     this.getDataFromAPI(); //appel de la methode au chargement du composant
     if (isPlatformBrowser(this.platformId)) {

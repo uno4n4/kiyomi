@@ -1,35 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { BoxesService } from '../../services/boxes.service';
 
 @Component({
   selector: 'app-filtres',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './filtres.component.html',
-  styleUrls: ['./filtres.component.css']
+  imports: [CommonModule],
+  templateUrl: './filtres.html',
+  styleUrl: './filtres.css',
 })
-export class FiltresComponent implements OnInit {
+export class Filtres {
+  @Output() filterChanged = new EventEmitter<any>();
 
-  boxes: any[] = [];
+  currentFilters = { prix: '', portion: '', saveurs: '' };
 
-  filters = {
-    foods: null,
-    flavors: null,
-    price_lt: null,
-    price_gt: null
-  };
+  onFilterChange(type: string, event: any) {
+    const value = event.target.value;
+    if (type === 'prix') this.currentFilters.prix = value;
+    if (type === 'portion') this.currentFilters.portion = value;
+    if (type === 'saveurs') this.currentFilters.saveurs = value;
 
-  constructor(private boxesService: BoxesService) {}
-
-  ngOnInit(): void {
-    this.loadBoxes();
-  }
-
-  loadBoxes(): void {
-    this.boxesService.getBoxes(this.filters).subscribe((data: any[]) => {
-      this.boxes = data;
-    });
+    // On émet les filtres vers BoxesEnsemble
+    this.filterChanged.emit(this.currentFilters);
   }
 }
