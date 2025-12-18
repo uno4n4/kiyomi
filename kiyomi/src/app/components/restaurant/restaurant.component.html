@@ -1,42 +1,98 @@
-<section class="container my-5 bg-white text-dark py-5">
-  <h3 class="mb-4 fw-normal">Les statistiques</h3>
+<!-- PAGE RESTAURANT (layout maquette) -->
+<div class="bg-white text-dark py-5">
+  <div class="container">
 
-  <!-- ====== POURCENTAGES ====== -->
-  <div class="row text-center mb-5">
-    <div class="col-12 col-md-4 mb-3 mb-md-0">
-      <div class="display-4 fw-bold">{{ stats.percentages.takeaway }}%</div>
-      <div class="fw-semibold">Etudiants</div>
+    <!-- TOP: image + texte (comme photo 2) -->
+    <div class="row align-items-start g-5">
+      <div class="col-lg-4">
+        <img
+          src="assets/images/restaurant/restaurant.jpg"
+          class="img-fluid"
+          alt="Restaurant"
+        />
+      </div>
+
+      <div class="col-lg-8">
+        <div class="small text-muted mb-2">Le restaurant</div>
+        <h1 class="display-5 fw-semibold">
+          Une institution de la<br />
+          gastronomie japonaise
+        </h1>
+
+        <p class="mt-3">
+          Kiyomi, qui signifie « Pure Beauté » (清美) en japonais, incarne une vision raffinée du sushi de luxe.
+        </p>
+        <p>
+          Né de la passion et de l’exigence, le restaurant célèbre la pureté du produit, la précision du geste et l’harmonie des saveurs.
+        </p>
+        <p class="mb-0">
+          Entre tradition japonaise et modernité élégante, chaque détail, des créations culinaires à l’identité visuelle, reflète une quête d’excellence absolue.
+        </p>
+      </div>
     </div>
 
-    <div class="col-12 col-md-4 mb-3 mb-md-0">
-      <div class="display-4 fw-bold">{{ stats.percentages.delivery }}%</div>
-      <div class="fw-semibold">Professionnels</div>
-    </div>
+    <!-- SUGGESTIONS (tu peux remplacer par ton component suggestion si tu veux) -->
+    <div class="mt-5">
+      <div class="d-flex align-items-center gap-3">
+        <h5 class="mb-0 text-uppercase" style="letter-spacing: 1px;">Nos suggestions</h5>
+        <div class="flex-grow-1 border-top"></div>
+      </div>
 
-    <div class="col-12 col-md-4">
-      <div class="display-4 fw-bold">{{ stats.percentages.onSite }}%</div>
-      <div class="fw-semibold">Retraité</div>
-    </div>
-  </div>
-
-  <!-- ====== GRAPHIQUES ====== -->
-  <div class="row g-4">
-    <div class="col-12 col-lg-7">
-      <div>
-        <h6 class="fw-semibold mb-3">Chiffre d'affaire 2025</h6>
-        <div class="chart-wrap">
-          <canvas id="weeklyChart"></canvas>
+      <div class="row g-4 mt-2">
+        <div class="col-md-4" *ngFor="let b of featuredBoxes">
+          <div class="card border-0 shadow-sm h-100">
+            <img class="card-img-top" [src]="b.imageUrl" [alt]="b.name" />
+            <div class="card-body">
+              <h6 class="fw-bold mb-1 text-uppercase">{{ b.name }}</h6>
+              <div class="text-muted small">{{ b.pieces }} pièces</div>
+              <div class="fw-bold mt-2">{{ b.priceEUR | number:'1.2-2' }} €</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-12 col-lg-5">
-      <div>
-        <h6 class="fw-semibold mb-3">Commandes par villes</h6>
-        <div class="chart-wrap">
-          <canvas id="satisfactionChart"></canvas>
+    <!-- STATS + CHARTS (le graphique était “parti” car le canvas n’était plus là) -->
+    <div class="mt-5">
+      <h5 class="mb-4">Les statistiques</h5>
+
+      <!-- 3 KPI -->
+      <div class="row text-center g-4 mb-4">
+        <div class="col-md-4">
+          <div class="display-5 fw-bold">{{ stats.percentages.takeaway }}%</div>
+          <div class="fw-semibold">Etudiants</div>
+        </div>
+        <div class="col-md-4">
+          <div class="display-5 fw-bold">{{ stats.percentages.delivery }}%</div>
+          <div class="fw-semibold">Professionnels</div>
+        </div>
+        <div class="col-md-4">
+          <div class="display-5 fw-bold">{{ stats.percentages.onSite }}%</div>
+          <div class="fw-semibold">Retraité</div>
+        </div>
+      </div>
+
+      <!-- 2 charts -->
+      <div class="row g-4">
+        <div class="col-md-7">
+          <div class="chart-card p-3">
+            <div class="fw-semibold mb-2">Chiffre d'affaire 2025</div>
+
+            <!-- IMPORTANT: le canvas doit exister -->
+            <canvas id="weeklyChart" class="chart-canvas"></canvas>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="chart-card p-3">
+            <div class="fw-semibold mb-2">Commandes par villes</div>
+
+            <!-- IMPORTANT: le canvas doit exister -->
+            <canvas id="satisfactionChart" class="chart-canvas"></canvas>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
-</section>
+</div>
