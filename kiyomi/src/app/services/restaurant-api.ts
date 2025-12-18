@@ -28,11 +28,17 @@ export type RestaurantStats = {
 export class RestaurantApi {
   constructor(private http: HttpClient) {}
 
-  getFeaturedBoxes(): Observable<FeaturedBox[]> {
-    return this.http.get<FeaturedBox[]>('/api/boxes/featured');
-  }
-
   getRestaurantStats(): Observable<RestaurantStats> {
-    return this.http.get<RestaurantStats>('/api/stats/restaurant');
-  }
+  return this.http.get<RestaurantStats>(
+    'http://localhost/kiyomi/kiyomi/sushi_box/api/restaurant.php'
+  );
+}
+
+getFeaturedBoxes(): Observable<FeaturedBox[]> {
+  return this.http.get<FeaturedBox[]>(
+    'http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/'
+  );
+}
+
+
 }

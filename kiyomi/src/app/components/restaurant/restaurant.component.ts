@@ -12,16 +12,21 @@ import {
   RestaurantStats
 } from '../../services/restaurant-api';
 import { Chart, registerables } from 'chart.js';
+import { Suggestion } from '../suggestion/suggestion';
+
+
+
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-restaurant',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Suggestion],
   templateUrl: './restaurant.component.html',
   styleUrl: './restaurant.component.css',
 })
+
 export class RestaurantComponent implements OnInit, AfterViewInit {
   featuredBoxes: FeaturedBox[] = [];
 
