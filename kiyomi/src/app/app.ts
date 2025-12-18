@@ -51,9 +51,7 @@ export class App implements OnInit {
 
       // Image chef accueil
       if (
-        current.includes('/app-accueil') || current.includes('/app-rgpd') || 
-        window.location.href === 'http://localhost:4200' ||
-        window.location.href === 'http://localhost:4200/'
+        current.includes('/app-accueil') || current.includes('/app-rgpd') || window.location.href === 'http://localhost:4200' || window.location.href === 'http://localhost:4200/'
       ) {
         this.accueil = true;
       } else {
