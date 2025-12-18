@@ -3,10 +3,11 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { BoxesEnsemble } from "../boxes-ensemble/boxes-ensemble";
+import { Suggestion } from "../suggestion/suggestion";
 
 @Component({
   selector: 'app-menu',
-  imports: [CommonModule, BoxesEnsemble],
+  imports: [CommonModule, BoxesEnsemble, Suggestion],
   templateUrl: './menu.html',
   styleUrl: './menu.css',
 })
