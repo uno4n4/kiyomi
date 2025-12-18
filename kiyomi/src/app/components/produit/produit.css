@@ -1,55 +1,30 @@
 /* Style pour le conteneur principal si nécessaire */
 .container-fluid {
-
   background-color: #000; /* Fond noir pur comme sur l'image */
-
   min-height: 500px;
-
 }
 
 /* On personnalise les boutons de quantité pour qu'ils ne soient pas trop "standards" */
 .input-group {
-
     background-color: #1a1a1a !important;
-
 }
-
-
 
 .btn-outline-light:hover {
-
     background-color: transparent;
-
     color: #ffc107; /* Jaune/Ambre au survol */
-
 }
-
-
 
 /* Optionnel : Pour que l'image soit vraiment nette */
-
 .object-fit-cover {
-
     object-fit: cover;
-
 }
-
-
 
 /* Animation simple sur le bouton ajouter */
-
 .btn-light {
-
     transition: all 0.3s ease;
-
 }
 
-
-
 .btn-light:hover {
-
     background-color: #f8f9fa;
-
     transform: translateY(-2px);
-
 }
