@@ -8,5 +8,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './filtres.css',
 })
 export class Filtres {
+  API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/boxes';
+
 
 }
