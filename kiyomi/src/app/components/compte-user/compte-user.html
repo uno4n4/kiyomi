@@ -1,29 +1,73 @@
-<div class="account-container">
+<div class="container">
   <h2>Mon compte</h2>
 
+  <form class="text-black mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto"
+  style="
+        max-width: 600px;
+        margin: auto;
+        backdrop-filter: blur(8px);
+      ">
   <!-- Nom et prénom (readonly) -->
   <div class="form-group">
     <label>Nom</label>
-    <input type="text" [value]="user.nom" disabled class="form-control" />
+    <input type="text" [value]="user.nom" disabled class="form-control" 
+    style="
+      background: transparent;
+      border: none;
+      position: relative;
+      border-bottom: 1px solid black;
+      outline: none;
+    "/>
 
     <label>Prénom</label>
-    <input type="text" [value]="user.prenom" disabled class="form-control" />
+    <input type="text" [value]="user.prenom" disabled class="form-control " 
+    style="
+        background: transparent;
+        border: none;
+        position: relative;
+        border-bottom: 1px solid black;
+        outline: none;
+    "/>
   </div>
 
   <!-- Email modifiable -->
   <div class="form-group">
     <label>Email</label>
-    <input type="email" [(ngModel)]="email" class="form-control" />
+    <input type="email" [(ngModel)]="email" class="form-control" 
+    style="
+      background: transparent;
+      border: none;
+      position: relative;
+      border-bottom: 1px solid black;
+      outline: none;
+    "/>
   </div>
 
   <!-- Mot de passe modifiable -->
   <div class="form-group">
     <label>Nouveau mot de passe</label>
-    <input type="password" [(ngModel)]="password" class="form-control" placeholder="Laisser vide pour ne pas changer" />
+    <input type="password" [(ngModel)]="password" class="form-control" placeholder="Laisser vide pour ne pas changer" 
+    style="
+      background: transparent;
+      border: none;
+      position: relative;
+      border-bottom: 1px solid black;
+      outline: none;
+    "/>
   </div>
 
   <!-- Bouton -->
-  <button (click)="updateUser()" class="btn btn-primary mt-3">Mettre à jour</button>
+   <div class="d-flex justify-content-center">
+      <button (click)="updateUser()" class="btn px-4 py-2 mt-3 w-50 w-md-auto"
+      style="
+        color: white;
+        border-radius: 2px;
+        border: 1px solid black;
+        background: black;
+        transition: 0.25s ease;
+      ">Mettre à jour</button>
+    </div>
+    </form>
 
   <!-- Messages -->
   <p class="text-success mt-2" *ngIf="successMessage">{{ successMessage }}</p>
