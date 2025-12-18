@@ -20,5 +20,6 @@ export const routes: Routes = [
   { path: 'app-forgot-password', component: ForgotPassword },
   { path: 'app-compte-user', component: CompteUser },
   { path: 'app-rgpd', component: Rgpd},
-  { path: 'app-restaurant', component: RestaurantComponent }
+  { path: 'app-restaurant', component: RestaurantComponent },
+  { path: 'app-filtres', component: Filtres }
 ];
