@@ -7,7 +7,7 @@
         <img [src]="'../../../assets/images/' + box.image + '.jpg'" 
              [alt]="box.name" 
              class="img-fluid w-100 object-fit-cover" 
-             style="max-height: 450px;">
+             style="max-height: 350px;">
       </div>
     </div>
 
@@ -22,7 +22,7 @@
 
         <div class="row mb-5">
           <div class="col-sm-7 mb-4 mb-sm-0">
-            <h3 class="h6 text-uppercase fw-bold mb-3 border-bottom border-secondary pb-2">Les pièces</h3>
+            <h3 class="h6 text-uppercase fw-bold mb-3 border-secondary pb-2">Les pièces</h3>
             <ul class="list-unstyled small opacity-75">
               @for (food of box.foods; track food.name) {
                 <li class="mb-1">• {{ food.name }} ( {{ food.quantity }} pièces )</li>
@@ -31,7 +31,7 @@
           </div>
 
           <div class="col-sm-5">
-            <h3 class="h6 text-uppercase fw-bold mb-3 border-bottom border-secondary pb-2">Les ingrédients</h3>
+            <h3 class="h6 text-uppercase fw-bold mb-3 border-secondary pb-2">Les ingrédients</h3>
             <p class="small opacity-75">{{ box.flavors.join(', ') }}</p>
           </div>
         </div>

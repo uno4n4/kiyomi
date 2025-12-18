@@ -1,30 +1,7 @@
-<section class="suggestions-container">
-  <h2 class="suggestions-titre">NOS SUGGESTIONS</h2>
-  <div class="divider"></div>
-
-  <div class="suggestions-grid">
-    <div class="card-sushi" *ngFor="let item of boxes" (click)="voirProduit(item.id_box || item.id)" style="cursor: pointer;">
-      <div class="card-image">
-        <img [src]="'../../../assets/images/' + item.image + '.jpg'" [alt]="item.nom">
-      </div>
-      <div class="card-content">
-        <h3 class="card-nom">{{ item.name }}</h3>
-        <p class="card-pieces">{{ item.pieces }} pièces</p>
-        <div class="card-footer">
-          <span class="card-prix">{{ item.price }} €</span>
-          <button class="btn-icon-panier">
-            <i class="bi bi-cart"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- EN DESSOUS LA VERSION A GARDER ET A MODIFIER PAR SEFORA -->
 <section class="col-10 mx-auto">
 <div class="col-12 text-white">
-    <h4 class="mt-5">NOS BOXES PHARES</h4>
+    <h4 class="mt-5">NOS SUGGESTIONS</h4>
     <hr class="col-8 mb-5" />
     <div class="row justify-content-center mt-5">
       <!-- boxes affichées dynamiquement via l'API -->
@@ -35,7 +12,7 @@
             <div class="card card-sushi w-100 bg-card border-0 rounded-0" (click)="voirProduit(item.id_box || item.id)">
               <div class="align-self-center">
                 <img
-                  src="../../../assets/images/{{ item.image }}.png"
+                  src="../../../assets/images/{{ item.image }}.jpg"
                   class="card-img-top object-fit-cover border-0 rounded-0"
                 />
               </div>
