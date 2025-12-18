@@ -12,6 +12,9 @@ import {
   RestaurantStats
 } from '../../services/restaurant-api';
 import { Chart, registerables } from 'chart.js';
+import { Suggestion } from '../suggestion/suggestion';
+// (ou le bon chemin exact selon ton arborescence)
+
 
 Chart.register(...registerables);
 
