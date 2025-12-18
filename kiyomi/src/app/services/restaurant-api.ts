@@ -22,8 +22,10 @@ export type RestaurantStats = {
   };
 };
 
-@Injectable({ providedIn: 'root' })
-export class RestaurantApiService {
+@Injectable({
+  providedIn: 'root',
+})
+export class RestaurantApi {
   constructor(private http: HttpClient) {}
 
   getFeaturedBoxes(): Observable<FeaturedBox[]> {
