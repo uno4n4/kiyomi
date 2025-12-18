@@ -8,9 +8,11 @@ import { ForgotPassword } from './components/forgot-password/forgot-password';
 import { CompteUser } from './components/compte-user/compte-user';
 import { Rgpd } from './components/rgpd/rgpd';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import path from 'path';
 
 export const routes: Routes = [
   { path: 'app-accueil', component: Accueil },
+  { path: '', component: Accueil },
   { path: 'app-formulaire-co', component: FormulaireCo },
   { path: 'app-produit', component: Produit },
   { path: 'app-formulaire-inscription', component: FormulaireInscription },
