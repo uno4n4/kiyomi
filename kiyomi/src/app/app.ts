@@ -20,7 +20,7 @@ import { Footer } from './components/footer/footer';
 export class App implements OnInit {
   protected readonly title = signal('kiyomi');
   user: any = null;
-  pageFondBlanc: string[] = ['/app-formulaire', '/app-panier', '/app-formulaire-inscription', '/app-compte-user','/app-forgot-password', '/app-formulaire-co' ];
+  pageFondBlanc: string[] = ['/app-formulaire', '/app-panier', '/app-formulaire-inscription', '/app-compte-user','/app-forgot-password', '/app-formulaire-co', '/app-restaurant' ];
   accueil = false;
   nav = false;
 
