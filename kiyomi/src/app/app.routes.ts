@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-
 import { Accueil } from './components/accueil/accueil';
 import { FormulaireCo } from './components/formulaire-co/formulaire-co';
 import { Produit } from './components/produit/produit';
@@ -7,15 +6,11 @@ import { FormulaireInscription } from './components/formulaire-inscription/formu
 import { Menu } from './components/menu/menu';
 import { ForgotPassword } from './components/forgot-password/forgot-password';
 import { CompteUser } from './components/compte-user/compte-user';
-import { Suggestion } from './components/suggestion/suggestion';
 import { Rgpd } from './components/rgpd/rgpd';
-
-// ✅ IMPORTANT : composant Angular CLI
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 
 export const routes: Routes = [
-  { path: '', component: Accueil },
-  { path: 'app-accueil', component: Accueil },
+  { path: '**', component: Accueil },
   { path: 'app-formulaire-co', component: FormulaireCo },
   { path: 'app-produit', component: Produit },
   { path: 'app-formulaire-inscription', component: FormulaireInscription },
@@ -23,10 +18,5 @@ export const routes: Routes = [
   { path: 'app-forgot-password', component: ForgotPassword },
   { path: 'app-compte-user', component: CompteUser },
   { path: 'app-rgpd', component: Rgpd},
-
-  //AJOUT
-  { path: 'app-restaurant', component: RestaurantComponent },
-
-  // wildcard
-  { path: '**', redirectTo: '' },
+  { path: 'app-restaurant', component: RestaurantComponent }
 ];
