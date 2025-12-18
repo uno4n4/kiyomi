@@ -27,6 +27,6 @@ export const routes: Routes = [
   //AJOUT
   { path: 'app-restaurant', component: RestaurantComponent },
 
-  // ✅wildcard
+  // wildcard
   { path: '**', redirectTo: '' },
 ];
