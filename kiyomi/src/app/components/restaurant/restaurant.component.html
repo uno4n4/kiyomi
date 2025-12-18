@@ -1,42 +1,42 @@
-<div class="container my-4">
-  <h2 class="text-white fw-bold">Statistiques</h2>
+<section class="container my-5 bg-white text-dark py-5">
+  <h3 class="mb-4 fw-normal">Les statistiques</h3>
 
-  <div class="row g-3 my-2">
-    <div class="col-md-4">
-      <div class="p-3 bg-dark text-white rounded text-center">
-        <div class="display-6 fw-bold">{{ stats.percentages.takeaway }}%</div>
-        <div>À emporter</div>
-      </div>
+  <!-- ====== POURCENTAGES ====== -->
+  <div class="row text-center mb-5">
+    <div class="col-12 col-md-4 mb-3 mb-md-0">
+      <div class="display-4 fw-bold">{{ stats.percentages.takeaway }}%</div>
+      <div class="fw-semibold">Etudiants</div>
     </div>
 
-    <div class="col-md-4">
-      <div class="p-3 bg-dark text-white rounded text-center">
-        <div class="display-6 fw-bold">{{ stats.percentages.delivery }}%</div>
-        <div>Livraison</div>
-      </div>
+    <div class="col-12 col-md-4 mb-3 mb-md-0">
+      <div class="display-4 fw-bold">{{ stats.percentages.delivery }}%</div>
+      <div class="fw-semibold">Professionnels</div>
     </div>
 
-    <div class="col-md-4">
-      <div class="p-3 bg-dark text-white rounded text-center">
-        <div class="display-6 fw-bold">{{ stats.percentages.onSite }}%</div>
-        <div>Sur place</div>
-      </div>
+    <div class="col-12 col-md-4">
+      <div class="display-4 fw-bold">{{ stats.percentages.onSite }}%</div>
+      <div class="fw-semibold">Retraité</div>
     </div>
   </div>
 
-  <div class="row g-4 mt-2">
-    <div class="col-md-7">
-      <div class="p-3 bg-dark rounded">
-        <h5 class="text-white mb-3">Weekly orders</h5>
-        <canvas id="weeklyChart"></canvas>
+  <!-- ====== GRAPHIQUES ====== -->
+  <div class="row g-4">
+    <div class="col-12 col-lg-7">
+      <div>
+        <h6 class="fw-semibold mb-3">Chiffre d'affaire 2025</h6>
+        <div class="chart-wrap">
+          <canvas id="weeklyChart"></canvas>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-5">
-      <div class="p-3 bg-dark rounded">
-        <h5 class="text-white mb-3">Satisfaction</h5>
-        <canvas id="satisfactionChart"></canvas>
+    <div class="col-12 col-lg-5">
+      <div>
+        <h6 class="fw-semibold mb-3">Commandes par villes</h6>
+        <div class="chart-wrap">
+          <canvas id="satisfactionChart"></canvas>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
