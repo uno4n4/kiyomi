@@ -1,6 +1,16 @@
-import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  Inject,
+  PLATFORM_ID
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RestaurantApi, FeaturedBox, RestaurantStats } from '../../services/restaurant-api';
+import {
+  RestaurantApi,
+  FeaturedBox,
+  RestaurantStats
+} from '../../services/restaurant-api';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
@@ -14,6 +24,7 @@ Chart.register(...registerables);
 })
 export class RestaurantComponent implements OnInit, AfterViewInit {
   featuredBoxes: FeaturedBox[] = [];
+
   stats: RestaurantStats = {
     percentages: { takeaway: 0, delivery: 0, onSite: 0 },
     charts: { weeklyOrders: [], satisfaction: [] },
@@ -27,8 +38,10 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
+  /* =========================
+     INIT
+  ========================== */
   ngOnInit(): void {
-    // ✅ BLOQUE tout côté serveur (prerender/SSR)
     if (!isPlatformBrowser(this.platformId)) return;
 
     this.api.getFeaturedBoxes().subscribe({
@@ -39,7 +52,7 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
     this.api.getRestaurantStats().subscribe({
       next: (data) => {
         this.stats = data;
-        this.renderCharts(); // ✅ seulement browser
+        this.renderCharts();
       },
       error: (err) => console.error('Erreur stats restaurant', err),
     });
@@ -50,40 +63,66 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
     this.renderCharts();
   }
 
+  /* =========================
+     CHARTS
+  ========================== */
   private renderCharts(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    if (!this.stats.charts.weeklyOrders.length || !this.stats.charts.satisfaction.length) return;
 
     const weeklyCanvas = document.getElementById('weeklyChart') as HTMLCanvasElement | null;
     const satisfactionCanvas = document.getElementById('satisfactionChart') as HTMLCanvasElement | null;
     if (!weeklyCanvas || !satisfactionCanvas) return;
 
-    if (!this.stats.charts.weeklyOrders.length || !this.stats.charts.satisfaction.length) return;
-    if (!isPlatformBrowser(this.platformId)) return;
-
-
     this.weeklyChart?.destroy();
     this.satisfactionChart?.destroy();
 
+    /* Weekly orders */
     this.weeklyChart = new Chart(weeklyCanvas, {
       type: 'bar',
       data: {
-        labels: this.stats.charts.weeklyOrders.map((x) => x.label),
-        datasets: [{ data: this.stats.charts.weeklyOrders.map((x) => x.value) }],
-      },
-      options: { responsive: true, plugins: { legend: { display: false } } },
-    });
-
-    this.satisfactionChart = new Chart(satisfactionCanvas, {
-      type: 'bar',
-      data: {
-        labels: this.stats.charts.satisfaction.map((x) => x.label),
-        datasets: [{ data: this.stats.charts.satisfaction.map((x) => x.value) }],
+        labels: this.stats.charts.weeklyOrders.map(x => x.label),
+        datasets: [{
+          data: this.stats.charts.weeklyOrders.map(x => x.value),
+          backgroundColor: '#5b0b0b',
+          borderRadius: 6
+        }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: { legend: { display: false } },
-        scales: { y: { suggestedMax: 100 } },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#bbb' } },
+          y: { grid: { color: '#222' }, ticks: { color: '#bbb' } }
+        }
+      }
+    });
+
+    /* Satisfaction */
+    this.satisfactionChart = new Chart(satisfactionCanvas, {
+      type: 'bar',
+      data: {
+        labels: this.stats.charts.satisfaction.map(x => x.label),
+        datasets: [{
+          data: this.stats.charts.satisfaction.map(x => x.value),
+          backgroundColor: '#2b0000',
+          borderRadius: 6
+        }]
       },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#bbb' } },
+          y: {
+            suggestedMax: 100,
+            grid: { color: '#222' },
+            ticks: { color: '#bbb' }
+          }
+        }
+      }
     });
   }
 }
