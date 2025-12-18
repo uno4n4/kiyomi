@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-// import { ListeBoxes } from '../../services/liste-boxes';
 import { AjoutPanier } from '../../services/ajout-panier';
 import { Router } from '@angular/router'; 
 import { HttpClient } from '@angular/common/http';
 import { Suggestion } from '../suggestion/suggestion';
+import { FildAriane } from '../fild-ariane/fild-ariane';
 
 @Component({
   selector: 'app-produit',
   standalone: true,
-  imports: [CommonModule, Suggestion],
+  imports: [CommonModule, Suggestion, FildAriane],
   templateUrl: './produit.html',
   styleUrl: './produit.css',
 })
@@ -25,23 +25,6 @@ export class Produit {
     private AjoutPanier: AjoutPanier,
     private http: HttpClient
   ) {}
-
-//ngOnInit(): void {
-  // Utilisez queryParamMap si l'ID est dans l'URL après un '?' (ex: ?id=1)
-  //const idString = this.route.snapshot.queryParamMap.get('id');
-  //const id = Number(idString);
-
-  //console.log('ID récupéré:', id); // Vérifiez que c'est bien 1
-
-  //if (id && id > 0) { // On vérifie que l'ID est supérieur à 0
-  //  this.listeBoxes.getBoxById(id).subscribe((data: any) => {
-  //    this.box = data;
-  //    console.log(this.box);
-  //  });
-  //} else {
-  //  console.error("ID de produit invalide ou manquant. Vérifiez la route Angular.");
- // }
-//}
 
   ngOnInit(): void {
     this.route.queryParams
