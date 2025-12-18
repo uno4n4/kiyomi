@@ -1,4 +1,44 @@
 <!-- EN DESSOUS LA VERSION A GARDER ET A MODIFIER PAR SEFORA -->
+ <section class="suggestions">
+  <div class="row g-4">
+    @for (item of boxes; track item.id_box || item.id) {
+      <div class="col-12 col-md-4 d-flex">
+        <div
+          class="sug-card w-100"
+          (click)="voirProduit(item.id_box || item.id)"
+          role="button"
+          tabindex="0"
+        >
+          <div class="sug-img">
+            <img
+              src="../../../assets/images/{{ item.image }}.jpg"
+              alt="{{ item.name }}"
+            />
+          </div>
+
+          <div class="sug-body">
+            <div class="sug-title">{{ item.name | uppercase }}</div>
+            <div class="sug-meta">{{ item.pieces }} PIECES</div>
+
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <div class="sug-price">{{ item.price }} €</div>
+
+              <!-- stopPropagation sinon ça ouvre le produit quand tu cliques sur panier -->
+              <button
+                type="button"
+                class="btn btn-outline-dark btn-sm"
+                (click)="$event.stopPropagation(); addPanier(item.id_box || item.id)"
+              >
+                <i class="bi bi-cart3"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
 <section class="col-10 mx-auto">
 <div class="col-12 text-white">
     <h4 class="mt-5">NOS SUGGESTIONS</h4>
