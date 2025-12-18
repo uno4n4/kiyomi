@@ -5,8 +5,8 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
-import cors from 'cors';
 import { join } from 'node:path';
+import { corsMiddleware } from './server/middlewares/cors.middleware';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -16,29 +16,14 @@ const angularApp = new AngularNodeAppEngine();
 /**
  * Middlewares
  */
+app.use(corsMiddleware);
 app.use(express.json());
 
-// ✅ CORS (utile si tu testes depuis 4200)
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  }),
-);
-
 /**
- * ✅ API REST - KIYOMI (TS)
- * On garde tout dans server.ts pour ne pas casser l’arborescence.
+ * API REST KIYOMI
  */
 
-// (option) check
-app.get('/api/health', (_req, res) => {
-  res.json({ ok: true });
-});
-
-// ✅ GET /api/boxes/featured
+// GET /api/boxes/featured
 app.get('/api/boxes/featured', (_req, res) => {
   res.json([
     {
@@ -65,14 +50,10 @@ app.get('/api/boxes/featured', (_req, res) => {
   ]);
 });
 
-// ✅ GET /api/stats/restaurant
+// GET /api/stats/restaurant
 app.get('/api/stats/restaurant', (_req, res) => {
   res.json({
-    percentages: {
-      takeaway: 28,
-      delivery: 57,
-      onSite: 15,
-    },
+    percentages: { takeaway: 28, delivery: 57, onSite: 15 },
     charts: {
       weeklyOrders: [
         { label: 'Lun', value: 12 },
