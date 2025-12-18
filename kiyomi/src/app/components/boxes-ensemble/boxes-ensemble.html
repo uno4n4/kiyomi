@@ -21,10 +21,14 @@
         <div class="row g-4">
           @for (box of boxesToShow; track box.id) {
           <div class="col-6 col-md-4 d-flex">
-            <div class="card card-sushi w-100 bg-card border-0 rounded-0" (click)="pageProduit(box.id)">
+            <div
+              class="card card-sushi w-100 bg-card border-0 rounded-0"
+              (click)="pageProduit(box.id)"
+            >
               <div class="align-self-center">
                 <img
-                  src="../../../assets/images/{{ box.image }}.png"
+                  [src]="box.image ? 'assets/images/' + box.image + '.jpg' : 'assets/images/boxe_default.jpg'"
+                  (error)="onImgError($event)"
                   class="card-img-top object-fit-cover border-0 rounded-0"
                 />
               </div>
@@ -58,7 +62,7 @@
     <div class="btn btn-dark border border-white rounded-0" (click)="renvoiMenu()">
       Explorer le Menu
     </div>
-}
+    }
     <!-- BOUTON VOIR PLUS -->
     @else if (!this.accueil &&totalBoxPositive){
     <div class="btn btn-dark border border-white rounded-0" (click)="voirPlus()">Voir plus</div>

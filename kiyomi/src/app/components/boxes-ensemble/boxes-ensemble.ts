@@ -78,6 +78,12 @@ export class BoxesEnsemble implements OnInit {
     this.visibleBoxes += 6;
   }
 
+
+  //GESTION ERREUR IMAGE
+  onImgError(event: any) {
+    event.target.src = './../../assets/images/boxe_default.jpg';
+  }
+
   // charger l'API pour éviter que totalBoxPositive reste à 0 au reload
   getDataFromAPI() {
     this.listeBoxes.getBoxes().subscribe((menus) => {

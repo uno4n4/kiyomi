@@ -50,8 +50,9 @@ export class App implements OnInit {
       }
 
       // Image chef accueil
+      //trouver un moyen pour afficher l'image quand le component accueil est chargé:  window.location.href === 'http://localhost:4200' || window.location.href === 'http://localhost:4200/'
       if (
-        current.includes('/app-accueil') || current.includes('/app-rgpd') || window.location.href === 'http://localhost:4200' || window.location.href === 'http://localhost:4200/'
+        current.includes('/app-accueil') || current.includes('/app-rgpd')
       ) {
         this.accueil = true;
       } else {

@@ -26,8 +26,6 @@ export class Produit {
     private http: HttpClient
   ) {}
 
-
-
 //ngOnInit(): void {
   // Utilisez queryParamMap si l'ID est dans l'URL après un '?' (ex: ?id=1)
   //const idString = this.route.snapshot.queryParamMap.get('id');

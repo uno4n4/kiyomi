@@ -111,9 +111,9 @@
           @if(!user){
           <a class="nav-link text-light" routerLink="app-formulaire-co"> ME CONNECTER </a>
           } @else{
-          <div class="user-info text-light ms-3" *ngIf="user">
-            <a routerLink="app-compte-user">{{ user.prenom }} {{ user.nom }}</a>
-            <button (click)="logout()">Se déconnecter</button>
+          <div class="text-light" *ngIf="user">
+            <a routerLink="app-compte-user" class="text-white text-decoration-none ms-0 me-2">{{ user.prenom }} {{ user.nom }}</a>
+            <a (click)="logout()" class="btn text-white">Se déconnecter</a>
           </div>
           }
 
