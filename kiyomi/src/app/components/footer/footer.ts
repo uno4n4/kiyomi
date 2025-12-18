@@ -15,4 +15,8 @@ export class Footer {
   rgpd(){
     this.router.navigate(['/app-rgpd']);
   }
+  //REDIRECTION VERS LA "PAGE" VISÉE
+  public renvoi(chemin: string) {
+    this.router.navigate([chemin]); //renvoie au component visé
+  }
 }

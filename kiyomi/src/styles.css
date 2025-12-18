@@ -13,6 +13,35 @@ hr {
   border: 1px solid white;
 }
 
+/* LIENS */
+a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+a:hover {
+  color: #c084fc; /* violet / accent */
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+
 /* NAVBAR */
 .navbar {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,17 +76,6 @@ hr {
 /* INTITULE DE SECTION */
 #menuAccueil {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* FIL D'ARIANE */
-.chemin {
-  cursor: pointer;
-  text-decoration: none;
-  transition: text-decoration 0.3s;
-}
-
-.chemin:hover {
-  text-decoration: underline;
 }
 
 /* CARTES MENUS INDIVIDUELS */

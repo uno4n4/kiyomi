@@ -34,7 +34,7 @@
           <p class="text-warning mb-3 small">
             Vous avez besoin d’aide ou vous souhaitez signaler un problème sur votre commande ?
           </p>
-          <a class="mb-1 text-decoration-underline text-white" mailto="">Contactez-nous !</a>
+          <a class="mb-1 fw-semibold text-white" href="mailto:contact@kiyomi.com">Contactez-nous !</a>
         </div>
       </div>
 
@@ -42,17 +42,18 @@
       <div class="col-md-3 mb-4">
         <h5 class="fw-normal mb-3">INFORMATIONS</h5>
         <div class="ms-3 me-5">
-          <p class="mb-1 small">Mentions Légales</p>
-          <a (click)="rgpd()" class="small btn p-0 mb-1 text-white text-decoration-none">Données Personnelles</a>
+          <p class="mb-1"><a (click)="renvoi('/app-mentions-legales')" class="small text-white text-decoration-none">Mentions Légales</a></p>
+          <p class="mb-1"><a (click)="renvoi('/app-rgpd')" class="small text-white text-decoration-none">Données Personnelles</a></p>
         </div>
+        
       </div>
 
       <!-- SECTION A PROPOS -->
       <div class="col-md-3 mb-4">
         <h5 class="fw-normal mb-3">A PROPOS</h5>
         <div class="ms-3 me-5">
-          <p class="small mb-1">Mon compte</p>
-          <p class="small mb-1">Le restaurant</p>
+          <p class="mb-1"><a (click)="renvoi('/app-compte')" class="small text-white text-decoration-none">Mon compte</a></p>
+          <p class="mb-1"><a (click)="renvoi('/app-app-restaurant')" class="small text-white text-decoration-none">Le restaurant</a></p>
         </div>
       </div>
 
@@ -61,8 +62,8 @@
         <h5 class="fw-normal mb-3">ADRESSES KIYOMI</h5>
         <div class="ms-3 me-5">
           <p class="small mb-1"><i class="bi bi-geo-alt-fill me-2"></i>123 Rue de Tokyo, Paris</p>
-          <p class="small mb-1"><i class="bi bi-telephone-fill me-2"></i>+33 1 23 45 67 89</p>
-          <p class="small mb-1"><i class="bi bi-envelope-fill me-2"></i>contact@kiyomi.fr</p>
+          <p class="small mb-1"><i class="bi bi-telephone-fill me-2"></i><a href="tel:+33123456789" class="text-white text-decoration-none">+33 1 23 45 67 89</a></p>
+          <p class="small mb-1"><i class="bi bi-envelope-fill me-2"></i><a href="mailto:contact@kiyomi.com" class="text-white text-decoration-none">contact@kiyomi.com</a></p>
           <div class="mt-2">
             <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
             <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>

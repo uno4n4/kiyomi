@@ -11,14 +11,14 @@ import { RestaurantComponent } from './components/restaurant/restaurant.componen
 import path from 'path';
 
 export const routes: Routes = [
-  { path: 'app-accueil', component: Accueil },
-  { path: '', component: Accueil },
-  { path: 'app-formulaire-co', component: FormulaireCo },
-  { path: 'app-produit', component: Produit },
-  { path: 'app-formulaire-inscription', component: FormulaireInscription },
-  { path: 'app-menu', component: Menu },
-  { path: 'app-forgot-password', component: ForgotPassword },
-  { path: 'app-compte-user', component: CompteUser },
-  { path: 'app-rgpd', component: Rgpd},
-  { path: 'app-restaurant', component: RestaurantComponent }
+  { path: 'app-accueil', component: Accueil, data: { accueil: true }},
+  { path: '', component: Accueil, data: { accueil: true }},
+  { path: 'app-formulaire-co', component: FormulaireCo, data: { accueil: false } },
+  { path: 'app-produit', component: Produit, data: { accueil: false } },
+  { path: 'app-formulaire-inscription', component: FormulaireInscription, data: { accueil: false } },
+  { path: 'app-menu', component: Menu, data: { accueil: false } },
+  { path: 'app-forgot-password', component: ForgotPassword, data: { accueil: false } },
+  { path: 'app-compte-user', component: CompteUser, data: { accueil: false } },
+  { path: 'app-rgpd', component: Rgpd, data: { accueil: false }},
+  { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false } }
 ];

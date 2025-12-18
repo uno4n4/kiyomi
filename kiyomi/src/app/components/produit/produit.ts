@@ -6,11 +6,12 @@ import { AjoutPanier } from '../../services/ajout-panier';
 import { Router } from '@angular/router'; 
 import { HttpClient } from '@angular/common/http';
 import { Suggestion } from '../suggestion/suggestion';
+import { FildAriane } from '../fild-ariane/fild-ariane';
 
 @Component({
   selector: 'app-produit',
   standalone: true,
-  imports: [CommonModule, Suggestion],
+  imports: [CommonModule, Suggestion, FildAriane],
   templateUrl: './produit.html',
   styleUrl: './produit.css',
 })

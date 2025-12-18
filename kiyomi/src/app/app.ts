@@ -1,36 +1,50 @@
-import {
-  Component,
-  Inject,
-  OnInit,
-  PLATFORM_ID,
-  Renderer2,
-  signal,
-} from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID, Renderer2, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterOutlet, NavigationEnd } from '@angular/router';
+import { Router, RouterLink, RouterOutlet, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Footer } from './components/footer/footer';
+import { filter } from 'rxjs/internal/operators/filter';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, CommonModule, Footer],
   templateUrl: './app.html',
-  styleUrls: ['./app.css'], // petite typo corrigée : styleUrl → styleUrls
+  styleUrls: ['./app.css'],
 })
 export class App implements OnInit {
   protected readonly title = signal('kiyomi');
   user: any = null;
-  pageFondBlanc: string[] = ['/app-formulaire', '/app-panier', '/app-formulaire-inscription', '/app-compte-user','/app-forgot-password', '/app-formulaire-co', '/app-restaurant' ];
-  accueil = false;
+  pageFondBlanc: string[] = [
+    '/app-panier',
+    '/app-formulaire-inscription',
+    '/app-compte-user',
+    '/app-forgot-password',
+    '/app-formulaire-co',
+    '/app-restaurant',
+  ];
+  @Input() horizontal: boolean = false;
+  accueil: boolean = false;
   nav = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      let currentRoute = this.route.firstChild;
+
+      while (currentRoute?.firstChild) {
+        currentRoute = currentRoute.firstChild;
+      }
+
+      this.accueil = currentRoute?.snapshot.data['accueil'] ?? false;
+
+      console.log('AppComponent accueil =', this.accueil);
+    });
     if (isPlatformBrowser(this.platformId)) {
       const savedUser = localStorage.getItem('user');
       if (savedUser) this.user = JSON.parse(savedUser);
@@ -47,16 +61,6 @@ export class App implements OnInit {
       } else {
         this.renderer.setStyle(document.body, 'background-color', 'black');
         this.nav = false;
-      }
-
-      // Image chef accueil
-      //trouver un moyen pour afficher l'image quand le component accueil est chargé:  window.location.href === 'http://localhost:4200' || window.location.href === 'http://localhost:4200/'
-      if (
-        current.includes('/app-accueil') || current.includes('/app-rgpd')
-      ) {
-        this.accueil = true;
-      } else {
-        this.accueil = false;
       }
     };
 

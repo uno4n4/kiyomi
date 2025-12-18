@@ -1,6 +1,31 @@
-<div class="col-12 text-white align-content-end ms-2">
-    <p><a class="col-12 text-white mb-4 chemin" (click)="renvoi('/')">Accueil</a></p>
-    <p><a class="col-12 text-white mb-4 chemin" (click)="renvoi('/app-menu')">Menus</a></p>
-    <p><a class="col-12 text-white mb-4 chemin" (click)="renvoi('/app-restaurant')">Le restaurant</a></p>
-    <p><a class="col-12 text-white mb-4 chemin"  (click)="renvoi('/app-panier')">Commande</a></p>
+@if (horizontal) {
+<div class="row gap-0 text-white me-5 mt-5 text-start justify-content-end">
+  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/')">Accueil</a>
+  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-produit')">Menus</a>
+  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')" [class.fw-bold]="isCurrentPage('/app-restaurant')">Le restaurant</a>
+  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-panier')" [class.fw-bold]="isCurrentPage('/app-panier')">Commande</a>
+  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-formulaire-co')" [class.fw-bold]="isCurrentPage('/app-formulaire-co') || isCurrentPage('/app-formulaire-inscription') || isCurrentPage('/app-forgot-password')">Compte</a>
 </div>
+} @else {
+<div class="col-12 text-white align-content-end ms-2">
+  <p>
+    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/')" [class.fw-bold]="isAccueil()">Accueil</a>
+  </p>
+
+  <p>
+    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-menu')"> Menus </a>
+  </p>
+
+  <p>
+    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')">
+      Le restaurant
+    </a>
+  </p>
+
+  <p>
+    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/app-panier')">
+      Commande
+    </a>
+  </p>
+</div>
+}
