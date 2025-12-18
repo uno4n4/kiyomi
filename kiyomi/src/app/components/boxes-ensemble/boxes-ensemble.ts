@@ -88,7 +88,9 @@ export class BoxesEnsemble implements OnInit {
   // AJOUT PANIER EN FONCTION DE LA CONNECTION USER
   addPanier(idPanier: number): any {
     if (!this.user) {
-      this.router.navigate(['/app-formulaire-co']); //renvoie au component app-formulaire-co
+      this.router.navigate(['/app-formulaire-co'], {
+        queryParams: { idPanier: idPanier }
+      }); //renvoie au component app-formulaire-co
     } else {
       //sinon on ajoute la boxe au panier de l'user
       let user_id: number = this.user['id'];
