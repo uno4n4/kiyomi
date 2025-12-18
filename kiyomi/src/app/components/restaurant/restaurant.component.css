@@ -1,4 +1,37 @@
+/* L'image du hero */
+img[alt="Restaurant"] {
+  border-radius: 2px;
+}
+
+/* Cartes suggestions */
+.card-img-top {
+  height: 210px;
+  object-fit: cover;
+}
 /* Cards (anti Bootstrap conflict) */
+/* Le bloc blanc (comme maquette) */
+.bg-white {
+  background: #fff !important;
+}
+
+/* Cartes charts */
+.chart-card {
+  background: #fff;
+  border: 1px solid #e9e9e9;
+}
+
+/* Si tu ne fixes pas une hauteur, ChartJS peut rendre tout petit/0 selon le layout */
+.chart-canvas {
+  width: 100% !important;
+  height: 280px !important;
+}
+
+/* Suggestions: cards propres */
+.card-img-top {
+  object-fit: cover;
+  height: 220px;
+}
+
 .boxCards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

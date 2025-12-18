@@ -52,7 +52,8 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
     this.api.getRestaurantStats().subscribe({
       next: (data) => {
         this.stats = data;
-        this.renderCharts();
+        requestAnimationFrame(() => this.renderCharts());
+
       },
       error: (err) => console.error('Erreur stats restaurant', err),
     });
@@ -60,7 +61,8 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.renderCharts();
+    requestAnimationFrame(() => this.renderCharts());
+
   }
 
   /* =========================
