@@ -27,7 +27,11 @@
             >
               <div class="align-self-center">
                 <img
-                  [src]="box.image ? 'assets/images/' + box.image + '.jpg' : 'assets/images/boxe_default.jpg'"
+                  [src]="
+                    box.image
+                      ? 'assets/images/' + box.image + '.jpg'
+                      : 'assets/images/boxe_default.jpg'
+                  "
                   (error)="onImgError($event)"
                   class="card-img-top object-fit-cover border-0 rounded-0"
                 />
