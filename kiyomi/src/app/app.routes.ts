@@ -8,6 +8,7 @@ import { ForgotPassword } from './components/forgot-password/forgot-password';
 import { CompteUser } from './components/compte-user/compte-user';
 import { Rgpd } from './components/rgpd/rgpd';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import { FiltresComponent } from './components/filtres/filtres';
 import path from 'path';
 
 export const routes: Routes = [
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'app-compte-user', component: CompteUser },
   { path: 'app-rgpd', component: Rgpd},
   { path: 'app-restaurant', component: RestaurantComponent },
-  { path: 'app-filtres', component: Filtres }
+  { path: 'app-filtres', component: FiltresComponent }
+
 ];

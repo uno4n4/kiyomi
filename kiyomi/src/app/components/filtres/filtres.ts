@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BoxesService } from '../../services/boxes.service';
 
+
+
 @Component({
   selector: 'app-filtres',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './filtres.component.html',
-  styleUrls: ['./filtres.component.css']
+  templateUrl: './filtres.html',
+  styleUrls: ['./filtres.css']
 })
 export class FiltresComponent implements OnInit {
 

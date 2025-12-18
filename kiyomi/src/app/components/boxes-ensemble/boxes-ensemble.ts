@@ -8,12 +8,14 @@ import { OnInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { isEmpty } from 'rxjs';
 import { FildAriane } from '../fild-ariane/fild-ariane';
-import { Filtres } from '../filtres/filtres';
+import { FiltresComponent } from '../filtres/filtres';
+
 import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
 @Component({
   selector: 'app-boxes-ensemble',
-  imports: [CommonModule, FildAriane, Filtres, SearchBarFilters],
+  imports: [CommonModule, FildAriane, FiltresComponent, SearchBarFilters],
+
   templateUrl: './boxes-ensemble.html',
   styleUrl: './boxes-ensemble.css',
 })
