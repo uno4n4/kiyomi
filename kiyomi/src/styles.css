@@ -52,6 +52,7 @@ hr {
 /* FIL D'ARIANE */
 .chemin {
   cursor: pointer;
+  text-decoration: none;
   transition: text-decoration 0.3s;
 }
 

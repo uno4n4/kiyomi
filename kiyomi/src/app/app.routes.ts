@@ -24,9 +24,9 @@ export const routes: Routes = [
   { path: 'app-compte-user', component: CompteUser },
   { path: 'app-rgpd', component: Rgpd},
 
-  // ✅ AJOUT
+  //AJOUT
   { path: 'app-restaurant', component: RestaurantComponent },
 
-  // ✅ wildcard
+  // ✅wildcard
   { path: '**', redirectTo: '' },
 ];
