@@ -1,45 +1,5 @@
 <!-- EN DESSOUS LA VERSION A GARDER ET A MODIFIER PAR SEFORA -->
- <section class="suggestions">
-  <div class="row g-4">
-    @for (item of boxes; track item.id_box || item.id) {
-      <div class="col-12 col-md-4 d-flex">
-        <div
-          class="sug-card w-100"
-          (click)="voirProduit(item.id_box || item.id)"
-          role="button"
-          tabindex="0"
-        >
-          <div class="sug-img">
-            <img
-              src="../../../assets/images/{{ item.image }}.jpg"
-              alt="{{ item.name }}"
-            />
-          </div>
-
-          <div class="sug-body">
-            <div class="sug-title">{{ item.name | uppercase }}</div>
-            <div class="sug-meta">{{ item.pieces }} PIECES</div>
-
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <div class="sug-price">{{ item.price }} €</div>
-
-              <!-- stopPropagation sinon ça ouvre le produit quand tu cliques sur panier -->
-              <button
-                type="button"
-                class="btn btn-outline-dark btn-sm"
-                (click)="$event.stopPropagation(); addPanier(item.id_box || item.id)"
-              >
-                <i class="bi bi-cart3"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    }
-  </div>
-</section>
-
-<section class="col-10 mx-auto">
+<section class="col-10 mx-auto my-5">
 <div class="col-12 text-white">
     <h4 class="mt-5">NOS SUGGESTIONS</h4>
     <hr class="col-8 mb-5" />
@@ -52,7 +12,7 @@
             <div class="card card-sushi w-100 bg-card border-0 rounded-0" (click)="voirProduit(item.id_box || item.id)">
               <div class="align-self-center">
                 <img
-                  src="../../../assets/images/{{ item.image }}.jpg"
+                  [src]="item.image ? '../../../assets/images/' + item.image + '.jpg' : '../../../assets/images/boxe_default.jpg'" (error)="onImgError($event)"
                   class="card-img-top object-fit-cover border-0 rounded-0"
                 />
               </div>
@@ -62,10 +22,11 @@
                 <p class="text-purple mb-0">{{ item.pieces }} PIECES</p>
                 <h4 class="mb-3">{{ item.price }}€</h4>
 
+                <!-- stopPropagation sinon ça ouvre le produit quand tu cliques sur panier -->
                 <button
                   type="button"
                   class="btn btn-outline-dark rounded align-self-end"
-                  (click)="addPanier(item.id)"
+                  (click)="$event.stopPropagation(); addPanier(item.id_box || item.id)"
                 >
                   <i class="bi bi-cart3"></i>
                 </button>

@@ -42,6 +42,11 @@ export class Suggestion implements OnInit {
       });
   }
 
+  //GESTION ERREUR IMAGE
+  onImgError(event: any) {
+    event.target.src = './../../assets/images/boxe_default.jpg';
+  }
+  
   voirProduit(id: number): void {
     this.router.navigate(['/app-produit'], { queryParams: { id } });
   }
