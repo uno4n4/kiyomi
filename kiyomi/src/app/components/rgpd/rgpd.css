@@ -1,0 +1,8 @@
+p {
+    max-width: 800px;
+}
+
+hr {
+    border-top: 2px solid white;
+    max-width: 500px;
+}

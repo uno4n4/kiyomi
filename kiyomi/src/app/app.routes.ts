@@ -8,6 +8,7 @@ import { Menu } from './components/menu/menu';
 import { ForgotPassword } from './components/forgot-password/forgot-password';
 import { CompteUser } from './components/compte-user/compte-user';
 import { Suggestion } from './components/suggestion/suggestion';
+import { Rgpd } from './components/rgpd/rgpd';
 
 // ✅ IMPORTANT : composant Angular CLI
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'app-menu', component: Menu },
   { path: 'app-forgot-password', component: ForgotPassword },
   { path: 'app-compte-user', component: CompteUser },
+  { path: 'app-rgpd', component: Rgpd},
 
   // ✅ AJOUT
   { path: 'app-restaurant', component: RestaurantComponent },
