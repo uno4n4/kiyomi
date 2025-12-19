@@ -57,10 +57,14 @@ export class App implements OnInit {
       // Body background
       if (this.pageFondBlanc.includes(current)) {
         this.renderer.setStyle(document.body, 'background-color', 'white');
-        this.nav = true;
       } else {
         this.renderer.setStyle(document.body, 'background-color', 'black');
-        this.nav = false;
+      }
+      if (current != '/app-accueil') {
+        this.nav = true;
+      }
+      else {
+        this.nav = false; //CHANGER LA NAV QUAND ON SWIPE
       }
     };
 
