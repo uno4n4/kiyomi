@@ -20,7 +20,7 @@ export const routes: Routes = [
   { path: 'app-menu', component: Menu, data: { accueil: false } },
   { path: 'app-forgot-password', component: ForgotPassword, data: { accueil: false } },
   { path: 'app-compte-user', component: CompteUser, data: { accueil: false } },
-  { path: 'app-rgpd', component: Rgpd, data: { accueil: false }},
+  { path: 'app-rgpd', component: Rgpd, data: { accueil: true }},
   { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false } },
   { path: 'app-filtres', component: Filtres, data: { accueil: false } }
 ];
