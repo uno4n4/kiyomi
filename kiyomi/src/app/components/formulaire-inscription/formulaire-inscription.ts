@@ -17,7 +17,9 @@ export class FormulaireInscription {
   password = '';
   status = '';
   errorMessage = '';
+  successMessage = '';
   showErrorPopup = false;
+  showSuccessPopup = false;
 
   constructor (private inscription: Inscription){}
 
@@ -28,6 +30,7 @@ export class FormulaireInscription {
       this.showErrorPopup = true;
       return
     }
+
   this.inscription.add_user(this.firstname, this.lastname, this.email, this.password, this.status)
     .subscribe({
       next: (res) => {
@@ -35,6 +38,15 @@ export class FormulaireInscription {
           // Stockage du token et de l'utilisateur
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
+
+          this.successMessage = `Inscription réussie ! Bienvenue ${res.user.prenom}`;
+          this.showSuccessPopup = true;
+
+          this.firstname = '';
+          this.lastname = '';
+          this.email = '';
+          this.status = '';
+          this.password = '';
 
           console.log("Connecté :", res.user.prenom, res.user.nom);
           window.location.reload();
@@ -48,5 +60,13 @@ export class FormulaireInscription {
           this.showErrorPopup = true;
         }
       });
+    }
+
+    closeErrorPopup(){
+      this.showErrorPopup = false;
+    }
+
+    closeSuccessPopup(){
+      this.showSuccessPopup = false;
     }
 }
