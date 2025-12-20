@@ -13,14 +13,16 @@ import { Rgpd } from '../rgpd/rgpd';
 export class Popup {
   constructor(private router: Router){}
 
-  showPopup = true;
-
-  acceptCookies(): void{
-    this.showPopup = false;
+  get showPopup(): boolean {
+    return !localStorage.getItem('cookieChoice');
   }
 
-  refuseCookies(): void {
-    this.showPopup = false;
+  acceptCookies(){
+    localStorage.setItem('cookieChoice', 'accepted');
+  }
+
+  refuseCookies() {
+        localStorage.setItem('cookieChoice', 'refused');
   }
 
   rgpd(){
