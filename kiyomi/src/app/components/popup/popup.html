@@ -8,19 +8,22 @@
     dans notre restaurant <strong>KIYOMI</strong>.
   </p>
 
-  <p class="small text-light mb-3">
+  <p class="small text-light mb-1">
     Ces cookies nous permettent de mémoriser vos préférences,
     d’analyser la fréquentation du site et d’assurer son bon fonctionnement.
     Aucune donnée personnelle n’est vendue ou partagée.
   </p>
+  <p class="text-center">
+    <a (click)="rgpd()" class="text-white">En savoir plus</a>
+  </p>
 
-  <div class="d-flex justify-content-center gap-2 flex-wrap">
+  <div class="d-flex justify-content-center gap-2 flex-wrap mt-3">
     <button class="btn btn-outline-light btn-sm px-3"
             (click)="refuseCookies()">
       Refuser
     </button>
 
-    <button class="btn btn-danger btn-sm px-3"
+    <button class="btn btn-outline-light btn-sm px-3"
             (click)="acceptCookies()">
       Accepter
     </button>

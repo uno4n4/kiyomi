@@ -11,10 +11,6 @@ import { Router } from '@angular/router';
 export class Footer {
 
   constructor(private router: Router){}
-
-  rgpd(){
-    this.router.navigate(['/app-rgpd']);
-  }
   //REDIRECTION VERS LA "PAGE" VISÉE
   public renvoi(chemin: string) {
     this.router.navigate([chemin]); //renvoie au component visé

@@ -9,6 +9,7 @@ import { CompteUser } from './components/compte-user/compte-user';
 import { Rgpd } from './components/rgpd/rgpd';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { Filtres } from './components/filtres/filtres';
+import { Mentionslegales } from './components/mentionslegales/mentionslegales';
 
 
 export const routes: Routes = [
@@ -22,5 +23,6 @@ export const routes: Routes = [
   { path: 'app-compte-user', component: CompteUser, data: { accueil: false } },
   { path: 'app-rgpd', component: Rgpd, data: { accueil: true }},
   { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false } },
-  { path: 'app-filtres', component: Filtres, data: { accueil: false } }
+  { path: 'app-filtres', component: Filtres, data: { accueil: false } },
+  { path: 'app-mentionslegales', component: Mentionslegales, data: { accueil: true } }
 ];

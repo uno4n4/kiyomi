@@ -61,6 +61,25 @@
     </div>
 </form>
 
+<div *ngIf="productPending" class="mt-4 p-3 border rounded">
+  <h6 class="mb-2">Produit sélectionné :</h6>
+
+  <div class="d-flex align-items-center gap-3">
+    <img
+      [src]="productPending.image"
+      alt="Produit"
+      width="80"
+      (error)="onImgError($event)"
+    />
+
+    <div>
+      <strong>{{ productPending.nom }}</strong><br>
+      <span>{{ productPending.prix }} €</span>
+    </div>
+  </div>
+</div>
+
+
 <div *ngIf="showErrorPopup"
      class="position-fixed top-50 start-50 translate-middle p-4 rounded shadow-lg text-dark"
      style="background: white; z-index: 9999; width: 90%; max-width: 400px;">
