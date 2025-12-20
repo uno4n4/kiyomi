@@ -9,7 +9,7 @@
 } @else {
 <div class="col-12 text-white align-content-end ms-2">
   <p>
-    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/')" [class.fw-bold]="isAccueil() || isCurrentPage('/app-mentionslegales') || isCurrentPage('/app-rgpd')">Accueil</a>
+    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/')" [class.fw-bold]="isAccueil()">Accueil</a>
   </p>
 
   <p>
@@ -17,7 +17,7 @@
   </p>
 
   <p>
-    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')">
+    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/app-restaurant') " [class.fw-bold]="isCurrentPage('/app-mentionslegales') || isCurrentPage('/app-rgpd')">
       Le restaurant
     </a>
   </p>

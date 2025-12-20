@@ -1,25 +1,25 @@
 <!-- SECTION LISTE DES MENUS -->
-<div class="row g-3 mb-5 position-relative z-3 mx-5 my-5">
+<div class="row g-3 mb-5 position-relative z-3 mx-md-5 mx-3 my-5">
   <div class="col-12 text-white">
     @if(!this.accueil){
     <app-search-bar-filters></app-search-bar-filters>
     }
     <h4 class="mt-5">NOS BOXES PHARES</h4>
-    <hr class="col-8 mb-5" />
+    <hr class="col-md-8 mb-md-5 mb-0 col-12" />
 
-    <div class="row mt-5">
+    <div class="row mt-0 mt-md-5">
       <!-- FILTRES -->
-      <div class="col-4">
-        <app-filtres></app-filtres>
+      <div class="col-md-4 col-12 mb-3 d-flex d-md-block align-items-center">
+        <div class="col-6 col-md-12"><app-filtres></app-filtres></div>
 
         <!--<app-filtres (filterChanged)="applyFilters($event)"></app-filtres>-->
 
-        <div class="row g-3 mb-2 mt-5">
+        <div class="col-6 col-md-12 g-3 mb-2 mt-5">
           <app-fild-ariane></app-fild-ariane>
         </div>
       </div>
       <!-- boxes affichées dynamiquement via l'API -->
-      <div class="col-8">
+      <div class="col-md-8 col-12">
         <div class="row g-4">
           @for (box of boxesToShow; track box.id) {
           <div class="col-6 col-md-4 d-flex">
@@ -42,7 +42,7 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="text-black fw-semibold mb-2">{{ box.name | uppercase }}</h5>
                 <p class="text-purple mb-0">{{ box.pieces }} PIECES</p>
-                <h4 class="mb-3">{{ box.price }}€</h4>
+                <h4 class="mb-3 fs-5 fs-md-4">{{ box.price }}€</h4>
 
                 <button
                   type="button"
@@ -75,4 +75,3 @@
     }
   </div>
 </div>
-
