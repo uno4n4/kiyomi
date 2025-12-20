@@ -9,8 +9,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { isEmpty } from 'rxjs';
 import { FildAriane } from '../fild-ariane/fild-ariane';
 import { Filtres } from '../filtres/filtres';
-
-
 import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
 @Component({
