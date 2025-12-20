@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoxesEnsemble } from '../boxes-ensemble/boxes-ensemble';
-import { Popup } from '../popup/popup';
 
 @Component({
   selector: 'app-accueil',
-  imports: [CommonModule, BoxesEnsemble, Popup],
+  imports: [CommonModule, BoxesEnsemble],
   templateUrl: './accueil.html',
   styleUrl: './accueil.css',
 })

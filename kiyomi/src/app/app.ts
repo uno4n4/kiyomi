@@ -1,50 +1,37 @@
-import { Component, Inject, Input, OnInit, PLATFORM_ID, Renderer2, signal } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  Renderer2,
+  signal,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterOutlet, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, RouterLink, RouterOutlet, NavigationEnd } from '@angular/router';
+import { Popup } from '../app/components/popup/popup';
 import { Footer } from './components/footer/footer';
-import { filter } from 'rxjs/internal/operators/filter';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, CommonModule, Footer],
+  imports: [RouterOutlet, RouterLink, CommonModule, Footer, Popup],
   templateUrl: './app.html',
-  styleUrls: ['./app.css'],
+  styleUrls: ['./app.css'], // petite typo corrigée : styleUrl → styleUrls
 })
 export class App implements OnInit {
   protected readonly title = signal('kiyomi');
   user: any = null;
-  pageFondBlanc: string[] = [
-    '/app-panier',
-    '/app-formulaire-inscription',
-    '/app-compte-user',
-    '/app-forgot-password',
-    '/app-formulaire-co',
-    '/app-restaurant',
-  ];
-  @Input() horizontal: boolean = false;
-  accueil: boolean = false;
+  pageFondBlanc: string[] = ['/app-formulaire', '/app-panier', '/app-formulaire-inscription', '/app-compte-user','/app-forgot-password', '/app-formulaire-co', '/app-restaurant' ];
+  accueil = false;
   nav = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
-    private renderer: Renderer2,
-    private route: ActivatedRoute
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      let currentRoute = this.route.firstChild;
-
-      while (currentRoute?.firstChild) {
-        currentRoute = currentRoute.firstChild;
-      }
-
-      this.accueil = currentRoute?.snapshot.data['accueil'] ?? false;
-
-      console.log('AppComponent accueil =', this.accueil);
-    });
     if (isPlatformBrowser(this.platformId)) {
       const savedUser = localStorage.getItem('user');
       if (savedUser) this.user = JSON.parse(savedUser);
@@ -57,14 +44,20 @@ export class App implements OnInit {
       // Body background
       if (this.pageFondBlanc.includes(current)) {
         this.renderer.setStyle(document.body, 'background-color', 'white');
+        this.nav = true;
       } else {
         this.renderer.setStyle(document.body, 'background-color', 'black');
+        this.nav = false;
       }
-      if (current != '/app-accueil') {
-        this.nav = true;
-      }
-      else {
-        this.nav = false; //CHANGER LA NAV QUAND ON SWIPE
+
+      // Image chef accueil
+      //trouver un moyen pour afficher l'image quand le component accueil est chargé:  window.location.href === 'http://localhost:4200' || window.location.href === 'http://localhost:4200/'
+      if (
+        current.includes('/app-accueil') || current.includes('/app-rgpd')
+      ) {
+        this.accueil = true;
+      } else {
+        this.accueil = false;
       }
     };
 
