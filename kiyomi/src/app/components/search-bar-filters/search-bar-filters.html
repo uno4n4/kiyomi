@@ -1,25 +1,9 @@
 <div class="d-flex flex-wrap justify-content-end align-items-center gap-3 mb-5 w-100">
-  @if(phone){
-  <!-- BARRE DE RECHERCHE sur mobile -->
-  <div class="col-12">
-    <!-- BARRE DE RECHERCHE -->
-    <form class="d-flex" role="search">
-      <input
-        class="form-control form-control-sm me-2 bg-transparent text-white border border-white"
-        type="search"
-        placeholder="Rechercher"
-        aria-label="Search"
-      />
-      <button class="btn btn-outline-light" type="submit">
-        <i class="bi bi-search"></i>
-      </button>
-    </form>
-  </div>
-  } @else{
   <!-- BARRE DE RECHERCHE -->
-  <form class="d-flex col-md-4 mt-2 mt-md-0" role="search">
+  <form class="d-flex col-md-4 mt-2 mt-md-0" role="search" (ngSubmit)="search()">
     <input
       class="form-control form-control-sm me-2 bg-transparent text-white border border-white"
+      [(ngModel)]="term"
       type="search"
       placeholder="Rechercher"
       aria-label="Search"
@@ -29,5 +13,4 @@
       <i class="bi bi-search"></i>
     </button>
   </form>
-  }
 </div>
