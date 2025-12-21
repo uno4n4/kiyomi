@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-formulaire-co',
@@ -24,25 +25,40 @@ export class FormulaireCo implements OnInit {
   constructor(
     private auth: Auth,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const pendingId = localStorage.getItem('pendingProductId');
+  this.route.queryParams.subscribe(params => {
+    const pendingId = Number(params['idPanier']);
+    const pendingQuantity = Number(params['quantity']) || 1;
 
-    if (pendingId) {
-      this.http
-        .get<any>('http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/index.php?id=' + pendingId)
-        .subscribe({
-          next: (res) => {
-            this.productPending = res;
-          },
-          error: (err) => {
-            console.error('Erreur produit en attente :', err);
-          }
-        });
+    if (!pendingId) {
+      return;
     }
-  }
+
+    this.http
+      .get<any[]>('http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/index.php')
+      .subscribe({
+        next: (res) => {
+          const box = res.find(box => box.id === pendingId);
+          if (box) {
+            // On ajoute la quantité récupérée depuis les queryParams
+            this.productPending = {
+              ...box,
+              quantity: pendingQuantity
+            };
+          }
+        },
+        error: (err) => {
+          console.error('Erreur produit en attente :', err);
+        }
+      });
+  });
+}
+
+
 
   onSubmit() {
     if (!this.email.includes('@')) {

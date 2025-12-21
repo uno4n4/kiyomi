@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class Inscription {
-  apiUrl = "http://localhost/SAE301/kiyomi/sushi_box/api/users/add_user.php";
+  apiUrl = "http://localhost/kiyomi/kiyomi/sushi_box/api/users/add_user.php";
 
   constructor(private http: HttpClient){}
 

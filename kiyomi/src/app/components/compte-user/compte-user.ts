@@ -33,9 +33,9 @@ export class CompteUser {
     password: this.password  // facultatif
   };
 
-  console.log('Body envoyé:', body); // 🔍 pour déboguer
+  console.log('Body envoyé:', body);
 
-  this.http.post('http://localhost/SAE301/kiyomi/sushi_box/api/users/update-user.php', body)
+  this.http.post('http://localhost/kiyomi/kiyomi/sushi_box/api/users/update-user.php', body)
     .subscribe(
       (res: any) => {
         if (res.success) {

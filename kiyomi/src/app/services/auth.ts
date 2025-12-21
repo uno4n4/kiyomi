@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class Auth {
-  apiUrl = "http://localhost/SAE301/kiyomi/sushi_box/api/users";
+  apiUrl = "http://localhost/kiyomi/kiyomi/sushi_box/api/users";
 
   constructor(private http: HttpClient) {}
 

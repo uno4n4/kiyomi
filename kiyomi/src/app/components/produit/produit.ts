@@ -63,7 +63,9 @@ export class Produit {
   // btn ajout panier
   addPanier(idPanier: number): any {
     if (!this.user) {
-      this.router.navigate(['/app-formulaire-co']);
+      this.router.navigate(['/app-formulaire-co'], {
+        queryParams: { idPanier: idPanier, quantity: this.quantite }
+      }); 
     } else {
       let user_id: number = this.user['id'];
 

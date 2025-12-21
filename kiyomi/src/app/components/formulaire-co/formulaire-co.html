@@ -61,23 +61,51 @@
     </div>
 </form>
 
-<div *ngIf="productPending" class="mt-4 p-3 border rounded">
-  <h6 class="mb-2">Produit sélectionné :</h6>
+<div *ngIf="productPending" class="border rounded mx-auto d-flex" 
+     style="max-width: 500px; height: 150px; overflow: hidden;">
+  
+  <!-- IMAGE À GAUCHE -->
+  <img
+    [src]="
+      productPending?.image
+        ? 'assets/images/' + productPending.image + '.jpg'
+        : 'assets/images/boxe_default.jpg'
+    "
+    (error)="onImgError($event)"
+    style="height: 100%; width: 150px; object-fit: cover; flex-shrink: 0;"
+    alt="Produit"
+  />
 
-  <div class="d-flex align-items-center gap-3">
-    <img
-      [src]="productPending.image"
-      alt="Produit"
-      width="80"
-      (error)="onImgError($event)"
-    />
+  <!-- CONTENU À DROITE -->
+  <div class="flex-grow-1 text-white d-flex flex-column justify-content-between p-2">
+    <!-- TITRE -->
+    <h6 class="mb-1">Votre panier total :</h6>
 
+    <!-- NOMBRE DE BOXES -->
     <div>
-      <strong>{{ productPending.nom }}</strong><br>
-      <span>{{ productPending.prix }} €</span>
+      <span>{{ productPending.quantity || 1 }} box{{ (productPending.quantity || 1) > 1 ? 'es' : '' }}</span>
+    </div>
+
+    <!-- SOUS-TOTAL ET FRAIS -->
+    <div class="d-flex justify-content-between">
+      <span>Sous-total :</span>
+      <span>{{ (productPending.price * productPending.quantity) }} €</span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Frais de service :</span>
+      <span>2,50 €</span>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="d-flex justify-content-end mb-3">
+      <span>Total à payer :</span>
+      <span class="text-danger ms-1 fw-bold">{{ (productPending.price * productPending.quantity + 2.5) }} €</span>
     </div>
   </div>
 </div>
+
+
+
 
 
 <div *ngIf="showErrorPopup"
