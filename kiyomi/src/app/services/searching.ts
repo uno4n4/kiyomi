@@ -5,13 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Searching {
-  API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/orders';
+  API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/filters/rechercher.php';
 
   constructor(private http: HttpClient) {}
 
-  rechercheEnCours(recherche: String) { //recupération de l'input necessaire pour la requete
-    const inputSearch = recherche;
-
-    return this.http.post<any>(this.API_URL, inputSearch); //on envoi les donnees par post
+  rechercheEnCours(recherche: String) {
+    //recupération de l'input necessaire pour la requete
+    return this.http.post<any>(this.API_URL, { recherche });
   }
 }

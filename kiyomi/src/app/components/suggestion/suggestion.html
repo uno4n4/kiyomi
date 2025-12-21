@@ -6,7 +6,7 @@
     <div class="row justify-content-center mt-5">
       <!-- boxes affichées dynamiquement via l'API -->
       <div class="col-12 col-md-8">
-        <div class="row g-4">
+        <div class="row g-4" >
           @for (item of boxes; track item.id_box || item.id) {
           <div class="col-6 col-md-4 d-flex">
             <div class="card card-sushi w-100 bg-card border-0 rounded-0" (click)="voirProduit(item.id_box || item.id)">

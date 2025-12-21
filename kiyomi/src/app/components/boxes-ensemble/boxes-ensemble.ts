@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { ListeBoxes } from '../../services/liste-boxes';
@@ -22,6 +22,7 @@ import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 })
 export class BoxesEnsemble implements OnInit {
   apiListe: any[] = []; //variable pour stocker les données de l'API
+  apiRecherche: any[] = [];
   apiPanier: any;
   user: any = null;
   accueil: boolean = false;
@@ -36,18 +37,18 @@ export class BoxesEnsemble implements OnInit {
     private router: Router
   ) {} //injection du parametre pour la connexion - des services - du router pour les redirections
 
-// FILTRES
+  // FILTRES
   //applyFilters(filters: any) {
-   /// this.listeBoxes.getBoxes(filtres).subscribe((menus) => {
-    //  this.apiListe = menus;
-    //  this.visibleBoxes = 6; 
+  /// this.listeBoxes.getBoxes(filtres).subscribe((menus) => {
+  //  this.apiListe = menus;
+  //  this.visibleBoxes = 6;
   //  });
- // }
+  // }
 
   ngOnInit(): void {
-    this.getDataFromAPI();//appel de la methode au chargement du composant
-    if (isPlatformBrowser(this.platformId)) {
+    this.getDataFromAPI(); //appel de la methode au chargement du composant
 
+    if (isPlatformBrowser(this.platformId)) {
       const savedUser = localStorage.getItem('user');
       if (savedUser) {
         this.user = JSON.parse(savedUser);
@@ -64,13 +65,21 @@ export class BoxesEnsemble implements OnInit {
         this.accueil = false;
       }
     }
+
     //abonnement aux changements du terme de recherche
-    this.searchTerm.search$.subscribe(value => {
+    this.searchTerm.search$.subscribe((value) => {
       this.termedeRecherche = value; //mise à jour du terme de recherche avec la recuperation du service searchTerm
-      this.searching.rechercheEnCours(this.termedeRecherche).subscribe(results => {
-        this.apiListe = results; //mise à jour de la liste des boxes affichées selon le terme de recherche
-      }
-      );
+
+      // reset affichage
+      this.visibleBoxes = 6;
+
+      this.searching.rechercheEnCours(this.termedeRecherche).subscribe((results) => {
+        if (results.success) {
+          this.apiRecherche = results.match;
+        } else {
+          this.apiRecherche = [];
+        }
+      });
     });
   }
 
@@ -81,30 +90,30 @@ export class BoxesEnsemble implements OnInit {
 
   //REDIRECTION VERS LA "PAGE" PRODUIT
   pageProduit(boxe_id: number) {
-    this.router
-      .navigate(['/app-produit'], {
-        queryParams: { id: boxe_id },
-      });
+    this.router.navigate(['/app-produit'], {
+      queryParams: { id: boxe_id },
+    });
   }
 
   //AFFICHAGE PAR 6 DES DIFFERENTES BOXES
   visibleBoxes = 6;
 
   get boxesToShow() {
-    return this.apiListe.slice(0, this.visibleBoxes);
+    const affichage = this.termedeRecherche ? this.apiRecherche : this.apiListe;
+    return affichage.slice(0, this.visibleBoxes);
   }
-  //window.location.reload();
 
+  //window.location.reload();
 
   //VERIFIEE SI IL RESTE DES BOXES A AFFICHER
   get totalBoxPositive() {
-    return this.apiListe.length > 0 && this.visibleBoxes < this.apiListe.length;
+    const affichage = this.termedeRecherche ? this.apiRecherche : this.apiListe;
+    return affichage.length > 0 && this.visibleBoxes < affichage.length;
   }
 
   voirPlus() {
     this.visibleBoxes += 6;
   }
-
 
   //GESTION ERREUR IMAGE
   onImgError(event: any) {
@@ -122,7 +131,7 @@ export class BoxesEnsemble implements OnInit {
   addPanier(idPanier: number): any {
     if (!this.user) {
       this.router.navigate(['/app-formulaire-co'], {
-        queryParams: { idPanier: idPanier }
+        queryParams: { idPanier: idPanier },
       }); //renvoie au component app-formulaire-co
     } else {
       //sinon on ajoute la boxe au panier de l'user

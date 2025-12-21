@@ -3,8 +3,14 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=utf-8");
+
+// Gestion du preflight
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("HTTP/1.1 200 OK");
+    exit();
+}
 
 $input = json_decode(file_get_contents("php://input"), true); //php://input est un flux en lecture seule qui permet de lire les données brutes d'une requête HTTP POST
 require_once __DIR__ . '/../config/config.php';
@@ -17,6 +23,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             // Recherche en bdd des boxes correspondant à la recherche b-> fa-> fi-> fo (le nom de la boxe, l'id de la boxe, les flavors, les foods)
             $sqlBox = $pdo->prepare("SELECT 
                                         b.name,
+                                        b.price,
+                                        b.pieces,
+                                        b.image,
                                         fa.box_id,
                                         fa.flavor_name,
                                         fa.food_name
