@@ -39,7 +39,7 @@ export class FildAriane {
 
       this.accueil = currentRoute?.snapshot.data['accueil'] ?? false;
 
-      console.log('AppComponent accueil footer =', this.accueil);
+      console.log('AppComponent accueil present pour le fil ariane =', this.accueil);
     });
   }
 

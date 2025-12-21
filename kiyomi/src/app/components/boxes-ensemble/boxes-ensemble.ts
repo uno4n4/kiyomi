@@ -3,21 +3,20 @@ import { CommonModule } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { ListeBoxes } from '../../services/liste-boxes';
 import { AjoutPanier } from '../../services/ajout-panier';
+import { SearchTerm } from '../../services/search-term';
+import { Searching } from '../../services/searching';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { isEmpty } from 'rxjs';
 import { FildAriane } from '../fild-ariane/fild-ariane';
 import { Filtres } from '../filtres/filtres';
-
-
 import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
 
 @Component({
   selector: 'app-boxes-ensemble',
- imports: [CommonModule, FildAriane, Filtres, SearchBarFilters],
-
-
+  standalone: true,
+  imports: [CommonModule, FildAriane, Filtres, SearchBarFilters],
   templateUrl: './boxes-ensemble.html',
   styleUrl: './boxes-ensemble.css',
 })
@@ -26,11 +25,14 @@ export class BoxesEnsemble implements OnInit {
   apiPanier: any;
   user: any = null;
   accueil: boolean = false;
+  termedeRecherche: string = ''; //terme de recherche initialisé vides
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private listeBoxes: ListeBoxes,
     private AjoutPanier: AjoutPanier,
+    private searchTerm: SearchTerm,
+    private searching: Searching,
     private router: Router
   ) {} //injection du parametre pour la connexion - des services - du router pour les redirections
 
@@ -43,20 +45,33 @@ export class BoxesEnsemble implements OnInit {
  // }
 
   ngOnInit(): void {
-    this.getDataFromAPI(); //appel de la methode au chargement du composant
+    this.getDataFromAPI();//appel de la methode au chargement du composant
     if (isPlatformBrowser(this.platformId)) {
+
       const savedUser = localStorage.getItem('user');
       if (savedUser) {
         this.user = JSON.parse(savedUser);
       }
+
       const currentUrl = this.router.url;
-      if (currentUrl.includes('/app-accueil') || window.location.href === 'http://localhost:4200' ||
-        window.location.href === 'http://localhost:4200/') {
+      if (
+        currentUrl.includes('/app-accueil') ||
+        window.location.href === 'http://localhost:4200' ||
+        window.location.href === 'http://localhost:4200/'
+      ) {
         this.accueil = true;
       } else {
         this.accueil = false;
       }
     }
+    //abonnement aux changements du terme de recherche
+    this.searchTerm.search$.subscribe(value => {
+      this.termedeRecherche = value; //mise à jour du terme de recherche avec la recuperation du service searchTerm
+      this.searching.rechercheEnCours(this.termedeRecherche).subscribe(results => {
+        this.apiListe = results; //mise à jour de la liste des boxes affichées selon le terme de recherche
+      }
+      );
+    });
   }
 
   //REDIRECTION VERS LA "PAGE MENU"
@@ -83,7 +98,7 @@ export class BoxesEnsemble implements OnInit {
 
   //VERIFIEE SI IL RESTE DES BOXES A AFFICHER
   get totalBoxPositive() {
-    return this.visibleBoxes < this.apiListe.length;
+    return this.apiListe.length > 0 && this.visibleBoxes < this.apiListe.length;
   }
 
   voirPlus() {
