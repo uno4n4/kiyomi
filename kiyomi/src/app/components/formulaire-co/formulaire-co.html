@@ -62,7 +62,7 @@
 </form>
 
 <div *ngIf="productPending" class="border rounded mx-auto d-flex" 
-     style="max-width: 500px; height: 150px; overflow: hidden;">
+     style="max-width: 800px; height: 150px; overflow: hidden;">
   
   <!-- IMAGE À GAUCHE -->
   <img
@@ -89,17 +89,17 @@
     <!-- SOUS-TOTAL ET FRAIS -->
     <div class="d-flex justify-content-between">
       <span>Sous-total :</span>
-      <span>{{ (productPending.price * productPending.quantity) }} €</span>
+      <span class="me-3">{{ (productPending.price * productPending.quantity) }} €</span>
     </div>
     <div class="d-flex justify-content-between">
       <span>Frais de service :</span>
-      <span>2,50 €</span>
+      <span class="me-3">2,50 €</span>
     </div>
 
     <!-- TOTAL -->
     <div class="d-flex justify-content-end mb-3">
       <span>Total à payer :</span>
-      <span class="text-danger ms-1 fw-bold">{{ (productPending.price * productPending.quantity + 2.5) }} €</span>
+      <span class="text-danger ms-1 fw-bold me-3">{{ (productPending.price * productPending.quantity + 2.5) }} €</span>
     </div>
   </div>
 </div>
