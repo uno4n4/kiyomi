@@ -13,16 +13,16 @@ import { Mentionslegales } from './components/mentionslegales/mentionslegales';
 
 
 export const routes: Routes = [
-  { path: 'app-accueil', component: Accueil, data: { accueil: true }},
-  { path: '', component: Accueil, data: { accueil: true }},
-  { path: 'app-formulaire-co', component: FormulaireCo, data: { accueil: false } },
-  { path: 'app-produit', component: Produit, data: { accueil: false } },
-  { path: 'app-formulaire-inscription', component: FormulaireInscription, data: { accueil: false } },
-  { path: 'app-menu', component: Menu, data: { accueil: false } },
-  { path: 'app-forgot-password', component: ForgotPassword, data: { accueil: false } },
-  { path: 'app-compte-user', component: CompteUser, data: { accueil: false } },
-  { path: 'app-rgpd', component: Rgpd, data: { accueil: true }},
-  { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false } },
-  { path: 'app-filtres', component: Filtres, data: { accueil: false } },
-  { path: 'app-mentionslegales', component: Mentionslegales, data: { accueil: true } }
+  { path: 'app-accueil', component: Accueil, data: { accueil: true, fondblanc: false } },
+  { path: '', component: Accueil, data: { accueil: true, fondblanc: false } },
+  { path: 'app-formulaire-co', component: FormulaireCo, data: { accueil: false, fondblanc: true } },
+  { path: 'app-produit', component: Produit, data: { accueil: false, fondblanc: false } },
+  { path: 'app-formulaire-inscription', component: FormulaireInscription, data: { accueil: false, fondblanc: true } },
+  { path: 'app-menu', component: Menu, data: { accueil: false, fondblanc: false } },
+  { path: 'app-forgot-password', component: ForgotPassword, data: { accueil: false, fondblanc: true } },
+  { path: 'app-compte-user', component: CompteUser, data: { accueil: false, fondblanc: true } },
+  { path: 'app-rgpd', component: Rgpd, data: { accueil: true, fondblanc: false } },
+  { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false, fondblanc: true } },
+  { path: 'app-filtres', component: Filtres, data: { accueil: false, fondblanc: false } },
+  { path: 'app-mentionslegales', component: Mentionslegales, data: { accueil: true, fondblanc: false } }
 ];
