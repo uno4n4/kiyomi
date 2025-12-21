@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { FildAriane } from '../fild-ariane/fild-ariane';
 
 @Component({
   selector: 'app-formulaire-co',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FildAriane],
   templateUrl: './formulaire-co.html',
   styleUrl: './formulaire-co.css',
 })

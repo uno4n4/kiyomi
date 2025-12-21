@@ -22,7 +22,7 @@ a {
   transition: color 0.3s ease;
 }
 
-a::after {
+a:not(.noUnderline)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -31,10 +31,6 @@ a::after {
   height: 2px;
   background-color: currentColor;
   transition: width 0.3s ease;
-}
-
-a:hover {
-  color: #c084fc; /* violet / accent */
 }
 
 a:hover::after {

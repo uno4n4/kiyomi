@@ -1,10 +1,10 @@
 @if (horizontal) {
-<div class="row gap-0 text-white me-5 mt-5 text-start justify-content-end">
-  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/')">Accueil</a>
-  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-produit')">Menus</a>
-  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')" [class.fw-bold]="isCurrentPage('/app-restaurant')">Le restaurant</a>
-  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-panier')" [class.fw-bold]="isCurrentPage('/app-panier')">Commande</a>
-  <a class="col-1 text-white mb-4 text-decoration-none" (click)="renvoi('/app-formulaire-co')" [class.fw-bold]="isCurrentPage('/app-formulaire-co') || isCurrentPage('/app-formulaire-inscription') || isCurrentPage('/app-forgot-password')">Compte</a>
+<div class="gap-3 text-dark me-5 mt-5 text-center d-flex align-items-center justify-content-end">
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/')">Accueil</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-produit')">Menus</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')" [class.fw-bold]="isCurrentPage('/app-restaurant')">Le restaurant</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-panier')" [class.fw-bold]="isCurrentPage('/app-panier')">Commande</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-formulaire-co')" [class.fw-bold]="isCurrentPage('/app-formulaire-co') || isCurrentPage('/app-formulaire-inscription') || isCurrentPage('/app-forgot-password')">Compte</a>
 </div>
 } @else {
 <div class="col-12 text-white align-content-end ms-2">

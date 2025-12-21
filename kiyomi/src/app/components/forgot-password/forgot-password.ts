@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Auth } from '../../services/auth';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FildAriane } from '../fild-ariane/fild-ariane';
 
 @Component({
   selector: 'app-forgot-password',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FildAriane],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.css',
 })

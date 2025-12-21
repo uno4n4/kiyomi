@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Inscription } from '../../services/inscription';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FildAriane } from '../fild-ariane/fild-ariane';
 
 
 @Component({
   selector: 'app-formulaire-inscription',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FildAriane],
   templateUrl: './formulaire-inscription.html',
   styleUrl: './formulaire-inscription.css',
 })

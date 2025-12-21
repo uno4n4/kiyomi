@@ -3,13 +3,14 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RestaurantApi, FeaturedBox, RestaurantStats } from '../../services/restaurant-api';
 import { Chart, registerables } from 'chart.js';
 import { Suggestion } from '../suggestion/suggestion';
+import { FildAriane } from '../fild-ariane/fild-ariane';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-restaurant',
   standalone: true,
-  imports: [CommonModule, Suggestion],
+  imports: [CommonModule, Suggestion, FildAriane],
   templateUrl: './restaurant.component.html',
   styleUrl: './restaurant.component.css',
 })
