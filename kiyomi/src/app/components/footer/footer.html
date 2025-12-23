@@ -9,16 +9,21 @@
         </p>
       </div>
       <!-- SECTION NEWSLETTER -->
-      <form class="col-md-4 d-flex h-50">
+      <form class="col-md-4 d-flex h-50" (ngSubmit)="AddNewsletter(); $event.preventDefault()">
         <div class="input-group w-100">
           <span class="input-group-text bg-grey text-white rounded-0 border-white">
             <i class="bi bi-envelope"></i>
           </span>
+
           <input
             class="form-control rounded-0 bg-grey text-white border-white"
-            type="search"
+            type="email"
             placeholder="Entrez votre email"
+            [(ngModel)]="email"
+            name="email"
+            required
           />
+
           <button class="btn ms-2 bg-black text-white border-black rounded-0" type="submit">
             S'INSCRIRE
           </button>
@@ -45,14 +50,17 @@
         <h5 class="fw-normal mb-3">INFORMATIONS</h5>
         <div class="ms-3 me-5">
           <p class="mb-1">
-            <a (click)="renvoi('/app-mentionslegales')" class="small text-white text-decoration-none">
-                Mentions Légales<br>
-              </a>
+            <a
+              (click)="renvoi('/app-mentionslegales')"
+              class="small text-white text-decoration-none"
+            >
+              Mentions Légales<br />
+            </a>
           </p>
           <p class="mb-1">
-              <a (click)="renvoi('/app-rgpd')" class="small text-white text-decoration-none">
-                Données Personnelles
-              </a>
+            <a (click)="renvoi('/app-rgpd')" class="small text-white text-decoration-none">
+              Données Personnelles
+            </a>
           </p>
         </div>
       </div>
@@ -107,3 +115,50 @@
     </div>
   </div>
 </footer>
+<!-- Erreur -->
+<div
+  *ngIf="showErrorPopup"
+  class="position-fixed top-50 start-50 translate-middle p-4 rounded shadow-lg text-white text-center"
+  style="
+    background-color: #171517;
+    border-left: 5px solid #9c2602;
+    z-index: 9999;
+    width: 90%;
+    max-width: 400px;
+    font-family: 'Poppins', sans-serif;
+  "
+>
+  <div class="d-flex justify-content-center align-items-center mb-2">
+    <i
+      class="bi bi-exclamation-triangle-fill"
+      style="font-size: 1.5rem; color: #9c2602; margin-right: 0.5rem"
+    ></i>
+    <h5 class="mb-0" style="font-weight: 600">Erreur !</h5>
+  </div>
+  <p>{{ errorMessage }}</p>
+  <button class="btn btn-outline-light px-4 mt-3" (click)="closeErrorPopup()">Fermer</button>
+</div>
+
+<!-- Succès -->
+<div
+  *ngIf="showSuccessPopup"
+  class="position-fixed top-50 start-50 translate-middle p-4 rounded shadow-lg text-white text-center"
+  style="
+    background-color: #171517;
+    border-left: 5px solid #9c2602;
+    z-index: 9999;
+    width: 90%;
+    max-width: 400px;
+    font-family: 'Poppins', sans-serif;
+  "
+>
+  <div class="d-flex justify-content-center align-items-center mb-2">
+    <i
+      class="bi bi-check-circle-fill"
+      style="font-size: 1.5rem; color: #9c2602; margin-right: 0.5rem"
+    ></i>
+    <h5 class="mb-0" style="font-weight: 600">Boxe ajoutée au panier !</h5>
+  </div>
+  <p>{{ successMessage }}</p>
+  <button class="btn btn-outline-light px-4 mt-3" (click)="closeSuccessPopup()">Fermer</button>
+</div>
