@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 18 déc. 2025 à 16:39
+-- Généré le : mar. 23 déc. 2025 à 22:35
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -290,10 +290,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `total_price`, `status`, `created_at`) VALUES
-(1, 1, 37.50, 'pending', '2025-11-30 21:20:42'),
-(2, 1, 63.60, 'pending', '2025-12-04 23:53:53'),
-(3, 1, 174.90, 'pending', '2025-12-05 23:04:15'),
-(4, 1, 174.90, 'pending', '2025-12-05 23:04:26');
+(1, 1, 37.50, 'confirmed', '2025-11-30 21:20:42'),
+(2, 1, 63.60, 'confirmed', '2025-12-04 23:53:53'),
+(3, 1, 174.90, 'confirmed', '2025-12-05 23:04:15'),
+(4, 1, 174.90, 'pending', '2025-12-05 23:04:26'),
+(8, 4, 139.87, 'pending', '2025-12-23 16:42:32');
 
 -- --------------------------------------------------------
 
@@ -322,7 +323,17 @@ INSERT INTO `order_items` (`id`, `order_id`, `box_id`, `quantity`, `unit_price`)
 (11, 3, 2, 3, 15.90),
 (12, 3, 5, 8, 15.90),
 (13, 4, 2, 3, 15.90),
-(14, 4, 5, 8, 15.90);
+(14, 4, 5, 8, 15.90),
+(30, 8, 1, 1, 12.50),
+(32, 8, 1, 1, 12.50),
+(33, 8, 1, 1, 12.50),
+(34, 8, 2, 1, 15.90),
+(35, 8, 2, 1, 15.90),
+(36, 8, 2, 1, 15.90),
+(37, 8, 1, 1, 12.50),
+(38, 8, 1, 1, 12.50),
+(39, 8, 2, 1, 15.90),
+(40, 8, 2, 1, 15.90);
 
 -- --------------------------------------------------------
 
@@ -339,16 +350,17 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `status` varchar(100) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `api_token` varchar(100) DEFAULT NULL
+  `api_token` varchar(100) DEFAULT NULL,
+  `newsletter` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `status`, `created_at`, `api_token`) VALUES
-(1, 'Prenom', 'NOM', 'exemple@gmail.com', '$2y$10$/ezGVKtksSwH..aLO0KiKOxC0pniYn0A4t4HqahDdVutYHNy2eZRS', '', '2025-11-18 09:14:42', '');
-
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `status`, `created_at`, `api_token`, `newsletter`) VALUES
+(1, 'Prenom', 'NOM', 'exemple@gmail.com', '$2y$10$/ezGVKtksSwH..aLO0KiKOxC0pniYn0A4t4HqahDdVutYHNy2eZRS', '', '2025-11-18 09:14:42', '', 0),
+(4, 'Diaba', 'Samoura', 'diabasamoura@gmail.com', '$2y$10$lpomTT.2LFjymFb8ZWe6KuOaQIPqfBiUIrt694obAETeUb7KP7qhy', '2025-12-23 15:44:37', '718f7c0123a18e9275aa0ac96ac4848e6627b276efbda2ab5173181a8ff0db5c', 'Etudiant', 0);
 --
 -- Index pour les tables déchargées
 --
@@ -472,6 +484,13 @@ ALTER TABLE `box_foods`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Contraintes pour la table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`box_id`) REFERENCES `boxes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
