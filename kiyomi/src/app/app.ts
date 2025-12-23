@@ -106,7 +106,7 @@ export class App implements OnInit, AfterViewInit {
     // Image chef accueil
     // trouver un moyen pour afficher l'image quand le component accueil est chargé:
     // window.location.href === 'http://localhost:4200' || window.location.href === 'http://localhost:4200/'
-    if (current.includes('/app-accueil') || current.includes('/app-rgpd')) {
+    if (!current.includes('/app-menu') && !current.includes('/app-produit') && !current.includes('/app-panier') && !current.includes('/app-formulaire-co') && !current.includes('/app-compte-user')  && !current.includes('/app-forgot-password') && !current.includes('/app-formulaire-inscription') && !current.includes('/app-menu') && !current.includes('/app-restaurant')) {
       this.accueil = true;
     } else {
       this.accueil = false;
