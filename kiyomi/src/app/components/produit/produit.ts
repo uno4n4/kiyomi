@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID, Inject} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { AjoutPanier } from '../../services/ajout-panier';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { FildAriane } from '../fild-ariane/fild-ariane';
   templateUrl: './produit.html',
   styleUrl: './produit.css',
 })
-export class Produit {
+export class Produit implements OnInit {
   apiPanier: any;
   user: any = null;
   box: any;
@@ -23,7 +23,8 @@ export class Produit {
     private route: ActivatedRoute,
     private router: Router,
     private AjoutPanier: AjoutPanier,
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: object,
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +41,12 @@ export class Produit {
           },
         });
     });
+    if (isPlatformBrowser(this.platformId)) {
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+        this.user = JSON.parse(savedUser);
+      }
+    }
   }
 
   //gestion quantite
@@ -60,27 +67,58 @@ export class Produit {
     event.target.src = './../../assets/images/boxe_default.jpg';
   }
 
-  // btn ajout panier
+  // Variables pour les popups
+  showErrorPopup = false;
+  errorMessage = '';
+  showSuccessPopup = false;
+  successMessage = '';
+
+  // fermer les popups
+  closeErrorPopup() {
+    this.showErrorPopup = false;
+    this.errorMessage = '';
+  }
+
+  closeSuccessPopup() {
+    this.showSuccessPopup = false;
+    this.successMessage = '';
+  }
+
+  // AJOUT AU PANIER
   addPanier(idPanier: number): any {
     if (!this.user) {
       this.router.navigate(['/app-formulaire-co'], {
-        queryParams: { idPanier: idPanier, quantity: this.quantite }
-      }); 
+        queryParams: { idPanier: idPanier, quantity: this.quantite },
+      });
     } else {
-      let user_id: number = this.user['id'];
+      const user_id: number = this.user['id'];
 
       // ON UTILISE MAINTENANT LA VARIABLE DU CURSEUR
       const quantity = this.quantite;
 
       // On prépare l'objet avec la bonne quantité
-      const items = [{ idPanier, quantity }];
+      const items: { box_id: number; quantity: number }[] = [{ box_id: idPanier, quantity }];
 
-      return this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe(
-        (panier) => {
-          this.apiPanier = panier;
-          console.log(`Ajout de ${quantity} box(es) au panier`); // Pour vérifier dans la console
-        }
-      );
+      this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe({
+        next: (response) => {
+          if (response.success) {
+            this.apiPanier = response;
+            this.successMessage = 'Votre commande a bien été prise en compte !';
+            this.showSuccessPopup = true;
+            console.log(`Ajout de ${quantity} box(es) au panier`); // Pour vérifier dans la console
+          } else {
+            this.errorMessage =
+              response.error ||
+              'Impossible d’ajouter la box au panier. La limite de stock peut être atteinte.';
+            this.showErrorPopup = true;
+          }
+        },
+        error: (err) => {
+          this.errorMessage =
+            err?.error?.message || 'Une erreur est survenue lors de l’ajout au panier. La limite de stock peut être atteinte.';
+          this.showErrorPopup = true;
+        },
+      });
     }
   }
 }

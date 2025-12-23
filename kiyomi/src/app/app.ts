@@ -17,6 +17,7 @@ import {
 import { filter } from 'rxjs/operators';
 import { Popup } from '../app/components/popup/popup';
 import { Footer } from './components/footer/footer';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,7 @@ export class App implements OnInit, AfterViewInit {
 
   accueil = false;
   fondblanc = false;
-  nav = true;
+  nav = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -66,6 +67,13 @@ export class App implements OnInit, AfterViewInit {
       this.updateFondBlanc();
       this.imageAccueil();
     });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const heroHeight = document.querySelector('.hero-header')?.clientHeight || 0;
+
+    this.nav = window.scrollY > heroHeight - 80;
   }
 
   private updateFondBlanc(): void {

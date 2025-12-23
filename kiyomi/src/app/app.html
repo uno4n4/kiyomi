@@ -1,18 +1,27 @@
 <div class="page-container d-flex flex-column min-vh-100">
+
   @if(accueil){
   <div class="hero-header" id="ischefImg">
-    <nav class="navbar navbar-expand-lg bg-nav col-12">
-      <div class="container-fluid d-flex justify-content-between align-items-center">
-        <div class="collapse navbar-collapse justify-content-start ms-5" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL </a>
 
-            <a class="nav-link text-light" routerLink="app-menu"> MENUS </a>
-            <a class="nav-link text-light" routerLink="app-restaurant"> LE RESTAURANT </a>
-          </div>
-        </div>
+    <nav class="navbar navbar-expand-lg col-12 fixed-top" [class.scrolled]="nav">
+      <div class="container-fluid position-relative">
 
-        <a class="navbar-brand ms-3" routerLink="app-accueil">
+        <!-- bouton burger (mobile) -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- LOGO CENTRÉ -->
+        <a class="navbar-brand position-absolute start-50 translate-middle-x noUnderline"
+           routerLink="app-accueil">
           <img
             src="assets/images/KiyomiLogoBlanc.svg"
             id="logoKiyomi"
@@ -21,35 +30,39 @@
           />
         </a>
 
-        <button
-          class="navbar-toggler border-white bg-black text-white"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- menu -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
 
-        <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
+          <!-- menu gauche -->
+          <div class="navbar-nav me-auto mt-3 mt-lg-0 ms-lg-5">
+            <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL </a>
+            <a class="nav-link text-light" routerLink="app-menu"> MENUS </a>
+            <a class="nav-link text-light" routerLink="app-restaurant"> LE RESTAURANT </a>
+          </div>
+
+          <!-- menu droite -->
+          <div class="navbar-nav ms-auto mt-3 mt-lg-0 me-lg-5 text-lg-end">
             <a class="nav-link text-light" routerLink="app-panier"> PANIER </a>
 
             @if(!user){
             <a class="nav-link text-light" routerLink="app-formulaire-co"> ME CONNECTER </a>
-            } @else{
-            <div class="user-info text-light ms-3" *ngIf="user">
-              <a routerLink="app-compte-user">{{ user.prenom }} {{ user.nom }}</a>
-              <button (click)="logout()">Se déconnecter</button>
-            </div>
-            }
-
             <a class="nav-link text-light" routerLink="app-formulaire-inscription">
               (INSCRIPTION)
             </a>
+            } @else{
+            <div class="text-light d-flex align-items-center gap-3 ms-2" *ngIf="user">
+              <a routerLink="app-compte-user"
+                 class="text-white text-decoration-none">
+                {{ user.prenom }} {{ user.nom }}
+              </a>
+              <button class="btn btn-sm btn-outline-light"
+                      (click)="logout()">
+                Se déconnecter
+              </button>
+            </div>
+            }
           </div>
+
         </div>
       </div>
     </nav>
@@ -71,19 +84,27 @@
 
   </div>
   } @else {
+
   <!-- SI LA PAGE N'EST PAS L'ACCUEIL (PAS D'IMAGE) -->
-  <nav class="navbar navbar-expand-lg bg-nav col-12" [ngClass]="nav ? 'p-2 bg-black' : 'p-2'">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
-      <div class="collapse navbar-collapse justify-content-start ms-5" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL </a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black col-12">
+    <div class="container-fluid position-relative">
 
-          <a class="nav-link text-light" routerLink="app-menu"> MENUS </a>
-          <a class="nav-link text-light" routerLink="app-restaurant"> LE RESTAURANT </a>
-        </div>
-      </div>
+      <!-- bouton burger (mobile) -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <a class="navbar-brand ms- noUnderline" routerLink="app-accueil">
+      <!-- LOGO CENTRÉ -->
+      <a class="navbar-brand position-absolute start-50 translate-middle-x noUnderline"
+         routerLink="app-accueil">
         <img
           src="assets/images/KiyomiLogoBlanc.svg"
           id="logoKiyomi"
@@ -92,33 +113,38 @@
         />
       </a>
 
-      <button
-        class="navbar-toggler border-white bg-black text-white"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <!-- menu -->
+      <div class="collapse navbar-collapse bg-black" id="mainNavbar">
 
-      <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <!-- menu gauche -->
+        <div class="navbar-nav me-auto mt-3 mt-lg-0 ms-lg-5">
+          <a class="nav-link text-light" routerLink="app-accueil"> ACCUEIL </a>
+          <a class="nav-link text-light" routerLink="app-menu"> MENUS </a>
+          <a class="nav-link text-light" routerLink="app-restaurant"> LE RESTAURANT </a>
+        </div>
+
+        <!-- menu droite -->
+        <div class="navbar-nav ms-auto mt-3 mt-lg-0 me-lg-5 text-lg-end">
           <a class="nav-link text-light" routerLink="app-panier"> PANIER </a>
 
           @if(!user){
           <a class="nav-link text-light" routerLink="app-formulaire-co"> ME CONNECTER </a>
+          <a class="nav-link text-light" routerLink="app-formulaire-inscription">
+            (INSCRIPTION)
+          </a>
           } @else{
-          <div class="text-light" *ngIf="user">
-            <a routerLink="app-compte-user" class="text-white text-decoration-none ms-0 me-2">{{ user.prenom }} {{ user.nom }}</a>
-            <a (click)="logout()" class="btn text-white">Se déconnecter</a>
+          <div class="text-light d-flex align-items-center gap-3 ms-2" *ngIf="user">
+            <a routerLink="app-compte-user"
+               class="text-white text-decoration-none">
+              {{ user.prenom }} {{ user.nom }}
+            </a>
+            <a (click)="logout()" class="btn btn-sm btn-outline-light">
+              Se déconnecter
+            </a>
           </div>
           }
-
-          <a class="nav-link text-light" routerLink="app-formulaire-inscription"> (INSCRIPTION) </a>
         </div>
+
       </div>
     </div>
   </nav>
@@ -126,13 +152,13 @@
 
   <div class="my-5"></div>
 
-    <!-- popup -->
+  <!-- popup -->
   <app-popup></app-popup>
+
   <!-- Le contenu des pages va ici -->
   <main class="flex-grow-1">
     <router-outlet></router-outlet>
   </main>
-
 
   <!-- footer -->
   <app-footer></app-footer>

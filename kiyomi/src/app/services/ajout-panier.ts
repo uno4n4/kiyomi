@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AjoutPanier {
 
-  API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/orders';
+  API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/orders/create.php';
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +14,7 @@ export class AjoutPanier {
     box_id: number,
     quantity: number,
     user_id: number,
-    items: any[]
+    items: { box_id: number, quantity: number }[]
   ) { //parametres affiliés au données post necessaire pour le requete
     const body = {
       box_id,

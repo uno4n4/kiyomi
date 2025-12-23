@@ -5,8 +5,9 @@ header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=utf-8");
-require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../users/Manager/userManager.php';
+require __DIR__ . '/../config/config.php';
+require __DIR__ . '/../users/Manager/userManager.php';
+$pdo = getPDO();
 
 header('Content-Type: application/json');
 

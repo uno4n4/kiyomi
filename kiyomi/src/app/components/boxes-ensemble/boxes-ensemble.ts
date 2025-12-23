@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { ListeBoxes } from '../../services/liste-boxes';
@@ -20,7 +20,7 @@ import { SearchBarFilters } from '../search-bar-filters/search-bar-filters';
   templateUrl: './boxes-ensemble.html',
   styleUrl: './boxes-ensemble.css',
 })
-export class BoxesEnsemble implements OnInit {
+export class BoxesEnsemble implements OnInit, AfterViewInit {
   apiListe: any[] = []; //variable pour stocker les données de l'API
   apiRecherche: any[] = [];
   apiPanier: any;
@@ -66,20 +66,16 @@ export class BoxesEnsemble implements OnInit {
       }
     }
 
-    //abonnement aux changements du terme de recherche
-    this.searchTerm.search$.subscribe((value) => {
-      this.termedeRecherche = value; //mise à jour du terme de recherche avec la recuperation du service searchTerm
+    this.getDataFromSearchAPI();
+  }
 
-      // reset affichage
-      this.visibleBoxes = 6;
-
-      this.searching.rechercheEnCours(this.termedeRecherche).subscribe((results) => {
-        if (results.success) {
-          this.apiRecherche = results.match;
-        } else {
-          this.apiRecherche = [];
-        }
-      });
+  ngAfterViewInit(): void {
+    //on veille à bien appliquer les styles après le chargement de la vue
+    if (!isPlatformBrowser(this.platformId)) return;
+    // requestAnimationFrame garantit que le DOM est prêt
+    requestAnimationFrame(() => {
+      this.getDataFromAPI();
+      this.getDataFromSearchAPI();
     });
   }
 
@@ -127,23 +123,71 @@ export class BoxesEnsemble implements OnInit {
     });
   }
 
-  // AJOUT PANIER EN FONCTION DE LA CONNECTION USER
+  getDataFromSearchAPI() {
+    //abonnement aux changements du terme de recherche
+    this.searchTerm.search$.subscribe((value) => {
+      this.termedeRecherche = value; //mise à jour du terme de recherche avec la recuperation du service searchTerm
+
+      // reset affichage
+      this.visibleBoxes = 6;
+
+      this.searching.rechercheEnCours(this.termedeRecherche).subscribe((results) => {
+        if (results.success) {
+          this.apiRecherche = results.match;
+        } else {
+          this.apiRecherche = [];
+        }
+      });
+    });
+  }
+
+  // Variables pour les popups
+  showErrorPopup = false;
+  errorMessage = '';
+  showSuccessPopup = false;
+  successMessage = '';
+
+  // fermer les popups
+  closeErrorPopup() {
+    this.showErrorPopup = false;
+    this.errorMessage = '';
+  }
+
+  closeSuccessPopup() {
+    this.showSuccessPopup = false;
+    this.successMessage = '';
+  }
+
+  // AJOUT AU PANIER
   addPanier(idPanier: number): any {
     if (!this.user) {
       this.router.navigate(['/app-formulaire-co'], {
         queryParams: { idPanier: idPanier },
-      }); //renvoie au component app-formulaire-co
+      });
     } else {
-      //sinon on ajoute la boxe au panier de l'user
-      let user_id: number = this.user['id'];
-      const quantity = 1; // par défaut
+      const user_id: number = this.user['id'];
+      const quantity = 1;
+      const items: { box_id: number; quantity: number }[] = [{ box_id: idPanier, quantity }];
 
-      const items = [{ idPanier, quantity }]; //comme on ajoute dans le panier 1par1 au clic du bouton commander
-      return this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe(
-        (panier) => {
-          this.apiPanier = panier; //stockage des données reçues dans la variable
-        }
-      );
+      this.AjoutPanier.ajouterAuPanier(idPanier, quantity, user_id, items).subscribe({
+        next: (response) => {
+          if (response.success) {
+            this.apiPanier = response;
+            this.successMessage = 'Votre commande a bien été prise en compte !';
+            this.showSuccessPopup = true;
+          } else {
+            this.errorMessage =
+              response.error ||
+              'Impossible d’ajouter la box au panier. La limite de stock peut être atteinte.';
+            this.showErrorPopup = true;
+          }
+        },
+        error: (err) => {
+          this.errorMessage =
+            err?.error?.message || 'Une erreur est survenue lors de l’ajout au panier. La limite de stock peut être atteinte.';
+          this.showErrorPopup = true;
+        },
+      });
     }
   }
 }
