@@ -15,6 +15,7 @@ export class Suggestion implements OnInit {
   boxes: any[] = [];
   apiPanier: any;
   user: any = null;
+  bggrey: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -41,6 +42,11 @@ export class Suggestion implements OnInit {
       },
       error: (err) => console.error('Erreur suggestions autonomes:', err),
     });
+    if(this.router.url.includes('app-restaurant') || this.router.url.includes('app-panier')) {
+      this.bggrey = true;
+    } else {
+      this.bggrey = false;
+    }
   }
 
   //GESTION ERREUR IMAGE
