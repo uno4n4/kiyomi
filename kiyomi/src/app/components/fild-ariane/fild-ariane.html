@@ -1,4 +1,4 @@
-<div class="gap-3 text-dark me-5 mt-5 text-center d-flex align-items-center justify-content-end ariane" *ngIf="horizontal">
+<div class="gap-2 gap-md-3 text-dark me-5 mt-5 text-center d-flex align-items-center justify-content-end ariane" *ngIf="horizontal">
   <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/')">Accueil</a>
   <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-produit')">Menus</a>
   <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')" [class.fw-bold]="isCurrentPage('/app-restaurant')">Le restaurant</a>
