@@ -1,75 +1,111 @@
 <div class="container">
-  <h2>Mon compte</h2>
-
-  <form class="text-black mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto"
-  style="
-        max-width: 600px;
-        margin: auto;
-        backdrop-filter: blur(8px);
-      ">
-  <!-- Nom et prénom (readonly) -->
-  <div class="form-group">
-    <label>Nom :</label>
-    <input type="text" [value]="user.nom" disabled class="form-control" 
-    style="
-      background: transparent;
-      border: none;
-      position: relative;
-      border-bottom: 1px solid black;
-      outline: none;
-    "/>
-
-    <label>Prénom :</label>
-    <input type="text" [value]="user.prenom" disabled class="form-control " 
-    style="
-        background: transparent;
-        border: none;
-        position: relative;
-        border-bottom: 1px solid black;
-        outline: none;
-    "/>
+  <div class="d-md-flex justify-content-md-between">
+    <h4 style="font-weight: 300; letter-spacing: 1px" class="text-black fw-bold mt-5">
+      Mon compte
+    </h4>
+    <app-fild-ariane [horizontal]="true"></app-fild-ariane>
   </div>
-
-  <!-- Email modifiable -->
-  <div class="form-group form-floating">
-    <input type="email" [(ngModel)]="email" class="form-control" placeholder=" "
-    style="
-      background: transparent;
-      border: none;
-      position: relative;
-      border-bottom: 1px solid black;
-      outline: none;
-    "/>
-    <label class="text-black">Email :</label>
-  </div>
-
-  <!-- Mot de passe modifiable -->
-  <div class="form-group form-floating">
-    <input type="password" [(ngModel)]="password" class="form-control" placeholder="Laisser vide pour ne pas changer" 
-    style="
-      background: transparent;
-      border: none;
-      position: relative;
-      border-bottom: 1px solid black;
-      outline: none;
-    "/>
-    <label class="text-black">Nouveau mot de passe :</label>
-  </div>
-
-  <!-- Bouton -->
-   <div class="d-flex justify-content-center">
-      <button (click)="updateUser()" class="btn px-4 py-2 mt-3 w-50 w-md-auto"
-      style="
-        color: white;
-        border-radius: 2px;
-        border: 1px solid black;
-        background: black;
-        transition: 0.25s ease;
-      ">Mettre à jour</button>
+  <div class="row my-5">
+    <div class="col-12 col-md-6">
+      <h5 class="fs-1">Bienvenue</h5>
+      <h5 class="fs-1">{{ user.nom + ' ' + user.prenom }}</h5>
     </div>
-    </form>
+    <div class="col-12 col-md-6">
+      <form
+        class="text-black mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto"
+        style="max-width: 600px; margin: auto; backdrop-filter: blur(8px)"
+      >
+        <!-- Email modifiable -->
+        <div class="form-group form-floating">
+          <input
+            type="email"
+            [(ngModel)]="email"
+            class="form-control"
+            placeholder=" "
+            style="
+              background: transparent;
+              border: none;
+              position: relative;
+              border-bottom: 1px solid black;
+              outline: none;
+            "
+          />
+          <label class="text-black">Email :</label>
+        </div>
+
+        <!-- Mot de passe modifiable -->
+        <div class="form-group form-floating">
+          <input
+            type="password"
+            [(ngModel)]="password"
+            class="form-control"
+            placeholder="Laisser vide pour ne pas changer"
+            style="
+              background: transparent;
+              border: none;
+              position: relative;
+              border-bottom: 1px solid black;
+              outline: none;
+            "
+          />
+          <label class="text-black">Nouveau mot de passe :</label>
+        </div>
+
+        <!-- Bouton -->
+        <div class="d-flex justify-content-end mt-2">
+          <button
+            (click)="updateUser()"
+            class="btn px-4 py-2 mt-3 w-50 w-md-auto"
+            style="
+              color: white;
+              border-radius: 2px;
+              border: 1px solid black;
+              background: black;
+              transition: 0.25s ease;
+            "
+          >
+            Mettre à jour
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+   <div class="col-10 mx-auto">
+    <h4 class="mt-5 text-black">MES PANIERS</h4>
+    <hr class="col-8 mb-5 text-black" />
+    <!-- ANCIENS PANIERS A AJOUTER ICI -->
+  </div>
+
+  <div class="container py-2">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex align-items-center">
+        <!-- IMAGE -->
+        <div class="flex-shrink-0 position-relative z-1">
+          <img
+            src="../../../assets/images/sceneImg.png"
+            alt="Diner Sushi"
+            class="img-fluid rounded-2"
+            style="height: clamp(14rem, 28vw, 20rem); width: auto"
+          />
+        </div>
+
+        <!-- CARTE -->
+        <div
+          class="bg-dark text-white rounded-4 d-flex align-items-center justify-content-center ms-n5"
+          style="height: clamp(20rem, 40vw, 30rem); width: clamp(16rem, 32vw, 22rem)"
+        >
+          <p class="fw-light text-center m-0 col-6 mx-auto">
+            Vivez l'art culinaire à partager
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Messages -->
   <p class="text-success mt-2" *ngIf="successMessage">{{ successMessage }}</p>
   <p class="text-danger mt-2" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <app-suggestion></app-suggestion>
 </div>

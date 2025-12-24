@@ -42,7 +42,7 @@ export class Suggestion implements OnInit {
       },
       error: (err) => console.error('Erreur suggestions autonomes:', err),
     });
-    if(this.router.url.includes('app-restaurant') || this.router.url.includes('app-panier')) {
+    if(this.router.url.includes('app-restaurant') || this.router.url.includes('app-panier')|| this.router.url.includes('app-compte-user')) {
       this.bggrey = true;
     } else {
       this.bggrey = false;

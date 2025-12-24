@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Suggestion } from '../suggestion/suggestion';
+import { FildAriane } from '../fild-ariane/fild-ariane';
 
 
 @Component({
   selector: 'app-compte-user',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Suggestion, FildAriane],
   templateUrl: './compte-user.html',
   styleUrl: './compte-user.css',
 })
