@@ -3,7 +3,7 @@
   <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-produit')">Menus</a>
   <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')" [class.fw-bold]="isCurrentPage('/app-restaurant')">Le restaurant</a>
   <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-panier')" [class.fw-bold]="isCurrentPage('/app-panier')">Commande</a>
-  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-formulaire-co')" [class.fw-bold]="isCurrentPage('/app-formulaire-co') || isCurrentPage('/app-formulaire-inscription') || isCurrentPage('/app-forgot-password')">Compte</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-formulaire-co')" [class.fw-bold]="isCurrentPage('/app-formulaire-co') || isCurrentPage('/app-formulaire-inscription') || isCurrentPage('/app-forgot-password') || isCurrentPage('/app-compte-user')">Compte</a>
 </div>
 <div class="col-12 text-white align-content-end ms-2 ariane" *ngIf="!horizontal">
   <p>
@@ -23,6 +23,12 @@
   <p>
     <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/app-panier')">
       Commande
+    </a>
+  </p>
+
+  <p>
+    <a class="col-12 text-white mb-4 text-decoration-none" (click)="renvoi('/app-compte-user')">
+      Compte
     </a>
   </p>
 </div>
