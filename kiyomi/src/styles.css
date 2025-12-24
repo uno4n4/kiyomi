@@ -118,6 +118,9 @@ a:hover::after {
   .logo-float {
     height: 60px;
   }
+  .ariane {
+    font-size: 11px;
+  }
   /* position bloquee en mobile */
 .navbar-brand {
   top: 0;

@@ -13,7 +13,7 @@ export class AjoutPanier {
   ajouterAuPanier(
     box_id: number,
     quantity: number,
-    user_id: number,
+    user_id: number | String,
     items: { box_id: number, quantity: number }[]
   ) { //parametres affiliés au données post necessaire pour le requete
     const body = {

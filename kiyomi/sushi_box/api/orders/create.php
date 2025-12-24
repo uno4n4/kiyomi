@@ -57,8 +57,8 @@ try {
     $stmtItem = $pdo->prepare($sqlItem);
 
     // Récupération status utilisateur
-    $sqlStatus = $pdo->prepare("SELECT status FROM users WHERE id = :id");
-    $sqlStatus->execute(['id' => $user_id]);
+    $sqlStatus = $pdo->prepare("SELECT status FROM users WHERE id = :id OR email = :id");
+    $sqlStatus->execute(['id' => $user_id, 'email' => $user_id]);
     $statusUser = $sqlStatus->fetch()['status'];
 
     foreach ($input['items'] as $item) {

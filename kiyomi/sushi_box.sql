@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 23 déc. 2025 à 22:35
+-- Généré le : mer. 24 déc. 2025 à 18:14
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -294,7 +294,8 @@ INSERT INTO `orders` (`id`, `user_id`, `total_price`, `status`, `created_at`) VA
 (2, 1, 63.60, 'confirmed', '2025-12-04 23:53:53'),
 (3, 1, 174.90, 'confirmed', '2025-12-05 23:04:15'),
 (4, 1, 174.90, 'pending', '2025-12-05 23:04:26'),
-(8, 4, 139.87, 'pending', '2025-12-23 16:42:32');
+(8, 4, 139.87, 'pending', '2025-12-23 16:42:32'),
+(9, 5, 15.90, 'pending', '2025-12-24 18:12:56');
 
 -- --------------------------------------------------------
 
@@ -333,7 +334,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `box_id`, `quantity`, `unit_price`)
 (37, 8, 1, 1, 12.50),
 (38, 8, 1, 1, 12.50),
 (39, 8, 2, 1, 15.90),
-(40, 8, 2, 1, 15.90);
+(40, 8, 2, 1, 15.90),
+(41, 9, 2, 1, 15.90);
 
 -- --------------------------------------------------------
 
@@ -361,6 +363,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `status`, `created_at`, `api_token`, `newsletter`) VALUES
 (1, 'Prenom', 'NOM', 'exemple@gmail.com', '$2y$10$/ezGVKtksSwH..aLO0KiKOxC0pniYn0A4t4HqahDdVutYHNy2eZRS', '', '2025-11-18 09:14:42', '', 0),
 (4, 'Diaba', 'Samoura', 'diabasamoura@gmail.com', '$2y$10$lpomTT.2LFjymFb8ZWe6KuOaQIPqfBiUIrt694obAETeUb7KP7qhy', 'Etudiant', '2025-12-23 15:44:37', '718f7c0123a18e9275aa0ac96ac4848e6627b276efbda2ab5173181a8ff0db5c', 0);
+(5, 'Amel', 'Gilet', 'amelgilet@mail.com', '$2y$10$jvscwmdSqHikN2eNkzrgEem4qGCfwGxw9npRmrlWVL413gmnaEYd.', 'Professionnel', '2025-12-24 18:12:56', '70847edffb2f6c9b660e9d8583bfdd0a18e3feca20aab8b0ef46c94e7ce8f9f2', 0);
 --
 -- Index pour les tables déchargées
 --

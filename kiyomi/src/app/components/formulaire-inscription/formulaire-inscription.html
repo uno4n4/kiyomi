@@ -1,4 +1,4 @@
-<div class="container col-10 d-flex justify-content-between">
+<div class="container col-10 d-md-flex justify-content-md-between">
     <h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold mt-5">Inscription</h4>
     <app-fild-ariane [horizontal]="true"></app-fild-ariane>
 </div>
@@ -120,6 +120,10 @@
                 <label for="password" class="form-label forms text-black">Mot de passe :</label>
     </div>
 
+    <div class="d-flex">
+        <a (click)="dejaCompte()" class="btn">Vous avez déjà un compte ? </a>
+    </div>
+
     <div class="d-flex justify-content-center">
         <button type="submit"
                 class="btn px-4 py-2 mt-3 w-50 w-md-auto"
@@ -137,6 +141,49 @@
     </div>
 
 </form>
+
+<div *ngIf="productPending" class="border rounded mx-auto d-flex" 
+     style="max-width: 800px; height: 150px; overflow: hidden;">
+  
+  <!-- IMAGE À GAUCHE -->
+  <img
+    [src]="
+      productPending?.image
+        ? 'assets/images/' + productPending.image + '.jpg'
+        : 'assets/images/boxe_default.jpg'
+    "
+    (error)="onImgError($event)"
+    style="height: 100%; width: 150px; object-fit: cover; flex-shrink: 0;"
+    alt="Produit"
+  />
+
+  <!-- CONTENU À DROITE -->
+  <div class="flex-grow-1 text-black d-flex flex-column justify-content-between p-2">
+    <!-- TITRE -->
+    <h6 class="mb-1">Votre panier total :</h6>
+
+    <!-- NOMBRE DE BOXES -->
+    <div>
+      <span>{{ productPending.quantity || 1 }} box{{ (productPending.quantity || 1) > 1 ? 'es' : '' }}</span>
+    </div>
+
+    <!-- SOUS-TOTAL ET FRAIS -->
+    <div class="d-flex justify-content-between">
+      <span>Sous-total :</span>
+      <span class="me-3">{{ (productPending.price * productPending.quantity) }} €</span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Frais de service :</span>
+      <span class="me-3">2,50 €</span>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="d-flex justify-content-end mb-3">
+      <span>Total à payer :</span>
+      <span class="text-danger ms-1 fw-bold me-3">{{ (productPending.price * productPending.quantity + 2.5) }} €</span>
+    </div>
+  </div>
+</div>
 
 
 <!-- Erreur -->

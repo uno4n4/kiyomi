@@ -1,4 +1,4 @@
-<div class="container col-10 d-flex justify-content-between">
+<div class="container col-10 d-md-flex justify-content-md-between">
     <h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold mt-5">Me Connecter</h4>
     <app-fild-ariane [horizontal]="true"></app-fild-ariane>
 </div>
@@ -45,8 +45,9 @@
         <label for="password" class="form-label text-black">Mot de passe :</label>
     </div>
 
-    <div class="d-flex">
+    <div class="d-flex justify-content-between">
         <a (click)="MdpOublie()" class="btn">Mot de passe oublié ? </a>
+        <a (click)="Inscription()" class="btn">Vous n'avez pas de compte ? </a>
     </div>
 
 
@@ -118,5 +119,15 @@
 
     <div class="text-center mt-3">
         <button class="btn btn-danger px-4" (click)="showErrorPopup = false">Fermer</button>
+    </div>
+</div>
+<!-- Succès -->
+<div *ngIf="showSuccessPopup"
+     class="position-fixed top-50 start-50 translate-middle p-4 rounded shadow-lg text-white"
+     style="background: #28a745; z-index: 9999; width: 90%; max-width: 400px;">
+    <h5 class="text-center mb-3">✅ Succès</h5>
+    <p class="text-center">{{ successMessage }}</p>
+    <div class="text-center mt-3">
+        <button class="btn btn-light px-4" (click)="showSuccessPopup = false">Fermer</button>
     </div>
 </div>
