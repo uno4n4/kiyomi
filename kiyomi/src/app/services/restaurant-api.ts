@@ -29,16 +29,14 @@ export class RestaurantApi {
   constructor(private http: HttpClient) {}
 
   getRestaurantStats(): Observable<RestaurantStats> {
-  return this.http.get<RestaurantStats>(
-    'http://localhost/kiyomi/kiyomi/sushi_box/api/restaurant.php'
-  );
-}
+    return this.http.get<RestaurantStats>(
+      'http://localhost/kiyomi/kiyomi/sushi_box/api/restaurant.php'
+    );
+  }
 
-getFeaturedBoxes(): Observable<FeaturedBox[]> {
-  return this.http.get<FeaturedBox[]>(
-    'http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/'
-  );
-}
-
-
+  getFeaturedBoxes(): Observable<FeaturedBox[]> {
+    return this.http.get<FeaturedBox[]>(
+      'http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/'
+    );
+  }
 }

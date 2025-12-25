@@ -1,34 +1,81 @@
 <?php
-// CORS
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Content-Type: application/json; charset=utf-8");
+header('Content-Type: application/json; charset=utf-8');
 
-// ⚠️ DONNÉES FAKE (stats de démonstration)
-$response = [
-    "percentages" => [
-        "takeaway" => 28,
-        "delivery" => 57,
-        "onSite" => 15
-    ],
-    "charts" => [
-        "weeklyOrders" => [
-            ["label" => "Lun", "value" => 12],
-            ["label" => "Mar", "value" => 28],
-            ["label" => "Mer", "value" => 22],
-            ["label" => "Jeu", "value" => 31],
-            ["label" => "Ven", "value" => 26],
-            ["label" => "Sam", "value" => 38],
-            ["label" => "Dim", "value" => 20]
+require_once __DIR__ . '/config/config.php';
+
+try {
+    $pdo = getPDO();
+
+    // Total commandes
+    $stmt = $pdo->query("SELECT COUNT(*) AS c FROM orders");
+    $totalOrders = (int)($stmt->fetch(PDO::FETCH_ASSOC)['c'] ?? 0);
+
+    // Répartition par status (confirmed/pending/...)
+    $stmt = $pdo->query("
+        SELECT status, COUNT(*) AS c
+        FROM orders
+        GROUP BY status
+    ");
+    $statusRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $confirmed = 0;
+    $pending = 0;
+    foreach ($statusRows as $r) {
+        if ($r['status'] === 'confirmed') $confirmed = (int)$r['c'];
+        if ($r['status'] === 'pending') $pending = (int)$r['c'];
+    }
+
+    // Ta DB ne stocke pas delivery/takeaway/onSite.
+    // On fait une répartition "propre" basée sur ce qu'on a:
+    // - onSite = confirmed
+    // - takeaway = pending
+    // - delivery = le reste (0 ici souvent)
+    $onSite = $totalOrders > 0 ? round(($confirmed / $totalOrders) * 100, 1) : 0;
+    $takeaway = $totalOrders > 0 ? round(($pending / $totalOrders) * 100, 1) : 0;
+    $delivery = max(0, round(100 - $onSite - $takeaway, 1));
+
+    // Commandes par jour sur les 7 derniers jours (format label/value)
+    $stmt = $pdo->query("
+        SELECT DATE(created_at) AS day,
+               COUNT(*) AS orders
+        FROM orders
+        WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+        GROUP BY DATE(created_at)
+        ORDER BY day ASC
+    ");
+    $weeklyRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $weeklyOrders = array_map(function ($r) {
+        return [
+            "label" => $r["day"],           // ex: 2025-12-24
+            "value" => (int)$r["orders"]
+        ];
+    }, $weeklyRows);
+
+    // Satisfaction : ta DB n’a aucune table de notes/avis.
+    // Donc on renvoie une "placeholder" stable (tu pourras brancher plus tard si tu ajoutes une table ratings/reviews).
+    $satisfaction = [
+        ["label" => "Positive", "value" => 0],
+        ["label" => "Neutral", "value" => 0],
+        ["label" => "Negative", "value" => 0],
+    ];
+
+    echo json_encode([
+        "percentages" => [
+            "takeaway" => $takeaway,
+            "delivery" => $delivery,
+            "onSite" => $onSite
         ],
-        "satisfaction" => [
-            ["label" => "Service", "value" => 78],
-            ["label" => "Qualité", "value" => 85],
-            ["label" => "Rapport Q/P", "value" => 72],
-            ["label" => "Livraison", "value" => 65]
+        "charts" => [
+            "weeklyOrders" => $weeklyOrders,
+            "satisfaction" => $satisfaction
         ]
-    ]
-];
+    ], JSON_UNESCAPED_UNICODE);
 
-echo json_encode($response);
-?>
+} catch (Throwable $e) {
+    http_response_code(500);
+    echo json_encode([
+        "error" => "Server error",
+        "details" => $e->getMessage()
+    ], JSON_UNESCAPED_UNICODE);
+}
