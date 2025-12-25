@@ -19,11 +19,11 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
 
   stats: RestaurantStats = {
     percentages: { takeaway: 0, delivery: 0, onSite: 0 },
-    charts: { weeklyOrders: [], satisfaction: [] },
+    charts: { weeklyOrders: [], satisfaction: [], ordersByCity: [] },
   };
 
   private weeklyChart?: Chart;
-  private satisfactionChart?: Chart;
+  private cityChart?: Chart;
 
   constructor(
     private api: RestaurantApi,
@@ -54,59 +54,65 @@ export class RestaurantComponent implements OnInit, AfterViewInit {
 
   private renderCharts(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    if (!this.stats.charts.weeklyOrders.length || !this.stats.charts.satisfaction.length) return;
 
     const weeklyCanvas = document.getElementById('weeklyChart') as HTMLCanvasElement | null;
-    const satisfactionCanvas = document.getElementById('satisfactionChart') as HTMLCanvasElement | null;
-    if (!weeklyCanvas || !satisfactionCanvas) return;
+    const cityCanvas = document.getElementById('cityChart') as HTMLCanvasElement | null;
+
+    if (!weeklyCanvas) return;
 
     this.weeklyChart?.destroy();
-    this.satisfactionChart?.destroy();
+    this.cityChart?.destroy();
 
-    this.weeklyChart = new Chart(weeklyCanvas, {
-      type: 'bar',
-      data: {
-        labels: this.stats.charts.weeklyOrders.map(x => x.label),
-        datasets: [{
-          data: this.stats.charts.weeklyOrders.map(x => x.value),
-          backgroundColor: '#5b0b0b',
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { grid: { display: false }, ticks: { color: '#666' } },
-          y: { grid: { color: '#eaeaea' }, ticks: { color: '#666' } }
-        }
-      }
-    });
+    // ✅ Weekly chart
+    if (this.stats.charts.weeklyOrders?.length) {
+      this.weeklyChart = new Chart(weeklyCanvas, {
+        type: 'bar',
+        data: {
+          labels: this.stats.charts.weeklyOrders.map((x) => x.label),
+          datasets: [
+            {
+              data: this.stats.charts.weeklyOrders.map((x) => x.value),
+              backgroundColor: '#5b0b0b',
+              borderRadius: 6,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: '#666' } },
+            y: { grid: { color: '#eaeaea' }, ticks: { color: '#666' } },
+          },
+        },
+      });
+    }
 
-    this.satisfactionChart = new Chart(satisfactionCanvas, {
-      type: 'bar',
-      data: {
-        labels: this.stats.charts.satisfaction.map(x => x.label),
-        datasets: [{
-          data: this.stats.charts.satisfaction.map(x => x.value),
-          backgroundColor: '#2b0000',
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { grid: { display: false }, ticks: { color: '#666' } },
-          y: {
-            suggestedMax: 100,
-            grid: { color: '#eaeaea' },
-            ticks: { color: '#666' }
-          }
-        }
-      }
-    });
+    // ✅ City chart (Commandes par villes)
+    if (cityCanvas && this.stats.charts.ordersByCity?.length) {
+      this.cityChart = new Chart(cityCanvas, {
+        type: 'bar',
+        data: {
+          labels: this.stats.charts.ordersByCity.map((x) => x.label),
+          datasets: [
+            {
+              data: this.stats.charts.ordersByCity.map((x) => x.value),
+              backgroundColor: '#3b0a0a',
+              borderRadius: 6,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: '#666' } },
+            y: { grid: { color: '#eaeaea' }, ticks: { color: '#666' } },
+          },
+        },
+      });
+    }
   }
 }

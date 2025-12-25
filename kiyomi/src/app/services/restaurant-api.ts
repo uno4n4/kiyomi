@@ -19,6 +19,7 @@ export type RestaurantStats = {
   charts: {
     weeklyOrders: { label: string; value: number }[];
     satisfaction: { label: string; value: number }[];
+    ordersByCity: { label: string; value: number }[]; // <-- ici
   };
 };
 

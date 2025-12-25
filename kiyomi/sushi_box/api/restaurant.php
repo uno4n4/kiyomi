@@ -26,10 +26,10 @@ try {
     }
 
     // Ta DB ne stocke pas delivery/takeaway/onSite.
-    // On fait une répartition "propre" basée sur ce qu'on a:
+    // On fait une répartition basée sur ce qu'on a:
     // - onSite = confirmed
     // - takeaway = pending
-    // - delivery = le reste (0 ici souvent)
+    // - delivery = le reste
     $onSite = $totalOrders > 0 ? round(($confirmed / $totalOrders) * 100, 1) : 0;
     $takeaway = $totalOrders > 0 ? round(($pending / $totalOrders) * 100, 1) : 0;
     $delivery = max(0, round(100 - $onSite - $takeaway, 1));
@@ -52,8 +52,26 @@ try {
         ];
     }, $weeklyRows);
 
-    // Satisfaction : ta DB n’a aucune table de notes/avis.
-    // Donc on renvoie une "placeholder" stable (tu pourras brancher plus tard si tu ajoutes une table ratings/reviews).
+    // Commandes par ville (format label/value)
+    $stmt = $pdo->query("
+        SELECT
+            COALESCE(u.city, 'Inconnu') AS city,
+            COUNT(o.id) AS orders
+        FROM orders o
+        JOIN users u ON u.id = o.user_id
+        GROUP BY city
+        ORDER BY orders DESC
+    ");
+    $ordersByCityRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $ordersByCity = array_map(function ($r) {
+        return [
+            "label" => $r["city"],
+            "value" => (int)$r["orders"]
+        ];
+    }, $ordersByCityRows);
+
+    // Satisfaction : pas de table reviews/ratings => placeholder
     $satisfaction = [
         ["label" => "Positive", "value" => 0],
         ["label" => "Neutral", "value" => 0],
@@ -68,7 +86,8 @@ try {
         ],
         "charts" => [
             "weeklyOrders" => $weeklyOrders,
-            "satisfaction" => $satisfaction
+            "satisfaction" => $satisfaction,
+            "ordersByCity" => $ordersByCity
         ]
     ], JSON_UNESCAPED_UNICODE);
 

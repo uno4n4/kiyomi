@@ -2,9 +2,9 @@
 <div class="text-dark py-5">
   <div class="container">
     <div class="d-flex justify-content-between mb-5">
-    <h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold mt-5">Le restaurant</h4>
-    <app-fild-ariane [horizontal]="true"></app-fild-ariane>
-</div>
+      <h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold mt-5">Le restaurant</h4>
+      <app-fild-ariane [horizontal]="true"></app-fild-ariane>
+    </div>
 
     <!-- TOP: image + texte (comme photo 2) -->
     <div class="row align-items-start g-5 col-10 mx-auto mb-5 pb-5">
@@ -36,8 +36,8 @@
 
     <app-suggestion class="my-5"></app-suggestion>
 
-    <!-- STATS + CHARTS (le graphique était “parti” car le canvas n’était plus là) -->
-    <div class="my-5 py-5  col-10 mx-auto ">
+    <!-- STATS + CHARTS -->
+    <div class="my-5 py-5 col-10 mx-auto">
       <h5 class="mb-4">Les statistiques</h5>
 
       <!-- 3 KPI -->
@@ -62,19 +62,21 @@
           <div class="chart-card p-3">
             <div class="fw-semibold mb-2">Chiffre d'affaire 2025</div>
 
-            <!-- IMPORTANT: le canvas doit exister -->
-           <div class="chart-wrap" style="height:280px">
-  <canvas id="weeklyChart"></canvas>
-</div>
-
+            <div class="chart-wrap" style="height:280px">
+              <canvas id="weeklyChart"></canvas>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-5">
           <div class="chart-card p-3">
             <div class="fw-semibold mb-2">Commandes par villes</div>
 
-            <!-- IMPORTANT: le canvas doit exister -->
-            <canvas id="satisfactionChart" class="chart-canvas"></canvas>
+            <!-- ✅ ici : cityChart -->
+            <div class="chart-wrap" style="height:280px">
+              <canvas id="cityChart"></canvas>
+            </div>
+
           </div>
         </div>
       </div>
