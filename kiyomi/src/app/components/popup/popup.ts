@@ -1,5 +1,5 @@
-import { Component} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { Rgpd } from '../rgpd/rgpd';
 
@@ -11,22 +11,35 @@ import { Rgpd } from '../rgpd/rgpd';
   styleUrl: './popup.css',
 })
 export class Popup {
-  constructor(private router: Router){}
 
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  // 🔹 Affichage du popup panier
   get showPopup(): boolean {
-    return !localStorage.getItem('cookieChoice');
+    if (!isPlatformBrowser(this.platformId)) {
+      return false;
+    }
+
+    return localStorage.getItem('panier') !== null;
   }
 
-  acceptCookies(){
-    localStorage.setItem('cookieChoice', 'accepted');
+  // 🔹 RGPD
+  acceptCookies() {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('cookieChoice', 'accepted');
+    }
   }
 
   refuseCookies() {
-        localStorage.setItem('cookieChoice', 'refused');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('cookieChoice', 'refused');
+    }
   }
 
-  rgpd(){
+  rgpd() {
     this.router.navigate(['app-rgpd']);
   }
-
 }

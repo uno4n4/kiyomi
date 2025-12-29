@@ -10,6 +10,8 @@ import { Rgpd } from './components/rgpd/rgpd';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { Filtres } from './components/filtres/filtres';
 import { Mentionslegales } from './components/mentionslegales/mentionslegales';
+import { Panier } from './components/panier/panier';
+
 
 
 export const routes: Routes = [
@@ -24,5 +26,7 @@ export const routes: Routes = [
   { path: 'app-rgpd', component: Rgpd, data: { accueil: true, fondblanc: false } },
   { path: 'app-restaurant', component: RestaurantComponent, data: { accueil: false, fondblanc: true } },
   { path: 'app-filtres', component: Filtres, data: { accueil: false, fondblanc: false } },
-  { path: 'app-mentionslegales', component: Mentionslegales, data: { accueil: true, fondblanc: false } }
+  { path: 'app-mentionslegales', component: Mentionslegales, data: { accueil: true, fondblanc: false } },
+  { path: 'app-panier', component: Panier, data: { accueil: false, fondblanc: true } },
+
 ];
