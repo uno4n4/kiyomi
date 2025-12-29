@@ -1,7 +1,10 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 =======
+=======
+>>>>>>> Stashed changes
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 >>>>>>> Stashed changes
@@ -16,6 +19,7 @@ import { Rgpd } from '../rgpd/rgpd';
   styleUrls: ['./popup.css'], // petite faute corrigée : styleUrls
 })
 export class Popup {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
   constructor(
@@ -48,6 +52,12 @@ export class Popup {
 
   // Getter sécurisé pour SSR
   get showPopup(): boolean {
+=======
+  constructor(private router: Router) {}
+
+  // Getter sécurisé pour SSR
+  get showPopup(): boolean {
+>>>>>>> Stashed changes
     if (typeof window === 'undefined' || !window.localStorage) {
       return false; // côté serveur, on ne montre rien
     }
@@ -62,6 +72,9 @@ export class Popup {
   refuseCookies() {
     if (typeof window === 'undefined' || !window.localStorage) return;
     localStorage.setItem('cookieChoice', 'refused');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 
