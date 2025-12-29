@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FildAriane } from '../fild-ariane/fild-ariane';
+import { Suggestion } from '../suggestion/suggestion';
 
 @Component({
   selector: 'app-panier',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FildAriane, Suggestion],
   templateUrl: './panier.html',
   styleUrl: './panier.css',
 })

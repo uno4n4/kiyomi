@@ -1,18 +1,13 @@
-<nav class="top-menu">
-  <a routerLink="/app-accueil">Accueil</a>
-  <a routerLink="/app-menu">Menus</a>
-  <a routerLink="/app-restaurant">Le restaurant</a>
-  <a routerLink="/app-commande">Commande</a>
-  <a routerLink="/app-compte">Compte</a>
-</nav>
-
-
-<section class="cart container my-5">
-
-  <h2 class="mb-4">Votre panier</h2>
+<section class="cart container col-10 my-5">
+  <div class="mx-auto d-md-flex justify-content-md-between">
+    <h4 class="text-black mt-5 urbanistt">
+      Votre Panier
+    </h4>
+    <app-fild-ariane [horizontal]="true"></app-fild-ariane>
+  </div>
 
   <!-- PANIER VIDE -->
-  <div *ngIf="items.length === 0" class="text-muted">
+  <div *ngIf="items.length === 0" class="text-muted urbanistt mt-5">
     Votre panier est vide.
   </div>
 
@@ -28,19 +23,19 @@
       />
 
       <div>
-        <strong>{{ item.name }}</strong>
-        <div class="text-muted">{{ item.price }} €</div>
+        <strong class="urbanistb">{{ item.name }}</strong>
+        <div class="text-muted urbanist">{{ item.price }} €</div>
       </div>
     </div>
 
-    <div class="d-flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-2 varta">
       <button class="btn btn-outline-dark btn-sm" (click)="decrease(item)">−</button>
       <span>{{ item.quantity }}</span>
       <button class="btn btn-outline-dark btn-sm" (click)="increase(item)">+</button>
 
     </div>
 
-    <div class="fw-semibold">
+    <div class="urbanist">
       {{ item.price * item.quantity | number:'1.2-2' }} €
     </div>
 
@@ -53,19 +48,19 @@
 
   <div class="price-line">
     <span>Sous-total</span>
-    <span>{{ subtotal | number:'1.2-2' }} €</span>
+    <span class="urbanist">{{ subtotal | number:'1.2-2' }} €</span>
   </div>
 
   <div class="price-line">
     <span>Frais de service</span>
-    <span>{{ serviceFee | number:'1.2-2' }} €</span>
+    <span class="urbanist">{{ serviceFee | number:'1.2-2' }} €</span>
   </div>
 
   <hr class="separator" />
 
   <div class="price-line total">
     <span>Total à payer</span>
-    <span>{{ total | number:'1.2-2' }} €</span>
+    <span class="urbanist">{{ total | number:'1.2-2' }} €</span>
   </div>
 
   <div class="validate-wrapper">
@@ -73,72 +68,7 @@
       Valider la commande
     </button>
   </div>
-
 </section>
-<!-- ================== SUGGESTIONS ================== -->
-<section class="suggestions container my-5">
-
-  <div class="suggestions-title">
-    <h3>NOS SUGGESTIONS</h3>
-    <span class="line"></span>
-  </div>
-
-  <div class="suggestions-grid">
-
-    <!-- AMATEUR MIX -->
-    <div class="suggestion-card">
-      <img src="assets/images/amateur-mix.jpg" alt="Amateur Mix" />
-
-      <div class="card-content">
-        <h4>AMATEUR MIX</h4>
-        <span class="pieces">18 PIECES</span>
-
-        <div class="price-cart">
-          <span class="price">10.90€</span>
-
-          <!-- 🔥 ICI LE LIEN VERS LE PANIER -->
-          <a routerLink="/app-panier">
-            <i class="bi bi-cart3"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- FRESH MIX -->
-    <div class="suggestion-card">
-      <img src="assets/images/fresh-mix.jpg" alt="Fresh Mix" />
-
-      <div class="card-content">
-        <h4>FRESH MIX</h4>
-        <span class="pieces">22 PIECES</span>
-
-        <div class="price-cart">
-          <span class="price">24.50€</span>
-
-          <a routerLink="/app-panier">
-            <i class="bi bi-cart3"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- GOURMET MIX -->
-    <div class="suggestion-card">
-      <img src="assets/images/gourmet-mix.jpg" alt="Gourmet Mix" />
-
-      <div class="card-content">
-        <h4>GOURMET MIX</h4>
-        <span class="pieces">22 PIECES</span>
-
-        <div class="price-cart">
-          <span class="price">24.50€</span>
-
-          <a routerLink="/app-panier">
-            <i class="bi bi-cart3"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </section>
+
+<app-suggestion></app-suggestion>

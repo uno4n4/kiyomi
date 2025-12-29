@@ -1,9 +1,9 @@
 <div class="gap-2 gap-md-3 text-dark me-5 mt-5 text-center d-flex align-items-center justify-content-end ariane urbanistt" *ngIf="horizontal">
-  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/')">Accueil</a>
-  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-produit')">Menus</a>
-  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')" [class.fw-bold]="isCurrentPage('/app-restaurant')">Le restaurant</a>
-  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-panier')" [class.fw-bold]="isCurrentPage('/app-panier')">Commande</a>
-  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-formulaire-co')" [class.fw-bold]="isCurrentPage('/app-formulaire-co') || isCurrentPage('/app-formulaire-inscription') || isCurrentPage('/app-forgot-password') || isCurrentPage('/app-compte-user')">Compte</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/')" [class.text-white]="isCurrentPage('/app-produit')">Accueil</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-menu')" [class.fw-bold]="isCurrentPage('/app-produit')" [class.text-white]="isCurrentPage('/app-produit')">Menus</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-restaurant')" [class.fw-bold]="isCurrentPage('/app-restaurant')" [class.text-white]="isCurrentPage('/app-produit')">Le restaurant</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-panier')" [class.fw-bold]="isCurrentPage('/app-panier')" [class.text-white]="isCurrentPage('/app-produit')">Commande</a>
+  <a class="text-dark mb-4 text-decoration-none" (click)="renvoi('/app-formulaire-co')" [class.fw-bold]="isCurrentPage('/app-formulaire-co') || isCurrentPage('/app-formulaire-inscription') || isCurrentPage('/app-forgot-password') || isCurrentPage('/app-compte-user')" [class.text-white]="isCurrentPage('/app-produit')">Compte</a>
 </div>
 <div class="col-12 text-white align-content-end ms-2 ariane urbanistt" *ngIf="!horizontal">
   <p>

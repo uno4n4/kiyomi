@@ -1,14 +1,14 @@
 <div class="container">
   <div class="col-10 mx-auto d-md-flex justify-content-md-between">
-    <h4 style="font-weight: 300; letter-spacing: 1px" class="text-black mt-5 urbanistt">
+    <h5 class="text-black mt-5 urbanistt">
       Mon compte
-    </h4>
+    </h5>
     <app-fild-ariane [horizontal]="true"></app-fild-ariane>
   </div>
   <div class="col-10 mx-auto row my-5">
     <div class="col-12 col-md-6">
-      <h5 class="urbanistgros">Bienvenue</h5>
-      <h5 class="urbanistgros">{{ user.prenom + ' ' + user.nom }}</h5>
+      <h5 class="urbanistb urbanistgros">Bienvenue</h5>
+      <h5 class="urbanistb urbanistgros">{{ user.prenom + ' ' + user.nom }}</h5>
     </div>
     <div class="col-12 col-md-6">
       <form
@@ -16,7 +16,7 @@
         style="max-width: 600px; margin: auto; backdrop-filter: blur(8px)"
       >
         <!-- Email modifiable -->
-        <div class="form-group form-floating">
+        <div class="form-group form-floating urbanistt">
           <input
             type="email"
             [(ngModel)]="email"
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Mot de passe modifiable -->
-        <div class="form-group form-floating">
+        <div class="form-group form-floating urbanistt">
           <input
             type="password"
             [(ngModel)]="password"
