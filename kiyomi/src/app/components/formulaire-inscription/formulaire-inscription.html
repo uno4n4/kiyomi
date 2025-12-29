@@ -1,9 +1,9 @@
 <div class="container col-10 d-md-flex justify-content-md-between">
-    <h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold mt-5">Inscription</h4>
+    <h5 style="font-weight: 300; letter-spacing: 1px;" class="text-black urbanistt mt-5">Inscription</h5>
     <app-fild-ariane [horizontal]="true"></app-fild-ariane>
 </div>
 <form (ngSubmit)="onSubmit()" novalidate
-      class="text-black mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto"
+      class="text-black mt-4 px-4 px-md-5 py-4 mb-5 mx-3 mx-md-auto urbanistt"
       style="
         max-width: 600px;
         margin: auto;
@@ -87,17 +87,17 @@
                 <label class="form-label mb-2">Statut </label>
                 <div class="form-check">
                     <input class="form-check-input" style="border: 1px solid black;" type="radio" name="status" [(ngModel)]="status" id="etudiant" value="Etudiant" checked>
-                    <label class="form-check-label" for="etudiant">Étudiant</label>
+                    <label class="form-check-label varta" for="etudiant">Étudiant</label>
                 </div>
 
                 <div class="form-check mt-2">
                     <input class="form-check-input" style="border: 1px solid black;" type="radio" name="status" [(ngModel)]="status" id="pro" value="Professionnel">
-                    <label class="form-check-label" for="pro">Professionnel</label>
+                    <label class="form-check-label varta" for="pro">Professionnel</label>
                 </div>
 
                 <div class="form-check mt-2">
                     <input class="form-check-input" style="border: 1px solid black;" type="radio" name="status" [(ngModel)]="status" id="retired" value="Retired">
-                    <label class="form-check-label" for="retired">Retraité</label>
+                    <label class="form-check-label varta" for="retired">Retraité</label>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
                 <label for="password" class="form-label forms text-black">Mot de passe :</label>
     </div>
 
-    <div class="d-flex">
+    <div class="d-flex my-5">
         <a (click)="dejaCompte()" class="btn">Vous avez déjà un compte ? </a>
     </div>
 

@@ -6,9 +6,9 @@ import { Rgpd } from '../rgpd/rgpd';
 @Component({
   selector: 'app-popup',
   standalone: true,
-  imports: [CommonModule, Rgpd],
+  imports: [CommonModule],
   templateUrl: './popup.html',
-  styleUrl: './popup.css',
+  styleUrls: ['./popup.css'], // petite faute corrigée : styleUrls
 })
 export class Popup {
 
@@ -43,3 +43,4 @@ export class Popup {
     this.router.navigate(['app-rgpd']);
   }
 }
+

@@ -3,8 +3,14 @@
     <div class="row justify-content-around">
       <!-- SECTION LOGO / NOM -->
       <div class="col-md-4 mb-4 text-center text-md-start">
-        <h3 class="fw-bold">Kiyomi</h3>
-        <p class="small fst-italic">
+        <a class="noUnderline m-1" (click)="renvoi('/app-accueil')">
+          <img
+            src="assets/images/KiyomiLogoBlanc.svg"
+            alt="Kiyomi"
+            class="h-25 m-2"
+          />
+        </a>
+        <p class="small fst-italic varta">
           Recevez nos dernières actualités en vous inscrivant à la Newsletter
         </p>
       </div>
@@ -34,12 +40,12 @@
     <div class="row my-5 col-10 col-md-12 mx-auto mx-md-0">
       <!-- SECTION SERVICE CLIENT -->
       <div class="col-md-3 mb-4">
-        <h5 class="fw-normal mb-3">SERVICE CLIENT</h5>
+        <h5 class="fw-normal mb-3 urbanistt">SERVICE CLIENT</h5>
         <div class="ms-3 me-5">
-          <p class="text-warning mb-3 small">
+          <p class="text-warning mb-3 small varta">
             Vous avez besoin d’aide ou vous souhaitez signaler un problème sur votre commande ?
           </p>
-          <a class="mb-1 fw-semibold text-white noUnderline" href="mailto:contact@kiyomi.com"
+          <a class="mb-1 text-white noUnderline varta" href="mailto:contact@kiyomi.com"
             >Contactez-nous !</a
           >
         </div>
@@ -47,9 +53,9 @@
 
       <!-- SECTION INFOS -->
       <div class="col-md-3 mb-4">
-        <h5 class="fw-normal mb-3">INFORMATIONS</h5>
+        <h5 class="fw-normal mb-3 urbanistt">INFORMATIONS</h5>
         <div class="ms-3 me-5">
-          <p class="mb-1">
+          <p class="mb-1 varta">
             <a
               (click)="renvoi('/app-mentionslegales')"
               class="small text-white text-decoration-none"
@@ -58,7 +64,7 @@
             </a>
           </p>
           <p class="mb-1">
-            <a (click)="renvoi('/app-rgpd')" class="small text-white text-decoration-none">
+            <a (click)="renvoi('/app-rgpd')" class="small text-white text-decoration-none varta">
               Données Personnelles
             </a>
           </p>
@@ -67,14 +73,14 @@
 
       <!-- SECTION A PROPOS -->
       <div class="col-md-3 mb-4">
-        <h5 class="fw-normal mb-3">A PROPOS</h5>
+        <h5 class="fw-normal mb-3 urbanistt">A PROPOS</h5>
         <div class="ms-3 me-5">
-          <p class="mb-1">
+          <p class="mb-1 varta">
             <a (click)="renvoi('/app-compte-user')" class="small text-white text-decoration-none"
               >Mon compte</a
             >
           </p>
-          <p class="mb-1">
+          <p class="mb-1 varta">
             <a (click)="renvoi('/app-restaurant')" class="small text-white text-decoration-none"
               >Le restaurant</a
             >
@@ -84,8 +90,8 @@
 
       <!-- SECTION ADRESSES -->
       <div class="col-md-3 mb-4">
-        <h5 class="fw-normal mb-3">ADRESSES KIYOMI</h5>
-        <div class="ms-3 me-5">
+        <h5 class="fw-normal mb-3 urbanistt">ADRESSES KIYOMI</h5>
+        <div class="ms-3 me-4 varta">
           <p class="small mb-1"><i class="bi bi-geo-alt-fill me-2"></i>123 Rue de Tokyo, Paris</p>
           <p class="small mb-1">
             <i class="bi bi-telephone-fill me-2"></i
@@ -110,7 +116,7 @@
     <hr />
 
     <!-- COPYRIGHT -->
-    <div class="row my-4">
+    <div class="row my-4 varta">
       <div class="col text-center small opacity-75">&copy; 2025 Kiyomi. Tous droits réservés.</div>
     </div>
   </div>

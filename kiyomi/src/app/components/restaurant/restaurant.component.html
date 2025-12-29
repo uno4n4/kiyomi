@@ -2,13 +2,13 @@
 <div class="text-dark py-5">
   <div class="container">
     <div class="d-flex justify-content-between mb-5">
-      <h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold mt-5">Le restaurant</h4>
+      <h5 style="font-weight: 300; letter-spacing: 1px;" class="text-black mt-5 urbanistt">Le restaurant</h5>
       <app-fild-ariane [horizontal]="true"></app-fild-ariane>
     </div>
 
     <!-- TOP: image + texte (comme photo 2) -->
-    <div class="row align-items-start g-5 col-10 mx-auto mb-5 pb-5">
-      <div class="col-lg-4">
+    <div class="row align-items-center col-10 mx-auto mb-5 pb-5">
+      <div class="col-5">
         <img
           src="./../../../assets/images/leRestaurant.png"
           class="img-fluid"
@@ -16,8 +16,8 @@
         />
       </div>
 
-      <div class="col-lg-8">
-        <h1 class="display-5 fw-semibold">
+      <div class="col-7">
+        <h1 class="display-6 urbanist">
           Une institution de la<br />
           gastronomie japonaise
         </h1>
@@ -38,21 +38,21 @@
 
     <!-- STATS + CHARTS -->
     <div class="my-5 py-5 col-10 mx-auto">
-      <h5 class="mb-4">Les statistiques</h5>
+      <h5 class="mb-4 urbanistt">Les statistiques</h5>
 
       <!-- 3 KPI -->
       <div class="row text-center g-4 mb-4">
         <div class="col-md-4">
-          <div class="display-5 fw-bold">{{ stats.percentages.takeaway }}%</div>
-          <div class="fw-semibold">Etudiants</div>
+          <div class="display-5 urbanistb">{{ stats.percentages.takeaway }}%</div>
+          <div class="urbanistb">Etudiants</div>
         </div>
         <div class="col-md-4">
-          <div class="display-5 fw-bold">{{ stats.percentages.delivery }}%</div>
-          <div class="fw-semibold">Professionnels</div>
+          <div class="display-5 urbanistb">{{ stats.percentages.delivery }}%</div>
+          <div class="urbanistb">Professionnels</div>
         </div>
         <div class="col-md-4">
-          <div class="display-5 fw-bold">{{ stats.percentages.onSite }}%</div>
-          <div class="fw-semibold">Retraité</div>
+          <div class="display-5 urbanistb">{{ stats.percentages.onSite }}%</div>
+          <div class="urbanistb">Retraité</div>
         </div>
       </div>
 
@@ -60,7 +60,7 @@
       <div class="row g-4">
         <div class="col-md-7">
           <div class="chart-card p-3">
-            <div class="fw-semibold mb-2">Chiffre d'affaire 2025</div>
+            <div class="mb-2 urbanist">Chiffre d'affaire 2025</div>
 
             <div class="chart-wrap" style="height:280px">
               <canvas id="weeklyChart"></canvas>
@@ -70,7 +70,7 @@
 
         <div class="col-md-5">
           <div class="chart-card p-3">
-            <div class="fw-semibold mb-2">Commandes par villes</div>
+            <div class="urbanist mb-2">Commandes par villes</div>
 
             <!-- ✅ ici : cityChart -->
             <div class="chart-wrap" style="height:280px">

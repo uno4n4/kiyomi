@@ -1,5 +1,43 @@
+/* polices importées */
+@import url('https://fonts.googleapis.com/css2?family=Amarante&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&family=Varta:wght@300..700&display=swap');
+.varta{
+  font-family: "Varta", sans-serif;
+  font-weight: normal;
+}
+
+.amarante{
+  font-family: "Amarante", sans-serif;
+  font-size: 7vh;
+}
+
+.urbanist{
+  font-family: "Urbanist", sans-serif;
+  font-weight: bold;
+}
+
+.urbanistgros{
+  font-size:7vh !important;
+}
+
+.urbanistt{
+  font-family: "Urbanist", sans-serif;
+  font-weight: light;
+}
+
+.urbanistn{
+  font-family: "Urbanist", sans-serif;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.urbanistb{
+  font-family: "Urbanist", sans-serif;
+  font-weight: bolder;
+}
+
 body {
-  font-family: Playfair Display, serif;
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: normal;
 }
 
 /* POLICES */
@@ -39,7 +77,8 @@ a:hover::after {
 
 /* NAVBAR */
 .navbar {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Varta", sans-serif;
+  font-weight: normal;
   background: transparent !important;
   position: fixed !important;
   top: 0;

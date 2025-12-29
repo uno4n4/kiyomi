@@ -16,15 +16,15 @@
     <div class="col-12 col-lg-6">
       <div class="ps-lg-4">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
-          <h1 class="display-6 fw-bold text-uppercase m-0">{{ box.name }}</h1>
-          <span class="fs-3 fw-bold">{{ box.price }} €</span>
+          <h1 class="display-6 urbanistb text-uppercase m-0">{{ box.name }}</h1>
+          <span class="fs-3 urbanistb">{{ box.price }} €</span>
         </div>
         
-        <p class="text-warning fw-bold mb-4 small">{{ box.pieces }} PIÈCES</p>
+        <p class="text-warning urbanistb mb-4 small">{{ box.pieces }} PIÈCES</p>
 
         <div class="row mb-5">
           <div class="col-sm-7 mb-4 mb-sm-0">
-            <h3 class="h6 text-uppercase fw-bold mb-3 border-secondary pb-2">Les pièces</h3>
+            <h3 class="h6 text-uppercase urbanist mb-3 border-secondary pb-2">Les pièces</h3>
             <ul class="list-unstyled small opacity-75">
               @for (food of box.foods; track food.name) {
                 <li class="mb-1">• {{ food.name }} ( {{ food.quantity }} pièces )</li>
@@ -33,13 +33,13 @@
           </div>
 
           <div class="col-sm-5">
-            <h3 class="h6 text-uppercase fw-bold mb-3 border-secondary pb-2">Les ingrédients</h3>
+            <h3 class="h6 text-uppercase urbanist mb-3 border-secondary pb-2">Les ingrédients</h3>
             <p class="small opacity-75">{{ box.flavors.join(', ') }}</p>
           </div>
         </div>
 
         <div class="d-flex gap-2">
-          <div class="input-group w-auto bg-dark-subtle rounded border border-secondary">
+          <div class="input-group w-auto bg-dark-subtle rounded border border-secondary varta">
             <button class="btn btn-outline-light border-0 px-3" (click)="retirer()" [disabled]="quantite === 1">-</button>
             <span class="input-group-text bg-transparent text-white border-0 fw-bold px-3">{{ quantite }}</span>
             <button class="btn btn-outline-light border-0 px-3" (click)="ajouter()" [disabled]="quantite === 10">+</button>

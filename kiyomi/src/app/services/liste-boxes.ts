@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ListeBoxes {
-  API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/boxes';
+  API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/index.php';
 
   constructor(private http: HttpClient) {}
   getBoxes(): Observable<any[]> {

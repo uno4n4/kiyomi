@@ -1,5 +1,5 @@
 <div class="container col-10 d-md-flex justify-content-md-between">
-    <h4 style="font-weight: 300; letter-spacing: 1px;" class="text-black fw-bold mt-5">Me Connecter</h4>
+    <h5 style="font-weight: 300; letter-spacing: 1px;" class="text-black urbanistt mt-5">Me Connecter</h5>
     <app-fild-ariane [horizontal]="true"></app-fild-ariane>
 </div>
 <form (ngSubmit)="onSubmit()" novalidate
@@ -13,7 +13,7 @@
         <img src="assets/images/iconeMenusNav.svg" alt="Icône menus" height="55px" class="mb-2" style="filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));">
     </div>
 
-    <div class="form-floating mt-3">
+    <div class="form-floating mt-3 urbanistt">
         <input type="email"
                class="form-control"
                id="email"
@@ -29,7 +29,7 @@
         <label for="email" class="form-label text-black">Email :</label>
     </div>
 
-    <div class="form-floating mt-4 mb-3">
+    <div class="form-floating mt-4 mb-3 urbanistt">
         <input type="password"
                class="form-control text-black mt-2"
                id="password"
@@ -45,7 +45,7 @@
         <label for="password" class="form-label text-black">Mot de passe :</label>
     </div>
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between urbanistt my-5">
         <a (click)="MdpOublie()" class="btn">Mot de passe oublié ? </a>
         <a (click)="Inscription()" class="btn">Vous n'avez pas de compte ? </a>
     </div>
@@ -81,7 +81,7 @@
   <!-- CONTENU À DROITE -->
   <div class="flex-grow-1 text-black d-flex flex-column justify-content-between p-2">
     <!-- TITRE -->
-    <h6 class="mb-1">Votre panier total :</h6>
+    <h6 class="mb-1 urbanistt">Votre panier total :</h6>
 
     <!-- NOMBRE DE BOXES -->
     <div>
@@ -95,13 +95,13 @@
     </div>
     <div class="d-flex justify-content-between">
       <span>Frais de service :</span>
-      <span class="me-3">2,50 €</span>
+      <span class="me-3 urbanist">2,50 €</span>
     </div>
 
     <!-- TOTAL -->
     <div class="d-flex justify-content-end mb-3">
       <span>Total à payer :</span>
-      <span class="text-danger ms-1 fw-bold me-3">{{ (productPending.price * productPending.quantity + 2.5) }} €</span>
+      <span class="text-danger ms-1 me-3 urbanist">{{ (productPending.price * productPending.quantity + 2.5) }} €</span>
     </div>
   </div>
 </div>
