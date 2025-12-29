@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Suggestion } from '../suggestion/suggestion';
@@ -20,12 +20,14 @@ export class CompteUser {
   successMessage = '';
   errorMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object,) {}
 
   ngOnInit() {
     // On récupère l'utilisateur depuis le localStorage
+    if (isPlatformBrowser(this.platformId)) {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.email = this.user.email;
+    }
   }
 
   updateUser() {
@@ -51,7 +53,7 @@ export class CompteUser {
         }
       },
       (err) => {
-        console.error('Erreur serveur:', err); // 🔍 log détaillé
+        console.error('Erreur serveur:', err);
         this.errorMessage = 'Erreur serveur.';
         this.successMessage = '';
       }
