@@ -11,8 +11,7 @@ try {
     $totalOrders = (int)($stmt->fetch(PDO::FETCH_ASSOC)['c'] ?? 0);
 
     // Répartition par status (confirmed/pending/...)
-    $stmt = $pdo->query("
-        SELECT status, COUNT(*) AS c
+    $stmt = $pdo->query("SELECT status, COUNT(*) AS c
         FROM orders
         GROUP BY status
     ");
@@ -35,8 +34,7 @@ try {
     $delivery = max(0, round(100 - $onSite - $takeaway, 1));
 
     // Commandes par jour sur les 7 derniers jours (format label/value)
-    $stmt = $pdo->query("
-        SELECT DATE(created_at) AS day,
+    $stmt = $pdo->query("SELECT DATE(created_at) AS day,
                COUNT(*) AS orders
         FROM orders
         WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
@@ -53,12 +51,11 @@ try {
     }, $weeklyRows);
 
     // Commandes par ville (format label/value)
-    $stmt = $pdo->query("
-        SELECT
+    $stmt = $pdo->query("SELECT
             COALESCE(u.city, 'Inconnu') AS city,
             COUNT(o.id) AS orders
-        FROM orders o
-        JOIN users u ON u.id = o.user_id
+        FROM orders AS o
+        JOIN users AS u ON u.id = o.user_id
         GROUP BY city
         ORDER BY orders DESC
     ");
