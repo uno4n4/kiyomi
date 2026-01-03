@@ -1,3 +1,4 @@
+
 <?php
 // api/config/config.php
 header("Access-Control-Allow-Origin: *"); // autorise toutes les origines

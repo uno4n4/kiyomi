@@ -36,6 +36,43 @@ export class Panier implements OnInit {
     this.savePanier();
   }
 
+  // ➕ PRODUITS COMPLÉMENTAIRES
+  addComplement(type: string): void {
+    const complements: any = {
+      baguette: {
+        name: 'Paires de baguettes jetables',
+        price: 0,
+        quantity: 1,
+        image: 'baguette'
+      },
+      mouchoir: {
+        name: 'Serviettes en papier',
+        price: 0,
+        quantity: 1,
+        image: 'mouchoirs'
+      },
+      serviette: {
+        name: 'Sauces (sucrée, salée et soja)',
+        price: 0,
+        quantity: 1,
+        image: 'serviette'
+      }
+    };
+
+    const product = complements[type];
+    if (!product) return;
+
+    const existing = this.items.find(i => i.name === product.name);
+
+    if (existing) {
+      existing.quantity++;
+    } else {
+      this.items.push(product);
+    }
+
+    this.savePanier();
+  }
+
   // 💾 Sauvegarde
   savePanier(): void {
     localStorage.setItem('panier', JSON.stringify(this.items));
@@ -54,3 +91,5 @@ export class Panier implements OnInit {
     return this.subtotal + this.serviceFee;
   }
 }
+
+
