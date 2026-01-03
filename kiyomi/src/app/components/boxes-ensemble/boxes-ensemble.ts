@@ -63,7 +63,7 @@ export class BoxesEnsemble implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {}
 
   // ========================
-  // NAVIGATION (FIX ERREUR)
+  // NAVIGATION
   // ========================
   pageProduit(id: number): void {
     this.router.navigate(['/app-produit'], {

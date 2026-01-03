@@ -1,8 +1,6 @@
 <div class="container">
   <div class="col-10 mx-auto d-md-flex justify-content-md-between">
-    <h5 class="text-black mt-5 urbanistt">
-      Mon compte
-    </h5>
+    <h5 class="text-black mt-5 urbanistt">Mon compte</h5>
     <app-fild-ariane [horizontal]="true"></app-fild-ariane>
   </div>
   <div class="col-10 mx-auto row my-5">
@@ -20,6 +18,7 @@
           <input
             type="email"
             [(ngModel)]="email"
+            name="email"
             class="form-control"
             placeholder=" "
             style="
@@ -38,6 +37,7 @@
           <input
             type="password"
             [(ngModel)]="password"
+            name="password"
             class="form-control"
             placeholder="Laisser vide pour ne pas changer"
             style="
@@ -55,14 +55,7 @@
         <div class="d-flex justify-content-end mt-2">
           <button
             (click)="updateUser()"
-            class="btn px-4 py-2 mt-3 w-50 w-md-auto"
-            style="
-              color: white;
-              border-radius: 2px;
-              border: 1px solid black;
-              background: black;
-              transition: 0.25s ease;
-            "
+            class="btn btn-dark rounded-0 px-4 py-2 mt-3 col-8 col-md-6"
           >
             Mettre à jour
           </button>
@@ -71,39 +64,88 @@
     </div>
   </div>
 
-   <div class="col-10 mx-auto">
-    <h4 class="mt-5 text-black urbanistt">MES PANIERS</h4>
-    <hr class="col-8 mb-5 text-black" />
-    <!-- ANCIENS PANIERS A AJOUTER ICI -->
+  <div class="col-10 mx-auto my-5 pb-5">
+  <h4 class="mt-5 text-black urbanistt">MES PANIERS</h4>
+  <hr class="col-8 mb-5 text-black" />
+
+  <div *ngIf="apiAnciensPanier.length > 0; else noOrders">
+    <div *ngFor="let panier of apiAnciensPanier">
+      <div class="card border-0 border-bottom rounded-0 py-3">
+        <div class="row g-0 align-items-start">
+          <!-- IMAGE -->
+          <div class="col-2">
+            <img
+              src="./../../../assets/images/mockups_boite_resto.jpg
+              "
+              class="card-img-top object-fit-cover border-0 rounded-0"
+            />
+          </div>
+
+          <!-- INFOS -->
+          <div class="col px-3 pt-2">
+            <div class="fw-semibold">{{ panier.created_at }}</div>
+            <div class="urbanistt">{{ panier.items.length }} boxes</div>
+          </div>
+
+          <div class="col-auto text-end pe-3">
+            <div class="fw-semibold mb-2">
+              Total: <span class="text-danger urbanist">{{ panier.total_price }} €</span>
+            </div>
+            <button (click)="panier.open = !panier.open" class="btn btn-dark px-4 py-2 mt-3 w-md-auto rounded-0">
+              Voir plus
+            </button>
+          </div>
+
+          <div *ngIf="panier.open" class="mt-3 ps-3 border-start">
+            <div *ngFor="let box of panier.items" class="mb-2">
+              <div class="fw-semibold">{{ box.box?.name }}</div>
+              <div>Quantité : {{ box.quantity }}</div>
+              <div>Prix unitaire : {{ box.unit_price }} €</div>
+              <hr />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <ng-template #noOrders>
+    <div class="text-center urbanist mt-4">
+      Aucune commande n'a été réalisée.
+    </div>
+  </ng-template>
+</div>
+
+
   <!-- Le responsive à regler -->
-  <div class="container py-2">
+  <div class="container py-2 my-5">
     <div class="d-flex justify-content-center">
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center overflow-hidden">
         <!-- IMAGE -->
         <div class="flex-shrink-0 position-relative z-1">
           <img
             src="../../../assets/images/sceneImg.png"
             alt="Diner Sushi"
             class="img-fluid rounded-2"
-            style="height: clamp(14rem, 28vw, 20rem); width: auto"
+            style="max-width: 35vw; height: auto"
           />
         </div>
 
         <!-- CARTE -->
         <div
-          class="bg-dark text-white rounded-4 d-flex align-items-center justify-content-center ms-n5"
-          style="height: clamp(20rem, 40vw, 30rem); width: clamp(16rem, 32vw, 22rem)"
+          class="bg-dark text-white rounded-4 d-flex align-items-center justify-content-center ms-n3 ms-md-n5"
+          style="width: min(30vw, 20rem); height: min(40vw, 30rem)"
         >
-          <p class="fs-3 text-center m-0 col-6 mx-auto urbanistt">
+          <p
+            class="text-center m-0 urbanistt px-2 px-md-5 mx-0 mx-md-5"
+            style="font-size: clamp(1rem, 4vw, 1.75rem)"
+          >
             Vivez l'art culinaire à partager
           </p>
         </div>
       </div>
     </div>
   </div>
-
   <!-- Messages -->
   <p class="text-success mt-2" *ngIf="successMessage">{{ successMessage }}</p>
   <p class="text-danger mt-2" *ngIf="errorMessage">{{ errorMessage }}</p>

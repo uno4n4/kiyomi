@@ -83,7 +83,7 @@ a:hover::after {
   position: fixed !important;
   top: 0;
   z-index: 3000;
-  height: 80px;
+  height: 85px;
   transition: background-color 0.3s ease;
 }
 
@@ -171,24 +171,7 @@ a:hover::after {
   }
 
 }
-/* ================= TYPOGRAPHIES ================= */
 
-.urbanist {
-  font-family: 'Urbanist', sans-serif;
-}
-
-.urbanistb {
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 700;
-}
-
-.urbanistt {
-  font-family: 'Urbanist', sans-serif;
-}
-
-.varta {
-  font-family: 'Varta', sans-serif;
-}
 
 /* ================= BOUTONS ================= */
 

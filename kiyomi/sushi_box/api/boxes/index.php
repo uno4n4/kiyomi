@@ -1,17 +1,17 @@
 <?php 
 
 // -------- FIX CORS OBLIGATOIRE --------
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Content-Type: application/json; charset=utf-8");
+// header("Access-Control-Allow-Origin: *");
+// header("Access-Control-Allow-Credentials: true");
+// header("Access-Control-Allow-Headers: Content-Type, Authorization");
+// header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+// header("Content-Type: application/json; charset=utf-8");
 
-// 4. Gérer la requête de pré-vérification du navigateur (OPTIONS)
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
-}
+// Gérer la requête de pré-vérification du navigateur (OPTIONS)
+// if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+//     http_response_code(200);
+//     exit();
+// }
 
 $pdo = new PDO('mysql:host=localhost;dbname=sushi_box', 'root', '');
 $boxes = $pdo->query('SELECT * FROM boxes')->fetchAll(PDO::FETCH_ASSOC);

@@ -1,7 +1,6 @@
 <?php
 // -------- FIX CORS OBLIGATOIRE --------
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=utf-8");
