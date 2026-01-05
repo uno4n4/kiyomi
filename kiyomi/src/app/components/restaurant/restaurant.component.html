@@ -1,12 +1,14 @@
-<!-- PAGE RESTAURANT (layout maquette) -->
+<!-- PAGE RESTAURANT -->
 <div class="text-dark py-5">
   <div class="container">
-    <div class="col-11 d-md-flex justify-content-md-between">
-    <h5 class="text-black urbanistt mt-5">Le restaurant</h5>
-    <app-fild-ariane [horizontal]="true"></app-fild-ariane>
-</div>
 
-    <!-- TOP: image + texte (comme photo 2) -->
+    <!-- Titre + fil d’ariane -->
+    <div class="col-11 d-md-flex justify-content-md-between">
+      <h5 class="text-black urbanistt mt-5">Le restaurant</h5>
+      <app-fild-ariane [horizontal]="true"></app-fild-ariane>
+    </div>
+
+    <!-- Image + texte -->
     <div class="row align-items-center col-10 mx-auto mb-5 pb-5">
       <div class="col-12 col-md-5">
         <img
@@ -40,47 +42,43 @@
     <div class="my-5 py-5 col-10 mx-auto">
       <h5 class="mb-4 urbanistt">Les statistiques</h5>
 
-      <!-- 3 KPI -->
-      <div class="row text-center g-4 mb-4">
-        <div class="col-md-4">
-          <div class="display-5 urbanistb">{{ stats.percentages.takeaway }}%</div>
-          <div class="urbanistb">Etudiants</div>
-        </div>
-        <div class="col-md-4">
-          <div class="display-5 urbanistb">{{ stats.percentages.delivery }}%</div>
-          <div class="urbanistb">Professionnels</div>
-        </div>
-        <div class="col-md-4">
-          <div class="display-5 urbanistb">{{ stats.percentages.onSite }}%</div>
-          <div class="urbanistb">Retraité</div>
+      <!-- % utilisateurs / statut -->
+      <div class="row text-center g-4 mb-5">
+        <div
+          class="col-md-4"
+          *ngFor="let s of stats.usersStatus"
+        >
+          <div class="display-5 urbanistb">{{ s.value }}%</div>
+          <div class="urbanistb">{{ s.label }}</div>
         </div>
       </div>
 
       <!-- 2 charts -->
       <div class="row g-4">
+
+        <!-- Chiffre d’affaire -->
         <div class="col-md-7">
           <div class="chart-card p-3">
-            <div class="mb-2 urbanist">Chiffre d'affaire 2025</div>
-
+            <div class="mb-2 urbanist">Chiffre d'affaire par mois</div>
             <div class="chart-wrap" style="height:280px">
-              <canvas id="weeklyChart"></canvas>
+              <canvas id="caStat"></canvas>
             </div>
           </div>
         </div>
 
+        <!-- Panier moyen -->
         <div class="col-md-5">
           <div class="chart-card p-3">
-            <div class="urbanist mb-2">Commandes par villes</div>
-
-            <!-- ✅ ici : cityChart -->
+            <div class="urbanist mb-2">Panier moyen par statut</div>
             <div class="chart-wrap" style="height:280px">
-              <canvas id="cityChart"></canvas>
+              <canvas id="panierMoyStats"></canvas>
             </div>
-
           </div>
         </div>
+
       </div>
     </div>
 
   </div>
 </div>
+

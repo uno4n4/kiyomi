@@ -6,38 +6,31 @@ export type FeaturedBox = {
   id: string;
   name: string;
   pieces: number;
-  priceEUR: number;
+  prix: number;
   imageUrl: string;
 };
 
+export type StatItem = {
+  label: string;
+  value: number;
+};
+
 export type RestaurantStats = {
-  percentages: {
-    takeaway: number;
-    delivery: number;
-    onSite: number;
-  };
-  charts: {
-    weeklyOrders: { label: string; value: number }[];
-    satisfaction: { label: string; value: number }[];
-    ordersByCity: { label: string; value: number }[]; // <-- ici
-  };
+  usersStatus: StatItem[];
+  chiffreAffaire: StatItem[];
+  panierMoy: StatItem[];
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestaurantApi {
+  private API_URL = 'http://localhost/kiyomi/kiyomi/sushi_box/api/restaurant.php';
+
   constructor(private http: HttpClient) {}
 
   getRestaurantStats(): Observable<RestaurantStats> {
-    return this.http.get<RestaurantStats>(
-      'http://localhost/kiyomi/kiyomi/sushi_box/api/restaurant.php'
-    );
-  }
-
-  getFeaturedBoxes(): Observable<FeaturedBox[]> {
-    return this.http.get<FeaturedBox[]>(
-      'http://localhost/kiyomi/kiyomi/sushi_box/api/boxes/'
-    );
+    return this.http.get<RestaurantStats>(this.API_URL);
   }
 }
+
