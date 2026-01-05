@@ -97,10 +97,10 @@ try {
 
         // Calcul total
         $lineTotal = $price * $quantityToAdd;
-        if ($statusUser === 'student') $lineTotal *= 0.9;
+        if ($statusUser === 'student') $lineTotal *= 0.9; //reduction etudiant
         $total += $lineTotal;
 
-        if ($total > 139.99) $total *= 0.985;
+        if ($total > 139.99) $total *= 0.985; //reduction au bout d'un total plus grand que 139.99
 
         $nbboxes += $quantityToAdd;
     }

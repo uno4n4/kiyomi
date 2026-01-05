@@ -39,7 +39,7 @@ try {
             oi.unit_price
         FROM orders o
         JOIN order_items oi ON o.id = oi.order_id
-        WHERE o.user_id = :user AND o.status != 'pending'
+        WHERE o.user_id = :user
         ORDER BY o.id DESC");
         //il faut regrouper les éléments de la commande
 
@@ -56,6 +56,7 @@ try {
                 'id' => $orderId,
                 'created_at' => $row['created_at'],
                 'total_price' => $row['total_price'],
+                'status' => $row['status'],
                 'items' => []
             ];
         }

@@ -1,12 +1,12 @@
 
 <?php
-// // api/config/config.php
+// api/config/config.php
 // header("Access-Control-Allow-Origin: *"); // autorise toutes les origines
 // header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 // header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    // préflight CORS
+//     // préflight CORS
 //     http_response_code(200);
 //     exit;
 // }

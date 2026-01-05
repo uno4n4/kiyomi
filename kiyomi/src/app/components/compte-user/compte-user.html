@@ -65,57 +65,69 @@
   </div>
 
   <div class="col-10 mx-auto my-5 pb-5">
-  <h4 class="mt-5 text-black urbanistt">MES PANIERS</h4>
-  <hr class="col-8 mb-5 text-black" />
+    <h4 class="mt-5 text-black urbanistt">MES PANIERS</h4>
+    <hr class="col-8 mb-5 text-black" />
 
-  <div *ngIf="apiAnciensPanier.length > 0; else noOrders">
-    <div *ngFor="let panier of apiAnciensPanier">
-      <div class="card border-0 border-bottom rounded-0 py-3">
-        <div class="row g-0 align-items-start">
-          <!-- IMAGE -->
-          <div class="col-2">
-            <img
-              src="./../../../assets/images/mockups_boite_resto.jpg
+    <div *ngIf="apiAnciensPanier.length > 0; else noOrders">
+      <div *ngFor="let panier of apiAnciensPanier">
+        <div class="card border-0 border-bottom rounded-0 py-3">
+          <div class="row g-0 align-items-start">
+            <!-- IMAGE -->
+            <div class="col-2">
+              <img
+                src="./../../../assets/images/mockups_boite_resto.jpg
               "
-              class="card-img-top object-fit-cover border-0 rounded-0"
-            />
-          </div>
-
-          <!-- INFOS -->
-          <div class="col px-3 pt-2">
-            <div class="fw-semibold">{{ panier.created_at }}</div>
-            <div class="urbanistt">{{ panier.items.length }} boxes</div>
-          </div>
-
-          <div class="col-auto text-end pe-3">
-            <div class="fw-semibold mb-2">
-              Total: <span class="text-danger urbanist">{{ panier.total_price }} €</span>
+                class="card-img-top object-fit-cover border-0 rounded-0"
+              />
             </div>
-            <button (click)="panier.open = !panier.open" class="btn btn-dark px-4 py-2 mt-3 w-md-auto rounded-0">
-              Voir plus
-            </button>
-          </div>
 
-          <div *ngIf="panier.open" class="mt-3 ps-3 border-start">
-            <div *ngFor="let box of panier.items" class="mb-2">
-              <div class="fw-semibold">{{ box.box?.name }}</div>
-              <div>Quantité : {{ box.quantity }}</div>
-              <div>Prix unitaire : {{ box.unit_price }} €</div>
-              <hr />
+            <!-- INFOS -->
+            <div class="col px-3 pt-2">
+              <div class="fw-semibold">{{ panier.created_at }}</div>
+              <div class="urbanistt">{{ panier.items.length }} boxes</div>
+            </div>
+
+            <!-- STATUT -->
+            <div class="col px-3 pt-2">
+              <div class="fw-semibold">Statut :</div>
+              @if(panier.status === "pending"){
+              <div class="urbanistt bg-grey rounded text-white p-1 col-3 text-center">En cours</div>
+              }@else if(panier.status === "confirmed"){
+              <div class="urbanistt bg-success rounded text-white p-1 col-3 text-center">Confirmée</div>
+              }@else{
+              <div class="urbanistt bg-danger rounded text-white p-1 col-3 text-center">Annulée</div>
+              }
+            </div>
+
+            <div class="col-auto text-end pe-3">
+              <div class="fw-semibold mb-2">
+                Total: <span class="text-danger urbanist">{{ panier.total_price }} €</span>
+              </div>
+              <button
+                (click)="panier.open = !panier.open"
+                class="btn btn-dark px-4 py-2 mt-3 w-md-auto rounded-0"
+              >
+                Voir plus
+              </button>
+            </div>
+
+            <div *ngIf="panier.open" class="mt-3 ps-3 border-start">
+              <div *ngFor="let box of panier.items" class="mb-2">
+                <div class="fw-semibold">{{ box.box?.name }}</div>
+                <div>Quantité : {{ box.quantity }}</div>
+                <div>Prix unitaire : {{ box.unit_price }} €</div>
+                <hr />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <ng-template #noOrders>
+      <div class="text-center urbanist mt-4">Aucune commande n'a été réalisée.</div>
+    </ng-template>
   </div>
-
-  <ng-template #noOrders>
-    <div class="text-center urbanist mt-4">
-      Aucune commande n'a été réalisée.
-    </div>
-  </ng-template>
-</div>
-
 
   <!-- Le responsive à regler -->
   <div class="container py-2 my-5">

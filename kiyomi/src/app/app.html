@@ -55,7 +55,7 @@
                  class="text-white text-decoration-none">
                 {{ user.prenom }} {{ user.nom }}
               </a>
-              <button class="btn btn-sm btn-outline-light"
+              <button class="btn btn-sm btn-outline-light noUnderline"
                       (click)="logout()">
                 Se déconnecter
               </button>
@@ -138,7 +138,7 @@
                class="text-white text-decoration-none">
               {{ user.prenom }} {{ user.nom }}
             </a>
-            <a (click)="logout()" class="btn btn-sm btn-outline-light">
+            <a (click)="logout()" class="btn btn-sm btn-outline-light noUnderline">
               Se déconnecter
             </a>
           </div>
