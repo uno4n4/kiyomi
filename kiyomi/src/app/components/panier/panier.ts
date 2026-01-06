@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FildAriane } from '../fild-ariane/fild-ariane';
 import { Suggestion } from '../suggestion/suggestion';
 
@@ -15,18 +15,22 @@ export class Panier implements OnInit {
   items: any[] = [];
   serviceFee = 2.5;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const storedPanier = localStorage.getItem('panier');
     this.items = storedPanier ? JSON.parse(storedPanier) : [];
   }
 
-  // ➕ Augmenter quantité
+  // Augmenter quantité
   increase(item: any): void {
     item.quantity++;
     this.savePanier();
   }
 
-  // ➖ Diminuer quantité
+  // Diminuer quantité
   decrease(item: any): void {
     if (item.quantity > 1) {
       item.quantity--;
@@ -36,7 +40,7 @@ export class Panier implements OnInit {
     this.savePanier();
   }
 
-  // ➕ PRODUITS COMPLÉMENTAIRES
+  // PRODUITS COMPLÉMENTAIRES
   addComplement(type: string): void {
     const complements: any = {
       baguette: {
@@ -73,12 +77,13 @@ export class Panier implements OnInit {
     this.savePanier();
   }
 
-  // 💾 Sauvegarde
+  // Sauvegarde
   savePanier(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     localStorage.setItem('panier', JSON.stringify(this.items));
   }
 
-  // 💰 Sous-total
+  // Sous-total
   get subtotal(): number {
     return this.items.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -86,10 +91,8 @@ export class Panier implements OnInit {
     );
   }
 
-  // 💳 Total
+  // Total
   get total(): number {
     return this.subtotal + this.serviceFee;
   }
 }
-
-

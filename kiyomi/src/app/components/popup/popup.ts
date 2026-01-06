@@ -7,39 +7,34 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './popup.html',
-  styleUrls: ['./popup.css'], // petite faute corrigée : styleUrls
+  styleUrl: './popup.css',
 })
 export class Popup {
+  private isBrowser: boolean;
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+    @Inject(PLATFORM_ID) platformId: object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
-  // 🔹 Affichage du popup panier
   get showPopup(): boolean {
-    if (!isPlatformBrowser(this.platformId)) {
-      return false;
-    }
-
-    return localStorage.getItem('panier') !== null;
+    if (!this.isBrowser) return false;
+    return !localStorage.getItem('cookieChoice');
   }
 
-  // 🔹 RGPD
-  acceptCookies() {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('cookieChoice', 'accepted');
-    }
+  acceptCookies(): void {
+    if (!this.isBrowser) return;
+    localStorage.setItem('cookieChoice', 'accepted');
   }
 
-  refuseCookies() {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('cookieChoice', 'refused');
-    }
+  refuseCookies(): void {
+    if (!this.isBrowser) return;
+    localStorage.setItem('cookieChoice', 'refused');
   }
 
-  rgpd() {
+  rgpd(): void {
     this.router.navigate(['app-rgpd']);
   }
 }
-
