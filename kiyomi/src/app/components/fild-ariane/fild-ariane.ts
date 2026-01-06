@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Input } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { filter } from 'rxjs/internal/operators/filter';
 
 @Component({
@@ -11,7 +12,7 @@ import { filter } from 'rxjs/internal/operators/filter';
   styleUrl: './fild-ariane.css',
 })
 export class FildAriane {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private route: ActivatedRoute) {}
   navigateTo(path: string) {
     window.location.href = path;
   }
@@ -23,14 +24,21 @@ export class FildAriane {
     '/app-forgot-password',
     '/app-formulaire-co',
     '/app-restaurant',
-    'app-rgpd'
+    'app-rgpd',
   ];
   @Input() horizontal: boolean = false;
   accueil: boolean = false;
+  user: any = null;
 
   //pour détecter la page actuelle si c'est l'accueil on pourra mettre le menu en gras
   ngOnInit() {
-  this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+    if (isPlatformBrowser(this.platformId)) {
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+        this.user = JSON.parse(savedUser);
+      }
+    }
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       let currentRoute = this.route.firstChild;
 
       while (currentRoute?.firstChild) {
@@ -47,7 +55,7 @@ export class FildAriane {
     return this.accueil;
   }
 
-//PAGE ACTUELLE EN GRAS
+  //PAGE ACTUELLE EN GRAS
   isCurrentPage(path: string): boolean {
     return this.router.url.includes(path);
   }
